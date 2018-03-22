@@ -26,7 +26,7 @@ namespace ConsoleApplication4
             {
                 Console.Write("Enter first number: ");
             } while (!int.TryParse(Console.ReadLine(), out num1));
-            //kjiljklj
+
             do
             {
                 Console.Write("Enter second number: ");
