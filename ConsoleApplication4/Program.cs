@@ -8,6 +8,7 @@ namespace ConsoleApplication4
 {
     class Program
     {
+        //blabla
         static void initialize(out int x)
         {
             x = 0;
