@@ -47,7 +47,8 @@ namespace ImageService
         private ImageServer m_imageServer;          // The Image Server
 		private IImageServiceModal modal;
 		private IImageController controller;
-		private ILoggingService logging;
+        private EventLog eventLog1;
+        private ILoggingService logging;
 
 		// Here You will Use the App Config!
         protected override void OnStart(string[] args)
@@ -57,6 +58,22 @@ namespace ImageService
 
         protected override void OnStop()
         {
+
+        }
+
+        private void InitializeComponent()
+        {
+            this.eventLog1 = new System.Diagnostics.EventLog();
+            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
+            // 
+            // eventLog1
+            // 
+            this.eventLog1.EnableRaisingEvents = true;
+            // 
+            // ImageService
+            // 
+            this.ServiceName = "ImageService";
+            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
 
         }
     }
