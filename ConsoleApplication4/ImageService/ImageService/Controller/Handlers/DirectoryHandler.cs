@@ -15,9 +15,10 @@ namespace ImageService.Controller.Handlers
 {
     public class DirectoryHandler : IDirectoryHandler
     {
-        public DirectoryHandler(string directory, IImageController controller)
+        public DirectoryHandler(string directory, IImageController controller, ILoggingService ils)
         {
             m_path = directory;
+            m_logging = ils;
             StartHandleDirectory(m_path);
             m_controller = controller;
         }
@@ -48,7 +49,7 @@ namespace ImageService.Controller.Handlers
 
         public void StartHandleDirectory(string dirPath)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         // Implement Here!

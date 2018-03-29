@@ -16,14 +16,16 @@ namespace ImageService.Server
 {
     public class ImageServer
     {
-        public ImageServer(string[] handlers)
+        public ImageServer(string[] handlers, ILoggingService ils)
         {
-            /*foreach(string s in handlers)
+            m_logging = ils;
+
+            foreach(string s in handlers)
             {
-                IDirectoryHandler h = new DirectoryHandler(s, m_controller);
+                IDirectoryHandler h = new DirectoryHandler(s, m_controller, m_logging);
                 CommandReceived += h.OnCommandReceived;
                 h.DirectoryClose += CloseHandler;
-            }*/
+            }
         }
 
         public void CloseServer()

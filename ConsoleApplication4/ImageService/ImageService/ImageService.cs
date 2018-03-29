@@ -58,12 +58,14 @@ namespace ImageService
         // Here You will Use the App Config!
         protected override void OnStart(string[] args)
         {
-            Console.WriteLine("notsar");
+            logging = new LoggingService();
+
             string logSource = ConfigurationManager.AppSettings["SourceName"];
             string logName = ConfigurationManager.AppSettings["LogName"];
             string[] handlers = ConfigurationManager.AppSettings["Handler"].Split(';');
 
-            this.eventLog1 = new EventLog();
+            eventLog1 = new EventLog();
+
             //initialize the EventLogger with values from configuration file
             ((ISupportInitialize)(eventLog1)).BeginInit();
             // 
@@ -76,21 +78,22 @@ namespace ImageService
 
             ((ISupportInitialize)(eventLog1)).EndInit();
 
-            //logging.MessageReceived += onMsg;
+            logging.MessageReceived += OnMsg;
 
-            m_imageServer = new ImageServer(handlers);
+            m_imageServer = new ImageServer(handlers, logging);
 
             eventLog1.WriteEntry("ImageService started");
 
         }
         
-        protected void onMsg(object sender, MessageReceivedEventArgs e)
+        protected void OnMsg(object sender, MessageReceivedEventArgs e)
         {
             eventLog1.WriteEntry(e.Message);        
         }
 
         protected override void OnStop()
         {
+            m_imageServer.CloseServer();
             eventLog1.WriteEntry("ImageService stopped.");
         }
 
