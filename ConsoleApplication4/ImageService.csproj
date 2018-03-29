@@ -58,7 +58,7 @@
     <Compile Include="ImageService\ImageService.Logging\Modal\MessageTypeEnum.cs" />
     <Compile Include="ImageService\ImageService\Commands\ICommand.cs" />
     <Compile Include="ImageService\ImageService\Commands\NewFileCommand.cs" />
-    <Compile Include="ImageService\ImageService\Controller\Handlers\DirectoyHandler.cs" />
+    <Compile Include="ImageService\ImageService\Controller\Handlers\DirectoryHandler.cs" />
     <Compile Include="ImageService\ImageService\Controller\Handlers\IDirectoryHandler.cs" />
     <Compile Include="ImageService\ImageService\Controller\IImageController.cs" />
     <Compile Include="ImageService\ImageService\Controller\ImageController.cs" />

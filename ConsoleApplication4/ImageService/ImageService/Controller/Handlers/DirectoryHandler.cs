@@ -13,8 +13,14 @@ using System.Text.RegularExpressions;
 
 namespace ImageService.Controller.Handlers
 {
-    public class DirectoyHandler : IDirectoryHandler
+    public class DirectoryHandler : IDirectoryHandler
     {
+        public DirectoryHandler(string directory, IImageController controller)
+        {
+            m_path = directory;
+            m_controller = controller;
+        }
+
         #region Members
         private IImageController m_controller;              // The Image Processing Controller
         private ILoggingService m_logging;
@@ -24,7 +30,9 @@ namespace ImageService.Controller.Handlers
 
         public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              // The Event That Notifies that the Directory is being closed
 
-        public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
+
+
+        public void OnCommandReceived(object sender, CommandReceivedEventArgs e)
         {
             throw new NotImplementedException();
         }

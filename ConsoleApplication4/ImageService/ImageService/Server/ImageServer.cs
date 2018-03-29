@@ -15,7 +15,21 @@ namespace ImageService.Server
     {
         public ImageServer(string[] handlers)
         {
+            foreach(string s in handlers)
+            {
+                IDirectoryHandler h = new DirectoryHandler(s, m_controller);
+                CommandReceived += h.OnCommandReceived;
+                h.DirectoryClose += CloseHandler;
+            }
 
+
+        }
+
+        public void CloseHandler(object sender, DirectoryCloseEventArgs d)
+        {
+            IDirectoryHandler idh = (IDirectoryHandler)sender;
+            CommandReceived -= idh.OnCommandReceived;
+            idh.DirectoryClose -= CloseHandler;
         }
 
         #region Members
@@ -24,7 +38,7 @@ namespace ImageService.Server
         #endregion
 
         #region Properties
-        public event EventHandler<CommandRecievedEventArgs> CommandRecieved;          // The event that notifies about a new Command being recieved
+        public event EventHandler<CommandReceivedEventArgs> CommandReceived;          // The event that notifies about a new Command being Received
         #endregion
 
        
