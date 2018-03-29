@@ -50,31 +50,65 @@ namespace ImageService
         private EventLog eventLog1;
         private ILoggingService logging;
 
-		// Here You will Use the App Config!
+        public ImageService()
+        {
+            InitializeComponent();
+        }
+
+        // Here You will Use the App Config!
         protected override void OnStart(string[] args)
         {
+            ServiceBase[] ServicesToRun;
+            ServicesToRun = new ServiceBase[] 
+            { 
+                new ImageService() 
+            };
+            ServiceBase.Run(ServicesToRun);
 
+            string logSource = ConfigurationManager.AppSettings["SourceName"];
+            string logName = ConfigurationManager.AppSettings["LogName"];
+            string[] handlers = ConfigurationManager.AppSettings["Handler"].Split(';');
+
+            //initialize the EventLogger with values from configuration file
+            ((ISupportInitialize)(eventLog1)).BeginInit();
+            // 
+            if (!EventLog.SourceExists(logSource))
+            {
+                EventLog.CreateEventSource(logSource, logName);
+            }
+            eventLog1.Source = logSource;
+            eventLog1.Log = logName;
+
+            ((ISupportInitialize)(eventLog1)).EndInit();
+
+            m_imageServer = new ImageServer(handlers);
+
+            eventLog1.WriteEntry("ImageService started");
+
+        }
+
+        protected void onMsg(string msg)
+        {
+            eventLog1.WriteEntry(msg);        
         }
 
         protected override void OnStop()
         {
-
+            eventLog1.WriteEntry("ImageService stopped.");
         }
 
         private void InitializeComponent()
         {
-            this.eventLog1 = new System.Diagnostics.EventLog();
-            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
-            // 
-            // eventLog1
-            // 
-            this.eventLog1.EnableRaisingEvents = true;
+            this.eventLog1 = new EventLog();
             // 
             // ImageService
             // 
+            this.CanHandlePowerEvent = true;
+            this.CanHandleSessionChangeEvent = true;
             this.ServiceName = "ImageService";
-            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
 
         }
+
+
     }
 }

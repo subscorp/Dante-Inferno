@@ -13,6 +13,11 @@ namespace ImageService.Server
 {
     public class ImageServer
     {
+        public ImageServer(string[] handlers)
+        {
+
+        }
+
         #region Members
         private IImageController m_controller;
         private ILoggingService m_logging;

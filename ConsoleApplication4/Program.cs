@@ -1,40 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ServiceProcess;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication4
+namespace ImageService
 {
     class Program
     {
-        //blabla
-        static void initialize(out int x)
-        {
-            x = 0;
-        }
-
-        static void increment(ref int x)
-        {
-            x++;
-        }
-
         static void Main(string[] args)
         {
-            int num1, num2;
+            Console.WriteLine("hithalnou");
 
-            do
-            {
-                Console.Write("Enter first number: ");
-            } while (!int.TryParse(Console.ReadLine(), out num1));
-
-            do
-            {
-                Console.Write("Enter second number: ");
-
-            } while (!int.TryParse(Console.ReadLine(), out num2));
-
-            Console.WriteLine($"sum is: {num1 + num2}");
+            ServiceBase[] ServicesToRun;
+            ServicesToRun = new ServiceBase[] 
+            { 
+                new ImageService() 
+            };
+            ServiceBase.Run(ServicesToRun);
+            
+            Console.WriteLine("siyamnou ");
         }
     }
 }

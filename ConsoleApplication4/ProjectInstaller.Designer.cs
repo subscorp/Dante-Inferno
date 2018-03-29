@@ -39,6 +39,7 @@
             // 
             // serviceInstaller1
             // 
+            this.serviceInstaller1.DelayedAutoStart = true;
             this.serviceInstaller1.Description = "A service for images";
             this.serviceInstaller1.DisplayName = "ImageService";
             this.serviceInstaller1.ServiceName = "ImageService";
