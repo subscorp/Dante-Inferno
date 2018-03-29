@@ -81,15 +81,17 @@ namespace ImageService
 
             ((ISupportInitialize)(eventLog1)).EndInit();
 
+            logging.MessageReceived += onMsg;
+
             m_imageServer = new ImageServer(handlers);
 
             eventLog1.WriteEntry("ImageService started");
 
         }
 
-        protected void onMsg(string msg)
+        protected void onMsg(object sender, MessageReceivedEventArgs e)
         {
-            eventLog1.WriteEntry(msg);        
+            eventLog1.WriteEntry(e.Message);        
         }
 
         protected override void OnStop()

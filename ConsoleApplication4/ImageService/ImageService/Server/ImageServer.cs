@@ -1,13 +1,17 @@
-﻿using ImageService.Controller;
+﻿#define CLOSE_ALL_HANDLERS 1;
+
+using ImageService.Controller;
 using ImageService.Controller.Handlers;
 using ImageService.Infrastructure.Enums;
-using ImageService.Logging;
+using ImageService.Logging.Modal;
 using ImageService.Modal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+
 
 namespace ImageService.Server
 {
@@ -21,8 +25,13 @@ namespace ImageService.Server
                 CommandReceived += h.OnCommandReceived;
                 h.DirectoryClose += CloseHandler;
             }
+        }
 
-
+        public void CloseServer()
+        {
+            // commandID 1 means - close all handlers, so no particular path is required
+            CommandReceived.Invoke(this, new CommandReceivedEventArgs(1, null, null));
+            m_logging.Log("closing all handlers", MessageTypeEnum.INFO);
         }
 
         public void CloseHandler(object sender, DirectoryCloseEventArgs d)
