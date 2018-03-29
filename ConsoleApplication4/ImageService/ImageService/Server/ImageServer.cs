@@ -1,8 +1,7 @@
-﻿#define CLOSE_ALL_HANDLERS 1;
-
-using ImageService.Controller;
+﻿using ImageService.Controller;
 using ImageService.Controller.Handlers;
 using ImageService.Infrastructure.Enums;
+using ImageService.Logging;
 using ImageService.Logging.Modal;
 using ImageService.Modal;
 using System;
@@ -19,12 +18,12 @@ namespace ImageService.Server
     {
         public ImageServer(string[] handlers)
         {
-            foreach(string s in handlers)
+            /*foreach(string s in handlers)
             {
                 IDirectoryHandler h = new DirectoryHandler(s, m_controller);
                 CommandReceived += h.OnCommandReceived;
                 h.DirectoryClose += CloseHandler;
-            }
+            }*/
         }
 
         public void CloseServer()
