@@ -32,7 +32,6 @@ namespace ImageService.Modal
                 {
                     if (!Directory.Exists(m_OutputFolder))
                     {
-                        Console.WriteLine("m_outputFolder didn't exist");
                         Directory.CreateDirectory(m_OutputFolder);
                     }
 
@@ -45,13 +44,11 @@ namespace ImageService.Modal
                     var filePath = monthPath + "\\" + Path.GetFileName(path);
                     if (!Directory.Exists(yearPath))
                     {
-                        Console.WriteLine("yearPath directory didn't exist");
                         Directory.CreateDirectory(yearPath);
                     }
 
                     if (!Directory.Exists(monthPath))
                     {
-                        Console.WriteLine("monthPath directory didn't exist");
                         Directory.CreateDirectory(monthPath);
                     }
 
@@ -66,8 +63,6 @@ namespace ImageService.Modal
                 catch (Exception ex)
                 {
                     result = false;
-                    Console.WriteLine("cought an exception");
-                    Console.WriteLine(ex.Message);
                     return ex.Message;
                 }
             }
