@@ -17,12 +17,15 @@ namespace ImageService.Controller
 
         public ImageController(IImageServiceModal modal)
         {
+            //TODO replace 0 with new file enum
             m_modal = modal;                    // Storing the Modal Of The System
             commands = new Dictionary<int, ICommand>()
             {
+                {0, new NewFileCommand(m_modal) }
 				// For Now will contain NEW_FILE_COMMAND
             };
         }
+        //change to command
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
             // Write Code Here
