@@ -17,7 +17,7 @@ namespace ImageService
             /*
             bool result;
             string[] stringArr = { "C:\\ImageFolders\\folder1\\butterfly.jpg" };
-            IImageController controller = new ImageController(new ImageServiceModal("C:\\ImageFolders\\output"));
+            IImageController controller = new ImageController(new ImageServiceModal("C:\\ImageFolders\\output", 120));
             controller.ExecuteCommand(0, stringArr , out result);
             return;
             */
