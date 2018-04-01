@@ -75,11 +75,11 @@ namespace ImageService.Modal
                     //if the image isn't already in the path, copy it to there
                     if (!File.Exists(imagePath))
                     {
-                        File.Copy(path, imagePath);
+                        File.Move(path, imagePath);
                     }
 
                     //creating thumbnail and saving it in the correct folder
-                    Image image = Image.FromFile(path);
+                    Image image = Image.FromFile(imagePath);
                     Image thumb = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
                     thumb.Save(Path.ChangeExtension(thumbnailPath, "thumb"));
 
