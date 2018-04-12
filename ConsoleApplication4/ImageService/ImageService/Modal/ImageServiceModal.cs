@@ -32,6 +32,10 @@ namespace ImageService.Modal
             m_thumbnailSize = thumbnailSize;
         }
 
+
+        //we init this once so that if the function is repeatedly called
+        //it isn't stressing the garbage man
+        private static Regex r = new Regex(":");
         /// <summary>
         /// The Function Adds A file to the system
         /// </summary>
@@ -40,12 +44,40 @@ namespace ImageService.Modal
         /// <returns>Indication if the Addition Was Successful</returns>
         public string AddFile(string path, out bool result)
         {
+            Image thumb = null;
+            const int PropertyTagExifDTOrig = 0x9003;
             if (File.Exists(path))
             {
                 try
                 {
+                    DateTime date = DateTime.MinValue ;
+                    
+                    //this is added for stability. Otherwise file issues can happen.
+                    Thread.Sleep(100);
+
                     //getting creation time in year and month
-                    var x = File.GetCreationTime(path);
+                    using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                    using (Image image = Image.FromStream(fs))
+                    {
+                        var hasDate = image.PropertyIdList.Contains(PropertyTagExifDTOrig);
+                        if (hasDate)
+                        {
+                            PropertyItem propItem = image.GetPropertyItem(PropertyTagExifDTOrig);
+                            var vals = string.Join(", ", propItem.Value);
+                            string strDateTaken = r.Replace(Encoding.UTF8.GetString(propItem.Value), "-", 2);
+                            if (!string.IsNullOrWhiteSpace(strDateTaken))
+                            {
+                                hasDate = true;
+                                date = DateTime.Parse(strDateTaken);
+                            }
+                        }
+                        if (!hasDate)
+                        {
+                            date = File.GetCreationTime(path);
+                        }
+                        thumb = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
+                    }
+                    var x = date;
                     int year = x.Year;
                     int month = x.Month;
 
@@ -64,7 +96,7 @@ namespace ImageService.Modal
                     }
 
                     //check if thumbnailFolder exists, if not- create it
-                    if(!Directory.Exists(m_thumbnailsFolder))
+                    if (!Directory.Exists(m_thumbnailsFolder))
                     {
                         Directory.CreateDirectory(m_thumbnailsFolder);
                     }
@@ -90,10 +122,7 @@ namespace ImageService.Modal
                     }
 
                     //creating thumbnail and saving it in the correct folder
-                    Image image = Image.FromFile(imagePath);
-                    Image thumb = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
                     thumb.Save(Path.ChangeExtension(thumbnailPath, "thumb"));
-
                     result = true;
                     return null;
                 }
@@ -101,6 +130,14 @@ namespace ImageService.Modal
                 {
                     result = false;
                     return ex.Message;
+                }
+                finally
+                {
+                    //disposing the thumbnail from memory
+                    if (thumb != null)
+                    {
+                        thumb.Dispose();
+                    }
                 }
             }
             result = false;
