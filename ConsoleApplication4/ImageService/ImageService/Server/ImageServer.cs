@@ -16,9 +16,10 @@ namespace ImageService.Server
 {
     public class ImageServer
     {
-        public ImageServer(string[] handlers, ILoggingService ils)
+        public ImageServer(string[] handlers, ILoggingService ils, IImageController iic)
         {
             m_logging = ils;
+            m_controller = iic;
 
             foreach(string s in handlers)
             {

@@ -24,6 +24,7 @@ namespace ImageService.Controller
 				// For Now will contain NEW_FILE_COMMAND
             };
         }
+
         //change to command
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {

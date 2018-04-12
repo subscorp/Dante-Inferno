@@ -63,6 +63,8 @@ namespace ImageService
             string logSource = ConfigurationManager.AppSettings["SourceName"];
             string logName = ConfigurationManager.AppSettings["LogName"];
             string[] handlers = ConfigurationManager.AppSettings["Handler"].Split(';');
+            string outputDir = ConfigurationManager.AppSettings["OutputDir"];
+            string thumbnailSize = ConfigurationManager.AppSettings["ThumbnailSize"];
 
             eventLog1 = new EventLog();
 
@@ -79,8 +81,11 @@ namespace ImageService
             ((ISupportInitialize)(eventLog1)).EndInit();
 
             logging.MessageReceived += OnMsg;
+            
+            modal = new ImageServiceModal(outputDir, int.Parse(thumbnailSize));
+            controller = new ImageController(modal);
 
-            m_imageServer = new ImageServer(handlers, logging);
+            m_imageServer = new ImageServer(handlers, logging, controller);
 
             eventLog1.WriteEntry("ImageService started");
 

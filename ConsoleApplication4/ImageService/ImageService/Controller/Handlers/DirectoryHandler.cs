@@ -47,9 +47,25 @@ namespace ImageService.Controller.Handlers
 
         }
 
+        public void CreateFile(object sender, FileSystemEventArgs e)
+        {
+            bool result;
+            string[] args = {e.FullPath, e.Name};
+            m_logging.Log("HHHHH" +args[0]+"  "+args[1], MessageTypeEnum.FAIL);
+            m_controller.ExecuteCommand(0, args, out result);
+        }
+
         public void StartHandleDirectory(string dirPath)
         {
-            //throw new NotImplementedException();
+            m_logging.Log("Haim hithalta tapel badirectory??", MessageTypeEnum.INFO);
+            m_dirWatcher = new FileSystemWatcher();
+            m_dirWatcher.BeginInit();
+            m_dirWatcher.Path = dirPath;
+            m_dirWatcher.EnableRaisingEvents = true;
+            m_dirWatcher.Created += CreateFile;
+            m_logging.Log("Haim idkanta et created??", MessageTypeEnum.INFO);
+            m_dirWatcher.EndInit();
+                        m_logging.Log("Day lashtouyot", MessageTypeEnum.INFO);
         }
 
         // Implement Here!
