@@ -41,6 +41,10 @@ namespace ImageService
         public int dwWaitHint;
     };
 
+    /// <summary>
+    /// Class ImageService.
+    /// </summary>
+    /// <seealso cref="System.ServiceProcess.ServiceBase" />
     public partial class ImageService : ServiceBase
     {
 
@@ -50,12 +54,15 @@ namespace ImageService
         private EventLog eventLog1;
         private ILoggingService logging;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageService"/> class.
+        /// </summary>
         public ImageService()
         {
             InitializeComponent();
         }
 
-        // Here You will Use the App Config!
+
         protected override void OnStart(string[] args)
         {
             logging = new LoggingService();

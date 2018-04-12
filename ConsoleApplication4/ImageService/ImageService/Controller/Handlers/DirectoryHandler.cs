@@ -13,8 +13,18 @@ using System.Text.RegularExpressions;
 
 namespace ImageService.Controller.Handlers
 {
+    /// <summary>
+    /// Class for Directory Handler.
+    /// </summary>
+    /// <seealso cref="ImageService.Controller.Handlers.IDirectoryHandler" />
     public class DirectoryHandler : IDirectoryHandler
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DirectoryHandler"/> class.
+        /// </summary>
+        /// <param name="directory">The directory path.</param>
+        /// <param name="controller">The controller, used for commanding the output directory.</param>
+        /// <param name="ils">The loggings service, which get messages from handler to the service.</param>
         public DirectoryHandler(string directory, IImageController controller, ILoggingService ils)
         {
             m_path = directory;
@@ -30,44 +40,60 @@ namespace ImageService.Controller.Handlers
         private string m_path;                              // The Path of directory
         #endregion
 
-        public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              // The Event That Notifies that the Directory is being closed
+        // The Event That Notifies the server that the handler is being closed
+        public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              
 
+        /// <summary>
+        /// Handles the <see cref="E:CommandReceived" /> event.
+        /// </summary>
+        /// <param name="sender">The object which gave the command (the server).</param>
+        /// <param name="e">The <see cref="CommandReceivedEventArgs"/> instance containing the event data.</param>
         public void OnCommandReceived(object sender, CommandReceivedEventArgs e)
         {
-            // if the command is to close all handlers
+            // if the command is to close all handlers, or this particular one
             if(e.CommandID == 1 || (e.CommandID == 2 && e.RequestDirPath == m_path))
             {
                 DirectoryClose.Invoke(this, new DirectoryCloseEventArgs(m_path, "closed handler"));
-                //TODO close dirWatcher, i guess by using dispose...
+
+                m_dirWatcher.Dispose();
                 m_logging.Log("closing handler for " + m_path, MessageTypeEnum.INFO);
             } else
             {
-                //TODO execute the commands, and then update the m_logging by Log method
+                //empty for now, since only close commands can come from server
             }
 
         }
 
+        /// <summary>
+        /// Creates the file in output directory.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="FileSystemEventArgs"/> instance containing the name and path of file.</param>
         public void CreateFile(object sender, FileSystemEventArgs e)
         {
             bool result;
             string[] args = {e.FullPath, e.Name};
-            m_logging.Log("HHHHH" +args[0]+"  "+args[1], MessageTypeEnum.FAIL);
             m_controller.ExecuteCommand(0, args, out result);
+            if (result)
+            {
+                m_logging.Log("Successfully added " + e.Name + "to folder", MessageTypeEnum.INFO);
+            }
+            else m_logging.Log("Couldn't add " + e.Name + "to folder", MessageTypeEnum.FAIL);
         }
 
+        /// <summary>
+        /// Starts to watch the directory.
+        /// </summary>
+        /// <param name="dirPath">The directory path.</param>
         public void StartHandleDirectory(string dirPath)
         {
-            m_logging.Log("Haim hithalta tapel badirectory??", MessageTypeEnum.INFO);
             m_dirWatcher = new FileSystemWatcher();
             m_dirWatcher.BeginInit();
             m_dirWatcher.Path = dirPath;
             m_dirWatcher.EnableRaisingEvents = true;
             m_dirWatcher.Created += CreateFile;
-            m_logging.Log("Haim idkanta et created??", MessageTypeEnum.INFO);
             m_dirWatcher.EndInit();
-                        m_logging.Log("Day lashtouyot", MessageTypeEnum.INFO);
         }
-
-        // Implement Here!
+        
     }
 }

@@ -13,22 +13,12 @@ namespace ImageService
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("hithalnou");
-            /*
-            bool result;
-            string[] stringArr = { "C:\\ImageFolders\\folder1\\butterfly.jpg" };
-            IImageController controller = new ImageController(new ImageServiceModal("C:\\ImageFolders\\output", 120));
-            controller.ExecuteCommand(0, stringArr , out result);
-            return;
-            */
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
             { 
                 new ImageService() 
             };
             ServiceBase.Run(ServicesToRun);
-            
-            Console.WriteLine("siyamnou ");
         }
 
     }

@@ -20,6 +20,11 @@ namespace ImageService.Modal
         private int m_thumbnailSize;              // The Size Of The Thumbnail Size
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageServiceModal"/> class.
+        /// </summary>
+        /// <param name="outputFolder">The output folder.</param>
+        /// <param name="thumbnailSize">Size of the thumbnail.</param>
         public ImageServiceModal(string outputFolder, int thumbnailSize)
         {
             m_OutputFolder = outputFolder;
@@ -27,6 +32,12 @@ namespace ImageService.Modal
             m_thumbnailSize = thumbnailSize;
         }
 
+        /// <summary>
+        /// The Function Adds A file to the system
+        /// </summary>
+        /// <param name="path">The Path of the Image from the file</param>
+        /// <param name="result">if set to <c>true</c> [result].</param>
+        /// <returns>Indication if the Addition Was Successful</returns>
         public string AddFile(string path, out bool result)
         {
             if (File.Exists(path))
