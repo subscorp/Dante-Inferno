@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 
 namespace ImageService.Modal
 {
+    /// <summary>
+    /// Class for model, which manages files in a folder.
+    /// </summary>
+    /// <seealso cref="ImageService.Modal.IImageServiceModal" />
     public class ImageServiceModal : IImageServiceModal
     {
         #region Members
@@ -33,7 +37,7 @@ namespace ImageService.Modal
         }
 
 
-        //we init this once so that if the function is repeatedly called
+        //we initialize this once so that if the function is repeatedly called
         //it isn't stressing the garbage man
         private static Regex r = new Regex(":");
         /// <summary>
@@ -45,7 +49,7 @@ namespace ImageService.Modal
         public string AddFile(string path, out bool result)
         {
             Image thumb = null;
-            const int PropertyTagExifDTOrig = 0x9003;
+            const int PropertyTagExitDTOrig = 0x9003;
             if (File.Exists(path))
             {
                 try
@@ -59,10 +63,10 @@ namespace ImageService.Modal
                     using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                     using (Image image = Image.FromStream(fs))
                     {
-                        var hasDate = image.PropertyIdList.Contains(PropertyTagExifDTOrig);
+                        var hasDate = image.PropertyIdList.Contains(PropertyTagExitDTOrig);
                         if (hasDate)
                         {
-                            PropertyItem propItem = image.GetPropertyItem(PropertyTagExifDTOrig);
+                            PropertyItem propItem = image.GetPropertyItem(PropertyTagExitDTOrig);
                             var vals = string.Join(", ", propItem.Value);
                             string strDateTaken = r.Replace(Encoding.UTF8.GetString(propItem.Value), "-", 2);
                             if (!string.IsNullOrWhiteSpace(strDateTaken))

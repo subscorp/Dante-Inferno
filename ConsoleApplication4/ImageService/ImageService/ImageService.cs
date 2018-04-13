@@ -91,7 +91,6 @@ namespace ImageService
             
             modal = new ImageServiceModal(outputDir, int.Parse(thumbnailSize));
             controller = new ImageController(modal);
-
             m_imageServer = new ImageServer(handlers, logging, controller);
 
             eventLog1.WriteEntry("ImageService started");
