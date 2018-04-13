@@ -11,6 +11,10 @@ namespace ImageService
 {
     class Program
     {
+        /// <summary>
+        /// activates the ImageService.
+        /// </summary>
+        /// <param name="args">The arguments (null in this case).</param>
         static void Main(string[] args)
         {
             ServiceBase[] ServicesToRun;

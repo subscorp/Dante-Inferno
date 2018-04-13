@@ -29,7 +29,7 @@ namespace ImageService.Controller
             commands = new Dictionary<int, ICommand>()
             {
                 {(int)CommandEnum.NewFileCommand, new NewFileCommand(m_modal) }
-				// For Now will contain NEW_FILE_COMMAND
+				// For Now will contain NEW_FILE_COMMAND, since CLOSE_COMMAND is activated by server
             };
         }
 

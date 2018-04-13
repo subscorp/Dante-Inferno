@@ -61,12 +61,16 @@ namespace ImageService
         {
             InitializeComponent();
         }
-
-
+        
+        /// <summary>
+        /// executes when Start command is sent to the service by the SCM
+        /// </summary>
+        /// <param name="args">Data passed by the start command (null in our case).</param>
         protected override void OnStart(string[] args)
         {
             logging = new LoggingService();
 
+            //Reads parameters from app.config
             string logSource = ConfigurationManager.AppSettings["SourceName"];
             string logName = ConfigurationManager.AppSettings["LogName"];
             string[] handlers = ConfigurationManager.AppSettings["Handler"].Split(';');
@@ -87,8 +91,10 @@ namespace ImageService
 
             ((ISupportInitialize)(eventLog1)).EndInit();
 
+            //adds the eventLog OnMsg method to the logging service event.
             logging.MessageReceived += OnMsg;
             
+            //creates modal, controller and server
             modal = new ImageServiceModal(outputDir, int.Parse(thumbnailSize));
             controller = new ImageController(modal);
             m_imageServer = new ImageServer(handlers, logging, controller);
@@ -97,26 +103,33 @@ namespace ImageService
 
         }
         
+        /// <summary>
+        /// Writes a Message into Event Log.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The Message.</param>
         protected void OnMsg(object sender, MessageReceivedEventArgs e)
         {
             eventLog1.WriteEntry(e.Message);        
         }
 
+        /// <summary>
+        /// Closes server, and notifies the EventLog that the service will close
+        /// </summary>
         protected override void OnStop()
         {
             m_imageServer.CloseServer();
             eventLog1.WriteEntry("ImageService stopped.");
         }
 
+        /// <summary>
+        /// Sets some parameters of the service before initialization
+        /// </summary>
         private void InitializeComponent()
         {
-            // 
-            // ImageService
-            // 
             this.CanHandlePowerEvent = true;
             this.CanHandleSessionChangeEvent = true;
             this.ServiceName = "ImageService";
-
         }
 
 

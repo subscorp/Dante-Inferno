@@ -38,7 +38,7 @@ namespace ImageService.Modal
 
 
         //we initialize this once so that if the function is repeatedly called
-        //it isn't stressing the garbage man
+        //it doesn't stress the garbage man
         private static Regex r = new Regex(":");
         /// <summary>
         /// The Function Adds A file to the system
@@ -49,7 +49,7 @@ namespace ImageService.Modal
         public string AddFile(string path, out bool result)
         {
             Image thumb = null;
-            const int PropertyTagExitDTOrig = 0x9003;
+            const int PropertyTagExifDTOrig = 0x9003;
             if (File.Exists(path))
             {
                 try
@@ -63,10 +63,10 @@ namespace ImageService.Modal
                     using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                     using (Image image = Image.FromStream(fs))
                     {
-                        var hasDate = image.PropertyIdList.Contains(PropertyTagExitDTOrig);
+                        var hasDate = image.PropertyIdList.Contains(PropertyTagExifDTOrig);
                         if (hasDate)
                         {
-                            PropertyItem propItem = image.GetPropertyItem(PropertyTagExitDTOrig);
+                            PropertyItem propItem = image.GetPropertyItem(PropertyTagExifDTOrig);
                             var vals = string.Join(", ", propItem.Value);
                             string strDateTaken = r.Replace(Encoding.UTF8.GetString(propItem.Value), "-", 2);
                             if (!string.IsNullOrWhiteSpace(strDateTaken))
