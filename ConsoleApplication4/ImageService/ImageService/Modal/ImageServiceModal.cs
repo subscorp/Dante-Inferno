@@ -22,7 +22,7 @@ namespace ImageService.Modal
         private string m_OutputFolder;            // The Output Folder
         private string m_thumbnailsFolder;
         private int m_thumbnailSize;              // The Size Of The Thumbnail Size
-
+        DirectoryInfo di;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageServiceModal"/> class.
@@ -96,7 +96,8 @@ namespace ImageService.Modal
                     //check if outputFolder exists, if not- create it
                     if (!Directory.Exists(m_OutputFolder))
                     {
-                        Directory.CreateDirectory(m_OutputFolder);
+                        di = Directory.CreateDirectory(m_OutputFolder);
+                        di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
                     }
 
                     //check if thumbnailFolder exists, if not- create it
