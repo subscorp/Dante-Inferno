@@ -15,10 +15,13 @@ namespace ImageService.Logging
     /// <seealso cref="ImageService.Logging.ILoggingService" />
     public class LoggingService : ILoggingService
     {
+        /// <summary>
+        /// Occurs when a message is received.
+        /// </summary>
         public event EventHandler<MessageReceivedEventArgs> MessageReceived;
 
         /// <summary>
-        /// Logs the specified message.
+        /// Logs the specified message, and invokes the events of it's writing.
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="type">The type.</param>

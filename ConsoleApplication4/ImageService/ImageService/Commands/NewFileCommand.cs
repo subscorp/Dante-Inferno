@@ -14,9 +14,6 @@ namespace ImageService.Commands
     /// <seealso cref="ImageService.Commands.ICommand" />
     public class NewFileCommand : ICommand
     {
-        //intenum ID
-        //string[] args
-
         private IImageServiceModal m_modal;
 
         /// <summary>
@@ -32,7 +29,7 @@ namespace ImageService.Commands
         /// Executes the command - tells the modal to add a new file.
         /// </summary>
         /// <param name="args">The file's name.</param>
-        /// <param name="result">if set to <c>true</c> the file was adds Successfully.</param>
+        /// <param name="result">if set to <c>true</c> the file was added Successfully.</param>
         /// <returns>the new path, or an error message</returns>
         public string Execute(string[] args, out bool result)
         {

@@ -45,14 +45,13 @@ namespace ImageService.Server
         {
             // commandID 1 means - close all handlers, so no particular path is required
             CommandReceived.Invoke(this, new CommandReceivedEventArgs(1, null, null));
-            m_logging.Log("closing all handlers", MessageTypeEnum.INFO);
         }
 
         /// <summary>
         /// Closes the handler.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="d">The <see cref="DirectoryCloseEventArgs"/> instance containing the event data.</param>
+        /// <param name="d">The <see cref="DirectoryCloseEventArgs"/> instance containing the close command.</param>
         public void CloseHandler(object sender, DirectoryCloseEventArgs d)
         {
             IDirectoryHandler idh = (IDirectoryHandler)sender;
@@ -66,7 +65,7 @@ namespace ImageService.Server
         #endregion
 
         #region Properties
-        // The event that notifies about a new Command being Received
+        // The event that notifies the handlers about a new Command being Received
         public event EventHandler<CommandReceivedEventArgs> CommandReceived;          
         #endregion
 
