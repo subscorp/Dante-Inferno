@@ -17,12 +17,16 @@ namespace ImageService
         /// <param name="args">The arguments (null in this case).</param>
         static void Main(string[] args)
         {
+            tcp myTcp = new tcp();
+            myTcp.Run();
+            /*
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
             { 
                 new ImageService() 
             };
             ServiceBase.Run(ServicesToRun);
+            */
         }
 
     }
