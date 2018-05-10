@@ -45,7 +45,7 @@ namespace ImageService
     /// Class ImageService.
     /// </summary>
     /// <seealso cref="System.ServiceProcess.ServiceBase" />
-    public partial class ImageService : ServiceBase
+    public partial class ImgService : ServiceBase
     {
 
         private ImageServer m_imageServer;          // The Image Server
@@ -57,7 +57,7 @@ namespace ImageService
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageService"/> class.
         /// </summary>
-        public ImageService()
+        public ImgService()
         {
             InitializeComponent();
         }

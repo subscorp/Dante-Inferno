@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImageService.Controller;
+using ImageService.ImageService.ImageService.Server;
 
 namespace ImageService
 {
@@ -17,8 +18,14 @@ namespace ImageService
         /// <param name="args">The arguments (null in this case).</param>
         static void Main(string[] args)
         {
-            tcp myTcp = new tcp();
-            myTcp.Run();
+            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.StudentHandler();
+            //AppConfigHandler ch = new AppConfigHandler();
+            //IClientHandler ch = new MultiplyByTwoHandler();
+            ImageService.ImageService.Server.Server server = new ImageService.ImageService.Server.Server(8000, ch);
+            server.Start();
+
+         //      tcp myTcp = new tcp();
+         //      myTcp.Run();
             /*
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
