@@ -18,8 +18,8 @@ namespace ImageService
         /// <param name="args">The arguments (null in this case).</param>
         static void Main(string[] args)
         {
-            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.StudentHandler();
-            //AppConfigHandler ch = new AppConfigHandler();
+            //ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.StudentHandler();
+            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.ConsoleClientHandler();
             //IClientHandler ch = new MultiplyByTwoHandler();
             ImageService.ImageService.Server.Server server = new ImageService.ImageService.Server.Server(8000, ch);
             server.Start();

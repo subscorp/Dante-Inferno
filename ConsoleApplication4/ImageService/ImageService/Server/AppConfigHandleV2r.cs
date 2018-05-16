@@ -11,17 +11,15 @@ using System.Configuration;
 
 namespace ImageService.ImageService.ImageService.Server
 {
-    class AppConfigHandler : IClientHandler
+    class AppConfigHandlerV2 : IClientHandler
     {
         public void HandleClient(TcpClient client)
         {
+            Settings settings = new Settings();
+            string settingsStr = settings.ToJSON();
            
-            string logSource = ConfigurationManager.AppSettings["SourceName"];
-            string logName = ConfigurationManager.AppSettings["LogName"];
             string[] handlers = ConfigurationManager.AppSettings["Handler"].Split(';');
-            string outputDir = ConfigurationManager.AppSettings["OutputDir"];
-            string thumbnailSize = ConfigurationManager.AppSettings["ThumbnailSize"];
-
+           
             new Task(() =>
             {
                 using (NetworkStream stream = client.GetStream())
@@ -30,23 +28,31 @@ namespace ImageService.ImageService.ImageService.Server
                 {
                     while (true)
                     {
-                        Console.WriteLine("Sending AppConfigObject");
-                        string studentStr = reader.ReadString();
-                        Console.WriteLine("got studentStr: {0}", studentStr);
-               //         student = Student.FromJSON(studentStr);
-               //         if (student.Name.Equals("exit"))
-               //             break;
-               //         studentGrade = student.Grade;
-               //         if (studentGrade >= 60)
-               //         {
-               //             Console.WriteLine("notifying the client that the student passed");
-               //             writer.Write(1);
-               //         }
-               //         else
-               //         {
-               //             Console.WriteLine("notifying the client that the student failed");
-               //             writer.Write(0);
-               //         }
+                        int num = reader.ReadInt32();
+                        if (num == 1)
+                        {
+                            Console.WriteLine("sending settings to the client:\n");
+                            writer.Write(settingsStr);
+
+                            
+
+//                            Console.WriteLine("sending handlersLength to the client");
+//                            writer.Write(handlersLength);
+
+//                            Console.WriteLine("sending handlers to the client");
+//                            for (int j = 0; j < handlersLength; j++)
+//                            {
+//                                handler = handlers[j];
+//                                writer.Write(handler);
+//                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("sending log to the client\n");
+                        }
+
+                        Console.WriteLine();
                     }
 
                 }
