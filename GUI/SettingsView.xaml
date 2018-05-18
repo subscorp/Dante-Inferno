@@ -6,15 +6,21 @@
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d" d:DesignWidth="687.742" d:DesignHeight="423.812">
     <Viewbox>
-        <StackPanel Height="264">
-            <TextBlock><Run FontWeight="Bold" Text="Output Directory:"/><InlineUIContainer>
-                    <TextBlock Text="{Binding Settings[1]}"/>
-                </InlineUIContainer></TextBlock>
-            <TextBlock><Run FontWeight="Bold" Text="Output Directory:"/><InlineUIContainer>
+        <StackPanel Height="264" Width="434">
+            <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Output Directory:"/><InlineUIContainer>
                     <TextBlock Text="{Binding Settings[0]}"/>
                 </InlineUIContainer></TextBlock>
-            <TextBlock Grid.ColumnSpan="2" Margin="0,0,431,3.333" Grid.RowSpan="1"/>
-            <TextBlock Grid.ColumnSpan="2" Margin="0,0,431,3.333" Grid.RowSpan="1"/>
+            <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Source Name:"/><InlineUIContainer>
+                    <TextBlock Text="{Binding Settings[1]}"/>
+                </InlineUIContainer></TextBlock>
+            <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Log Name:"/><InlineUIContainer>
+                    <TextBlock Text="{Binding Settings[2]}"/>
+                </InlineUIContainer></TextBlock>
+            <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Thumbnail Size:"/><InlineUIContainer>
+                    <TextBlock Text="{Binding Settings[3]}"/>
+                </InlineUIContainer></TextBlock>
+            <Button Content="Remove" Click="Button_Click"/>
+            <ListBox Height="69" ItemsSource="{Binding Handlers}"/>
         </StackPanel>
     </Viewbox>
 </UserControl>

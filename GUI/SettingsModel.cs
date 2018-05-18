@@ -11,7 +11,7 @@ namespace GUI
             get;
             set;
         }
-        public string[] handlers
+        public ObservableCollection<string> handlers
         {
             get;
             set;
@@ -20,8 +20,9 @@ namespace GUI
         {
             //TODO create connection, get the parameters and use them.
             settings = new ObservableCollection<string>()
-                                        { "12", "path", "output", "aher" };
-            handlers = new string[] { "dever", "herev", "haya" };
+                                        { "output", "source", "log", "thumb" };
+            handlers = new ObservableCollection<string>()
+                                        { "dever", "herev", "haya" };
         }
     }
 }

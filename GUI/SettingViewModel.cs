@@ -15,6 +15,18 @@ namespace GUI
             }
         }
 
+        public ObservableCollection<string> Handlers
+        {
+            get => sm.handlers;
+            set
+            {
+                NotifyPropertyChanged("Handlers");
+            }
+        }
+
+        public void RemoveHandler()
+        {
+        }
 
         public SettingViewModel()
         {

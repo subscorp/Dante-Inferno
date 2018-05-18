@@ -10,12 +10,12 @@
         <TabControl HorizontalAlignment="Left" Height="421" VerticalAlignment="Top" Width="793" Margin="0,0,0,-0.333">
             <TabItem Header="Settings">
                 <Viewbox>
-                <local:SettingsView></local:SettingsView>
+                <local:SettingsView HorizontalAlignment="left"></local:SettingsView>
                 </Viewbox>
             </TabItem>
             <TabItem Header="Log">
                 <Viewbox>
-                    <local:LogView></local:LogView>
+                    <local:LogView HorizontalAlignment="left"></local:LogView>
                 </Viewbox>
             </TabItem>
         </TabControl>
