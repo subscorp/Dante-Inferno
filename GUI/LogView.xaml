@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="GUI.LogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d" Height="460.762" Width="795.953">
+    <Viewbox>
+        <Grid Height="330" Width="401">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="51*"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="lstNames" ItemsSource="{Binding Handlers}" Margin="-78,5,-75,5" Grid.Row="0" Grid.RowSpan="2">
+                <ListView.View>
+                    <GridView x:Name="lstNdames">
+                        <GridViewColumn Header="Type"  DisplayMemberBinding="{Binding}"/>
+                        <GridViewColumn Header="Message"  DisplayMemberBinding="{Binding}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Viewbox>
+</UserControl>

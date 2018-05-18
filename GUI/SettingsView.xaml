@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="GUI.SettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d" d:DesignWidth="687.742" d:DesignHeight="423.812">
+    <Viewbox>
+        <StackPanel Height="264">
+            <TextBlock><Run FontWeight="Bold" Text="Output Directory:"/><InlineUIContainer>
+                    <TextBlock Text="{Binding Settings[1]}"/>
+                </InlineUIContainer></TextBlock>
+            <TextBlock><Run FontWeight="Bold" Text="Output Directory:"/><InlineUIContainer>
+                    <TextBlock Text="{Binding Settings[0]}"/>
+                </InlineUIContainer></TextBlock>
+            <TextBlock Grid.ColumnSpan="2" Margin="0,0,431,3.333" Grid.RowSpan="1"/>
+            <TextBlock Grid.ColumnSpan="2" Margin="0,0,431,3.333" Grid.RowSpan="1"/>
+        </StackPanel>
+    </Viewbox>
+</UserControl>
