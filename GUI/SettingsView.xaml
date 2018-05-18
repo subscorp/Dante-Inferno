@@ -7,6 +7,12 @@
         mc:Ignorable="d" d:DesignWidth="687.742" d:DesignHeight="423.812">
     <Viewbox>
         <StackPanel Height="264" Width="434">
+            <StackPanel.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="0,5,0,0"/>
+            </Style>
+            </StackPanel.Resources>
+            <TextBlock HorizontalAlignment="Center" FontSize="26" FontWeight="Heavy" Foreground="BlueViolet">Settings</TextBlock>
             <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Output Directory:"/><InlineUIContainer>
                     <TextBlock Text="{Binding Settings[0]}"/>
                 </InlineUIContainer></TextBlock>
@@ -19,8 +25,20 @@
             <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Thumbnail Size:"/><InlineUIContainer>
                     <TextBlock Text="{Binding Settings[3]}"/>
                 </InlineUIContainer></TextBlock>
-            <Button Content="Remove" Click="Button_Click"/>
-            <ListBox Height="69" ItemsSource="{Binding Handlers}"/>
+            <Button Content="Remove">
+                <Button.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger 
+                     Binding ="{Binding ElementName=listbox1, Path=SelectedIndex}" 
+                     Value="-1">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <ListBox x:Name="listbox1" SelectionMode="Multiple"  ItemsSource="{Binding Handlers}"/>
         </StackPanel>
     </Viewbox>
 </UserControl>
