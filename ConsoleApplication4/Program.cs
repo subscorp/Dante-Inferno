@@ -19,12 +19,12 @@ namespace ImageService
         static void Main(string[] args)
         {
             //ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.StudentHandler();
-            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.ConsoleClientHandler();
+            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.AppConfigHandlerV2();
             //IClientHandler ch = new MultiplyByTwoHandler();
             ImageService.ImageService.Server.Server server = new ImageService.ImageService.Server.Server(8000, ch);
             server.Start();
 
-         //      tcp myTcp = new tcp();
+         //      tcp myTcp = new tcp()
          //      myTcp.Run();
             /*
             ServiceBase[] ServicesToRun;

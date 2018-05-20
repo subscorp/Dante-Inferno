@@ -4,6 +4,7 @@ namespace GUI
 {
     internal class SettingViewModel : ViewModel
     {
+        
         private SettingsModel sm;
 
         public ObservableCollection<string> Settings
@@ -32,5 +33,6 @@ namespace GUI
         {
             sm = new SettingsModel();
         }
+        
     }
 }

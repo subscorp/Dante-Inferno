@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Configuration;
+using System.Diagnostics;
+using System.ComponentModel;
 
 namespace ImageService.ImageService.ImageService.Server
 {
@@ -17,9 +19,22 @@ namespace ImageService.ImageService.ImageService.Server
         {
             Settings settings = new Settings();
             string settingsStr = settings.ToJSON();
-           
-            string[] handlers = ConfigurationManager.AppSettings["Handler"].Split(';');
-           
+
+            //log variables
+            EventLog eventLog1 = new EventLog();
+            int eventLogLength;
+
+            //initialize the EventLogger with values from configuration file
+            ((ISupportInitialize)(eventLog1)).BeginInit();
+
+            if (!EventLog.SourceExists(settings.LogSource))
+            {
+                EventLog.CreateEventSource(settings.LogSource, settings.LogName);
+            }
+            eventLog1.Source = settings.LogSource;
+            eventLog1.Log = settings.LogName;
+            ((ISupportInitialize)(eventLog1)).EndInit();
+
             new Task(() =>
             {
                 using (NetworkStream stream = client.GetStream())
@@ -50,6 +65,12 @@ namespace ImageService.ImageService.ImageService.Server
                         else
                         {
                             Console.WriteLine("sending log to the client\n");
+                            eventLogLength = eventLog1.Entries.Count;
+                            writer.Write(eventLogLength);
+                            foreach (EventLogEntry log in eventLog1.Entries)
+                            {
+                                writer.Write(log.Message);
+                            }
                         }
 
                         Console.WriteLine();
@@ -63,8 +84,8 @@ namespace ImageService.ImageService.ImageService.Server
                 string result = ExecuteCommand(commandLine, client);
                 writer.Write(result);
                 */
-                client.Close();
-                Console.WriteLine("client disconnected");
+              //  client.Close();
+              //  Console.WriteLine("client disconnected");
             }).Start();
         }
 

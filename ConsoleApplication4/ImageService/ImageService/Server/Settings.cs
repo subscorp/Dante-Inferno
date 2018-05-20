@@ -57,10 +57,8 @@ namespace ImageService.ImageService.ImageService.Server
             settings.LogName = (string)appConfigObj["LogName"];
             settings.OutputDir = (string)appConfigObj["OutputDir"];
             settings.ThumbnailSize = (string)appConfigObj["ThumbnailSize"];
-
- //           JArray handlers = new JArray(appConfigObj["Handlers"]);
- //           array.ToObject<List<SelectableEnumItem>>()
- //           settings.Handlers = handlers;
+            JArray handlers = (JArray)appConfigObj["Handlers"];
+            settings.Handlers = handlers.Select(jv => (string)jv).ToArray();
             return settings;
         }
 
