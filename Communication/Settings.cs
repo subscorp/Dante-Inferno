@@ -10,25 +10,19 @@ using System.Threading;
 using System.Configuration;
 using Newtonsoft.Json.Linq;
 
-namespace ImageService.ImageService.ImageService.Server
+namespace Communication
 {
-    class Settings
+    public class Settings
+        
     {
         public string LogSource { get; set; }
         public string LogName { get; set; }
         public string[] Handlers { get; set; }
-        //int handlersLength = handlers.Length;
-        //string handler;
         public string OutputDir { get; set; }
         public string ThumbnailSize { get; set; }
 
         public Settings()
         {
-            LogSource = ConfigurationManager.AppSettings["SourceName"];
-            LogName = ConfigurationManager.AppSettings["LogName"];
-            Handlers = ConfigurationManager.AppSettings["Handler"].Split(';');
-            OutputDir = ConfigurationManager.AppSettings["OutputDir"];
-            ThumbnailSize = ConfigurationManager.AppSettings["ThumbnailSize"];
         }
 
         public string ToJSON()
@@ -44,8 +38,6 @@ namespace ImageService.ImageService.ImageService.Server
                 handlers.Add(handler);
             }
             appConfigObj["Handlers"] = handlers;
-
-            //   appConfigObj["Handlers"] = Handlers;
             return appConfigObj.ToString();
         }
 
@@ -61,6 +53,5 @@ namespace ImageService.ImageService.ImageService.Server
             settings.Handlers = handlers.Select(jv => (string)jv).ToArray();
             return settings;
         }
-
     }
 }

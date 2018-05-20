@@ -27,6 +27,9 @@ namespace ImageService.Logging
         /// <param name="type">The type.</param>
         public void Log(string message, MessageTypeEnum type)
         {
+            
+            // The server will create a new LogEntry object when it sends info to the client
+            // No, sorry, you get it form the EventLog... not from here. I got confused.
             MessageReceivedEventArgs mrea = new MessageReceivedEventArgs();
             mrea.Message = message;
             mrea.Status = type;
