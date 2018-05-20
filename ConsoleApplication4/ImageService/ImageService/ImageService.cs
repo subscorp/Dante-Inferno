@@ -77,8 +77,7 @@ namespace ImageService
             string outputDir = ConfigurationManager.AppSettings["OutputDir"];
             string thumbnailSize = ConfigurationManager.AppSettings["ThumbnailSize"];
 
-            // Create a ew Settings object here with the info above
-            // You need to add a using statement
+            // Creating a new Settings object with the info above
             Settings settings = new Settings()
             {
                 Handlers = handlers,
@@ -98,9 +97,7 @@ namespace ImageService
             controller = new ImageController(modal);
             m_imageServer = new ImageServer(handlers, logging, controller);
 
-            //ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.StudentHandler();
             ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.AppConfigHandlerV2(settings);
-            //IClientHandler ch = new MultiplyByTwoHandler();
             ImageService.ImageService.Server.Server server = new ImageService.ImageService.Server.Server(8000, ch);
             server.Start();
 
