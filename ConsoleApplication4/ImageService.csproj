@@ -94,9 +94,6 @@
     <Compile Include="ImageService\ImageService\Server\ImageServer.cs" />
     <Compile Include="ImageService\ImageService\Server\LoggingHandler.cs" />
     <Compile Include="ImageService\ImageService\Server\Server.cs" />
-    <Compile Include="ImageService\ImageService\Server\Settings.cs" />
-    <Compile Include="ImageService\ImageService\Server\Student.cs" />
-    <Compile Include="ImageService\ImageService\Server\StudentHandler.cs" />
     <Compile Include="ImageService\ImageService\Server\tcp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -131,6 +128,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Communication\Communication.csproj">
+      <Project>{15a1bdcf-f435-4caa-8901-2090cc461eb0}</Project>
+      <Name>Communication</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

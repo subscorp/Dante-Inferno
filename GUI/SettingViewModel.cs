@@ -7,6 +7,7 @@ namespace GUI
 {
     internal class SettingViewModel : ViewModel
     {
+        /*
         private SettingsModel sm;
 
        
@@ -47,5 +48,6 @@ namespace GUI
             RemoveCommand =  new DelegateCommand<object>(RemoveHandler, CanRemove);
             sm = new SettingsModel();
         }
+        */
     }
 }

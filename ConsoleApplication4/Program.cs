@@ -17,24 +17,13 @@ namespace ImageService
         /// </summary>
         /// <param name="args">The arguments (null in this case).</param>
         static void Main(string[] args)
-        {
-            //ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.StudentHandler();
-            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.ConsoleClientHandler();
-            //IClientHandler ch = new MultiplyByTwoHandler();
-            ImageService.ImageService.Server.Server server = new ImageService.ImageService.Server.Server(8000, ch);
-            server.Start();
-
-         //      tcp myTcp = new tcp();
-         //      myTcp.Run();
-            /*
+        {  
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
             { 
-                new ImageService() 
+                new ImgService() 
             };
-            ServiceBase.Run(ServicesToRun);
-            */
+            ServiceBase.Run(ServicesToRun);   
         }
-
     }
 }

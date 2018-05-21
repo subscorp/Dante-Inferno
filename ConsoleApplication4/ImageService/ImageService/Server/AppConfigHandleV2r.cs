@@ -1,5 +1,7 @@
 ﻿using System;
+
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,18 +10,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Configuration;
+using System.Diagnostics;
+using System.ComponentModel;
+using Communication;
 
 namespace ImageService.ImageService.ImageService.Server
 {
     class AppConfigHandlerV2 : IClientHandler
     {
+        private Settings settings;
+        public AppConfigHandlerV2(Settings settings)
+        {
+            this.settings = settings;
+        }
+
         public void HandleClient(TcpClient client)
         {
-            Settings settings = new Settings();
             string settingsStr = settings.ToJSON();
-           
-            string[] handlers = ConfigurationManager.AppSettings["Handler"].Split(';');
-           
+
+            EventLog eventLog1 = LogContainer.Log;
+
             new Task(() =>
             {
                 using (NetworkStream stream = client.GetStream())
@@ -33,38 +43,34 @@ namespace ImageService.ImageService.ImageService.Server
                         {
                             Console.WriteLine("sending settings to the client:\n");
                             writer.Write(settingsStr);
-
-                            
-
-//                            Console.WriteLine("sending handlersLength to the client");
-//                            writer.Write(handlersLength);
-
-//                            Console.WriteLine("sending handlers to the client");
-//                            for (int j = 0; j < handlersLength; j++)
-//                            {
-//                                handler = handlers[j];
-//                                writer.Write(handler);
-//                            }
-
                         }
                         else
                         {
                             Console.WriteLine("sending log to the client\n");
+                            var arr = eventLog1.Entries.Cast<EventLogEntry>().ToArray();
+
+                            var logEntries = new List<LogEntry>();
+
+                            foreach (var entry in arr)
+                            {    
+                                var msg = entry.Message;
+                                var type = entry.EntryType;
+                                var logEntry = new LogEntry();
+                                logEntry.Message = msg;
+                                logEntry.Type = type.ToString();
+                                logEntries.Add(logEntry);
+                            }
+
+                            int numLogEntries = logEntries.Count;
+                            writer.Write(numLogEntries);
+                            foreach (var logEntry in logEntries)
+                                writer.Write(logEntry.ToJSON());
                         }
 
                         Console.WriteLine();
                     }
 
                 }
-
-                /*
-                string commandLine = reader.ReadLine();
-                Console.WriteLine("Got command: {0}", commandLine);
-                string result = ExecuteCommand(commandLine, client);
-                writer.Write(result);
-                */
-                client.Close();
-                Console.WriteLine("client disconnected");
             }).Start();
         }
 

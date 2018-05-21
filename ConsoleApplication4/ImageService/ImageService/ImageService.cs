@@ -15,6 +15,7 @@ using ImageService.Logging;
 using ImageService.Logging.Modal;
 using System.Configuration;
 using ImageService.Infrastructure;
+using Communication;
 
 namespace ImageService
 {
@@ -51,7 +52,6 @@ namespace ImageService
         private ImageServer m_imageServer;          // The Image Server
 		private IImageServiceModal modal;
 		private IImageController controller;
-        private EventLog eventLog1;
         private ILoggingService logging;
 
         /// <summary>
@@ -77,30 +77,31 @@ namespace ImageService
             string outputDir = ConfigurationManager.AppSettings["OutputDir"];
             string thumbnailSize = ConfigurationManager.AppSettings["ThumbnailSize"];
 
-            eventLog1 = new EventLog();
-
-            //initialize the EventLogger with values from configuration file
-            ((ISupportInitialize)(eventLog1)).BeginInit();
-            // 
-            if (!EventLog.SourceExists(logSource))
+            // Creating a new Settings object with the info above
+            Settings settings = new Settings()
             {
-                EventLog.CreateEventSource(logSource, logName);
-            }
-            eventLog1.Source = logSource;
-            eventLog1.Log = logName;
-
-            ((ISupportInitialize)(eventLog1)).EndInit();
+                Handlers = handlers,
+                LogName = logName,
+                LogSource = logSource,
+                OutputDir = outputDir,
+                ThumbnailSize = thumbnailSize
+            };
+            LogContainer.CreateLog(logSource, logName);
 
             //adds the eventLog OnMsg method to the logging service event.
             logging.MessageReceived += OnMsg;
-            
+
+
             //creates modal, controller and server
             modal = new ImageServiceModal(outputDir, int.Parse(thumbnailSize));
             controller = new ImageController(modal);
             m_imageServer = new ImageServer(handlers, logging, controller);
 
-            eventLog1.WriteEntry("ImageService started");
+            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.AppConfigHandlerV2(settings);
+            ImageService.ImageService.Server.Server server = new ImageService.ImageService.Server.Server(8000, ch);
+            server.Start();
 
+            LogContainer.Log.WriteEntry("ImageService started");
         }
         
         /// <summary>
@@ -110,7 +111,7 @@ namespace ImageService
         /// <param name="e">The Message.</param>
         protected void OnMsg(object sender, MessageReceivedEventArgs e)
         {
-            eventLog1.WriteEntry(e.Message);        
+            LogContainer.Log.WriteEntry(e.Message);        
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace ImageService
         protected override void OnStop()
         {
             m_imageServer.CloseServer();
-            eventLog1.WriteEntry("ImageService stopped.");
+            LogContainer.Log.WriteEntry("ImageService stopped.");
         }
 
         /// <summary>
@@ -131,7 +132,26 @@ namespace ImageService
             this.CanHandleSessionChangeEvent = true;
             this.ServiceName = "ImageService";
         }
+    }
 
+    public static class LogContainer
+    {
+        public static EventLog Log { get; set; }
+        public static void CreateLog(string logSource, string logName)
+        {
+            Log = new EventLog();
 
+            //initialize the EventLogger with values from configuration file
+            ((ISupportInitialize)(Log)).BeginInit();
+            // 
+            if (!EventLog.SourceExists(logSource))
+            {
+                EventLog.CreateEventSource(logSource, logName);
+            }
+            Log.Source = logSource;
+            Log.Log = logName;
+
+            ((ISupportInitialize)(Log)).EndInit();
+        }
     }
 }

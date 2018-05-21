@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Communication;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -48,9 +49,10 @@ namespace ImageService.ImageService.ImageService.Server
                 }
                 Console.WriteLine("Server stopped");
             });
+
             task.Start();
             Console.WriteLine("waiting for complition of the task");
-            task.Wait();
+
         }
         public void Stop()
         {

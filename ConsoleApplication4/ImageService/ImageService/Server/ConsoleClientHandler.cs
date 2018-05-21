@@ -100,8 +100,8 @@ namespace ImageService.ImageService.ImageService.Server
                 string result = ExecuteCommand(commandLine, client);
                 writer.Write(result);
                 */
-                client.Close();
-                Console.WriteLine("client disconnected");
+              //  client.Close();
+              //  Console.WriteLine("client disconnected");
             }).Start();
         }
 
