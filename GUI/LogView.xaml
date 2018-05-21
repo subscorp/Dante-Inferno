@@ -11,7 +11,7 @@
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="51*"/>
             </Grid.RowDefinitions>
-            <ListView x:Name="lstNames" ItemsSource="{Binding Handlers}" Margin="-78,5,-75,5" Grid.Row="0" Grid.RowSpan="2">
+            <ListView x:Name="lstNames" ItemsSource="{Binding Logs}" Margin="-78,5,-75,5" Grid.Row="0" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView x:Name="lstNdames">
                         <GridViewColumn Header="Type"  DisplayMemberBinding="{Binding}"/>

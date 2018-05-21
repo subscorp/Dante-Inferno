@@ -25,7 +25,7 @@
             <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Thumbnail Size:"/><InlineUIContainer>
                     <TextBlock Text="{Binding Settings[3]}"/>
                 </InlineUIContainer></TextBlock>
-            <Button Content="Remove">
+            <Button x:Name="button" Content="Remove" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=listbox1, Path=SelectedItems}">
                 <Button.Style>
                     <Style>
                         <Style.Triggers>
