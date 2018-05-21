@@ -23,6 +23,7 @@ namespace ImageService.ImageService.ImageService.Server
         {
             this.settings = settings;
         }
+
         public void HandleClient(TcpClient client)
         {
             string settingsStr = settings.ToJSON();
@@ -50,21 +51,20 @@ namespace ImageService.ImageService.ImageService.Server
 
                             var logEntries = new List<LogEntry>();
 
-                            /*
                             foreach (var entry in arr)
                             {    
                                 var msg = entry.Message;
                                 var type = entry.EntryType;
                                 var logEntry = new LogEntry();
                                 logEntry.Message = msg;
-                                logEntry.Type = type;
+                                logEntry.Type = type.ToString();
                                 logEntries.Add(logEntry);
                             }
-                            
-                            writer.Write(JsonConvert.SerializeObject(logEntries.ToArray()));
-                            */
 
-                            writer.Write(arr.ToString());
+                            int numLogEntries = logEntries.Count;
+                            writer.Write(numLogEntries);
+                            foreach (var logEntry in logEntries)
+                                writer.Write(logEntry.ToJSON());
                         }
 
                         Console.WriteLine();
