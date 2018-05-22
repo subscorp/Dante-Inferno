@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Configuration;
 using Newtonsoft.Json.Linq;
+using System.Collections.ObjectModel;
 
 namespace Communication
 {
@@ -17,7 +18,7 @@ namespace Communication
     {
         public string LogSource { get; set; }
         public string LogName { get; set; }
-        public string[] Handlers { get; set; }
+        public ObservableCollection<string> Handlers { get; set; }
         public string OutputDir { get; set; }
         public string ThumbnailSize { get; set; }
 
@@ -50,7 +51,7 @@ namespace Communication
             settings.OutputDir = (string)appConfigObj["OutputDir"];
             settings.ThumbnailSize = (string)appConfigObj["ThumbnailSize"];
             JArray handlers = (JArray)appConfigObj["Handlers"];
-            settings.Handlers = handlers.Select(jv => (string)jv).ToArray();
+            settings.Handlers = new ObservableCollection<string>(handlers.Select(jv => (string)jv).ToArray());
             return settings;
         }
     }

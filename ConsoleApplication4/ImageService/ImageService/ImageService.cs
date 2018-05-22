@@ -61,6 +61,11 @@ namespace ImageService
         {
             InitializeComponent();
         }
+
+        public void ForceRun()
+        {
+            this.OnStart(null);
+        }
         
         /// <summary>
         /// executes when Start command is sent to the service by the SCM
@@ -80,7 +85,7 @@ namespace ImageService
             // Creating a new Settings object with the info above
             Settings settings = new Settings()
             {
-                Handlers = handlers,
+                Handlers = new System.Collections.ObjectModel.ObservableCollection<string>(handlers),
                 LogName = logName,
                 LogSource = logSource,
                 OutputDir = outputDir,
@@ -95,7 +100,7 @@ namespace ImageService
             //creates modal, controller and server
             modal = new ImageServiceModal(outputDir, int.Parse(thumbnailSize));
             controller = new ImageController(modal);
-            m_imageServer = new ImageServer(handlers, logging, controller);
+            m_imageServer = new ImageServer(settings.Handlers, logging, controller);
 
             ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.AppConfigHandlerV2(settings);
             ImageService.ImageService.Server.Server server = new ImageService.ImageService.Server.Server(8000, ch);
