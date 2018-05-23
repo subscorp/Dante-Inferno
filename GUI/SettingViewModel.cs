@@ -42,23 +42,22 @@ namespace GUI
 
         public string ToRemove
         {
-            get { return toRemove; }
+            get { return ""; }
             set
             {
-                Console.WriteLine("i am here and i want food and " + value);
                 toRemove = value;
                 NotifyPropertyChanged("ToRemove");
-                CanExecuteRemoveChanged();
-                ;
+                CanExecuteRemoveChanged();  
             }
         }
 
         private void RemoveHandler(object obj)
         {
             Console.WriteLine("I remove handler!!!");
-            
-            Console.Write(toRemove);
-            Handlers.Remove(toRemove);
+            while (toRemove != null)
+            {
+                Handlers.Remove(toRemove);
+            }
         }
 
         private bool CanRemove(object obj)
