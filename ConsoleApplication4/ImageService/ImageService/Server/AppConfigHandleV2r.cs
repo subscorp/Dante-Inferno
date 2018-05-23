@@ -26,7 +26,6 @@ namespace ImageService.ImageService.ImageService.Server
 
         public void HandleClient(TcpClient client)
         {
-            string settingsStr = settings.ToJSON();
 
             EventLog eventLog1 = LogContainer.Log;
 
@@ -36,23 +35,35 @@ namespace ImageService.ImageService.ImageService.Server
                 using (BinaryReader reader = new BinaryReader(stream))
                 using (BinaryWriter writer = new BinaryWriter(stream))
                 {
-                    while (true)
+                    while (client.Connected)
                     {
-                        int num = reader.ReadInt32();
-                        if (num == 1)
+                        CommandArgs cmd;
+                        try
+                        {
+                            var json = reader.ReadString();
+                            cmd = JsonConvert.DeserializeObject<CommandArgs>(json);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                            return;
+                        }
+
+
+                        if (cmd.CommandId == 1)
                         {
                             Console.WriteLine("sending settings to the client:\n");
-                            writer.Write(settingsStr);
+                            writer.Write(settings.ToJSON());
                         }
-                        else
+                        else if (cmd.CommandId == 2)
                         {
                             Console.WriteLine("sending log to the client\n");
-                            var arr = eventLog1.Entries.Cast<EventLogEntry>().ToArray();
+                            var arr = eventLog1.Entries.Cast<EventLogEntry>();
 
                             var logEntries = new List<LogEntry>();
 
                             foreach (var entry in arr)
-                            {    
+                            {
                                 var msg = entry.Message;
                                 var type = entry.EntryType;
                                 var logEntry = new LogEntry();
@@ -62,9 +73,11 @@ namespace ImageService.ImageService.ImageService.Server
                             }
 
                             int numLogEntries = logEntries.Count;
-                            writer.Write(numLogEntries);
-                            foreach (var logEntry in logEntries)
-                                writer.Write(logEntry.ToJSON());
+                            writer.Write(JsonConvert.SerializeObject(logEntries.ToArray(), Formatting.Indented));
+                        }
+                        else if (cmd.CommandId == 3)
+                        {
+                            settings.Handlers.Remove(cmd.Arg);
                         }
 
                         Console.WriteLine();
