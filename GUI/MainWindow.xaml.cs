@@ -22,6 +22,7 @@ namespace GUI
     {
         public MainWindow()
         {
+            Console.Write("does that even work?");
             InitializeComponent();
             this.DataContext = new MainWindowViewModel();
         }

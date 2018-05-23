@@ -25,20 +25,8 @@
             <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Thumbnail Size:"/><InlineUIContainer>
                     <TextBlock Text="{Binding Settings[3]}"/>
                 </InlineUIContainer></TextBlock>
-            <Button x:Name="button" Content="Remove" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=listbox1, Path=SelectedItems}">
-                <Button.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger 
-                     Binding ="{Binding ElementName=listbox1, Path=SelectedIndex}" 
-                     Value="-1">
-                                <Setter Property="Button.IsEnabled" Value="false"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <ListBox x:Name="listbox1" SelectionMode="Multiple"  ItemsSource="{Binding Handlers}"/>
+            <Button x:Name="button" Content="Remove" Command="{Binding RemoveCommand}"></Button>
+            <ListBox x:Name="listbox1" SelectionMode="Multiple"  SelectedItem="{Binding ToRemove}" ItemsSource="{Binding Handlers}"/>
         </StackPanel>
     </Viewbox>
 </UserControl>

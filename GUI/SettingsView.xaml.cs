@@ -24,10 +24,5 @@ namespace GUI
             InitializeComponent();
             DataContext = new SettingViewModel();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            button.Command.Execute(button.CommandParameter);
-        }
     }
 }
