@@ -24,6 +24,7 @@ namespace GUI
         {
             InitializeComponent();
             DataContext = new LogViewModel();
+            Console.WriteLine((this.DataContext as LogViewModel).Logs);
         }
     }
 }

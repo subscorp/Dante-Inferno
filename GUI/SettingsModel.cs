@@ -1,10 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using Communication;
+using System.Collections.ObjectModel;
+
 
 namespace GUI
 {
-    internal class SettingsModel
+    internal class SettingsModel : IModel
     {
-        //private mashehou shekashour leTCP
+        private ConsoleClient Client;
 
         public ObservableCollection<string> settings
         {
@@ -16,13 +18,24 @@ namespace GUI
             get;
             set;
         }
+
+        //public Settings mySettings
+        //{
+        //    get => Settings.FromJSON(Client.settingstr);
+        //    set;
+        //}
+
+
         public SettingsModel()
         {
-            //TODO create connection, get the parameters and use them.
+            Client = ConsoleClient.Instance;
+            //Client.HandleClient();
+
             settings = new ObservableCollection<string>()
                                         { "output", "source", "log", "thumb" };
             handlers = new ObservableCollection<string>()
                                         { "dever", "herev", "haya" };
         }
+
     }
 }

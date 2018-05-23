@@ -14,8 +14,8 @@
             <ListView x:Name="lstNames" ItemsSource="{Binding Logs}" Margin="-78,5,-75,5" Grid.Row="0" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView x:Name="lstNdames">
-                        <GridViewColumn Header="Type"  DisplayMemberBinding="{Binding}"/>
-                        <GridViewColumn Header="Message"  DisplayMemberBinding="{Binding}"/>
+                        <GridViewColumn Header="Type"  DisplayMemberBinding="{Binding Type}"/>
+                        <GridViewColumn Header="Message"  DisplayMemberBinding="{Binding Message}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

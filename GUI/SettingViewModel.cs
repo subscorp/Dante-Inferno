@@ -13,6 +13,12 @@ namespace GUI
         
         private SettingsModel sm;
 
+        public ConsoleClient Client
+        {
+            get;
+            private set;
+        }
+
         public ObservableCollection<string> Settings
         {
             get => sm.settings;
@@ -42,7 +48,7 @@ namespace GUI
 
         public string ToRemove
         {
-            get { return ""; }
+            get { return toRemove; }
             set
             {
                 toRemove = value;
@@ -69,6 +75,10 @@ namespace GUI
         {
             RemoveCommand =  new DelegateCommand<object>(RemoveHandler, CanRemove);
             sm = new SettingsModel();
+            sm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                NotifyPropertyChanged(e.PropertyName);
+            };
         }
         
     }

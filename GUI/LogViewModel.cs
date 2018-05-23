@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Communication;
+using System.Collections.ObjectModel;
 
 namespace GUI
 {
@@ -6,11 +7,19 @@ namespace GUI
     {
         private LogModel lm;
 
-        public string Logs { get; set; }
+        public ObservableCollection<LogEntry> Logs
+        {
+            get => lm.Logs;
+
+            set
+            {
+                NotifyPropertyChanged("Logs");
+            }
+        }
 
         public LogViewModel()
         {
-            Logs = "bla";
+            Logs = new ObservableCollection<LogEntry>();
             lm = new LogModel();
         }
     }

@@ -1,24 +1,32 @@
-﻿namespace GUI
+﻿using Communication;
+using System.Collections.ObjectModel;
+
+namespace GUI
 {
     internal class LogModel
     {
         //private mashehou shekashour leTCP
 
-        public string[] settings
+        public ObservableCollection<LogEntry> Logs
         {
             get;
             set;
         }
-        public string[] handlers
-        {
-            get;
-            set;
-        }
+
         public LogModel()
         {
-            //TODO create connection, get the parameters and use them.
-            settings = new string[]{ "12", "path", "output", "aher"};
-            handlers = new string[]{ "dever", "herev", "haya"};
+            Logs = new ObservableCollection<LogEntry>();
+
+            LogEntry l1 = new LogEntry();
+            l1.Message = "Shalom lekha debil";
+            l1.Type = "INFO";
+
+            LogEntry l2 = new LogEntry();
+            l2.Message = "Shalom lekha evil";
+            l2.Type = "WARNING";
+            Logs.Add(l1);
+            Logs.Add(l2);
+            //TODO mashehou shekashour laTCP
         }
     }
 }
