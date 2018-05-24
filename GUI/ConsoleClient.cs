@@ -39,7 +39,9 @@ namespace GUI
 
         }
 
-        public void HandleClient()
+        public void HandleClient() { }
+
+/*        public void HandleClient()
         {
             Console.WriteLine("ani metapel besettingim");
             Settings settings = new Settings();
@@ -118,6 +120,6 @@ namespace GUI
                 }
             }
             client.Close();
-        }
+        }*/
     }
 }
