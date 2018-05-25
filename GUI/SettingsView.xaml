@@ -14,11 +14,11 @@
             </StackPanel.Resources>
             <TextBlock HorizontalAlignment="Center" FontSize="26" FontWeight="Heavy" Foreground="BlueViolet">Settings</TextBlock>
             <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Output Directory:"/><InlineUIContainer>
-                    <TextBlock Text="{Binding Settings[0]}"/>
-                </InlineUIContainer></TextBlock>
+            		<TextBlock VerticalAlignment="Stretch" Text="{Binding Settings[0], FallbackValue=dfsdfsdffsd}"/>
+            	</InlineUIContainer></TextBlock>
             <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Source Name:"/><InlineUIContainer>
-                    <TextBlock Text="{Binding Settings[1]}"/>
-                </InlineUIContainer></TextBlock>
+            		<TextBlock Text="{Binding Settings[1]}"/>
+            	</InlineUIContainer></TextBlock>
             <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Log Name:"/><InlineUIContainer>
                     <TextBlock Text="{Binding Settings[2]}"/>
                 </InlineUIContainer></TextBlock>

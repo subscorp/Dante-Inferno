@@ -25,16 +25,16 @@ namespace GUI
             get { return sm.settings; }
             set
             {
-                NotifyPropertyChanged("Settings");
+                sm.settings = value;
             }
         }
 
         public ObservableCollection<string> Handlers
         {
             get { return sm.handlers; }
-            set
+            private set
             {
-                NotifyPropertyChanged("Handlers");
+                sm.handlers = value;
             }
         }
 
@@ -64,6 +64,7 @@ namespace GUI
             while (toRemove != null)
             {
                 Handlers.Remove(toRemove);
+                // remove from server
             }
         }
 

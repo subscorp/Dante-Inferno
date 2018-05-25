@@ -22,9 +22,13 @@ namespace GUI
     {
         public MainWindow()
         {
-            Console.Write("does that even work?");
             InitializeComponent();
             this.DataContext = new MainWindowViewModel();
+        }
+
+        private void SettingsView_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

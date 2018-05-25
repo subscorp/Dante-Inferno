@@ -5,13 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d" Height="460.762" Width="795.953">
-    <Viewbox>
+    <Viewbox x:Name="viewThing">
         <Grid x:Name="Grid" Height="330" Width="401">
             <Grid.RowDefinitions>
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="51*"/>
             </Grid.RowDefinitions>
-            <ListView x:Name="lstNames" ItemsSource="{Binding Logs}" Margin="-78,5,-75,5" Grid.Row="0" Grid.RowSpan="2">
+            <DataGrid ItemsSource="{Binding Logs}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Type}" Header="Type">
+                        
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Message}" Header="Message">
+                        
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+                
+            </DataGrid>
+            <!--<ListView x:Name="lstNames" ItemsSource="{Binding Logs}" Margin="-78,5,-75,5" Grid.Row="0" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView x:Name="lstNdames">
                         <GridViewColumn Header="Type">
@@ -27,7 +38,7 @@
                         <GridViewColumn Header="Message"  DisplayMemberBinding="{Binding Message}"/>
                     </GridView>
                 </ListView.View>
-            </ListView>
+            </ListView>-->
         </Grid>
     </Viewbox>
 </UserControl>
