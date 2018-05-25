@@ -6,6 +6,7 @@ namespace GUI
 {
     internal class LogViewModel : ViewModel
     {
+        
         private LogModel lm;
 
         public Dictionary<string, string> TypeToColor
@@ -16,7 +17,7 @@ namespace GUI
 
         public ObservableCollection<LogEntry> Logs
         {
-            get => lm.Logs;
+            get { return lm.Logs; }
 
             set
             {
@@ -33,5 +34,6 @@ namespace GUI
             TypeToColor.Add("WARNING", "Yellow");
             TypeToColor.Add("ERROR", "Red");
         }
+        
     }
 }

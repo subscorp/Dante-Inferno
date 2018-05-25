@@ -35,7 +35,27 @@ namespace ImageService.ImageService.ImageService.Server
                 using (BinaryReader reader = new BinaryReader(stream))
                 using (BinaryWriter writer = new BinaryWriter(stream))
                 {
-                    while (client.Connected)
+                    Console.WriteLine("sending settings to the client:\n");
+                    writer.Write(settings.ToJSON());
+
+                    Console.WriteLine("sending log to the client\n");
+                    var arr = eventLog1.Entries.Cast<EventLogEntry>();
+
+                    var logEntries = new List<LogEntry>();
+
+                    foreach (var entry in arr)
+                    {
+                        var msg = entry.Message;
+                        var type = entry.EntryType;
+                        var logEntry = new LogEntry();
+                        logEntry.Message = msg;
+                        logEntry.Type = type.ToString();
+                        logEntries.Add(logEntry);
+                    }
+                        int numLogEntries = logEntries.Count;
+                        writer.Write(JsonConvert.SerializeObject(logEntries.ToArray(), Formatting.Indented));
+
+                        while (client.Connected)
                     {
                         CommandArgs cmd;
                         try
@@ -58,21 +78,21 @@ namespace ImageService.ImageService.ImageService.Server
                         else if (cmd.CommandId == 2)
                         {
                             Console.WriteLine("sending log to the client\n");
-                            var arr = eventLog1.Entries.Cast<EventLogEntry>();
+                            arr = eventLog1.Entries.Cast<EventLogEntry>();
 
-                            var logEntries = new List<LogEntry>();
+                            logEntries = new List<LogEntry>();
 
-                            foreach (var entry in arr)
+                            foreach (var log in arr)
                             {
-                                var msg = entry.Message;
-                                var type = entry.EntryType;
+                                var msg = log.Message;
+                                var type = log.EntryType;
                                 var logEntry = new LogEntry();
                                 logEntry.Message = msg;
                                 logEntry.Type = type.ToString();
                                 logEntries.Add(logEntry);
                             }
 
-                            int numLogEntries = logEntries.Count;
+                            numLogEntries = logEntries.Count;
                             writer.Write(JsonConvert.SerializeObject(logEntries.ToArray(), Formatting.Indented));
                         }
                         else if (cmd.CommandId == 3)

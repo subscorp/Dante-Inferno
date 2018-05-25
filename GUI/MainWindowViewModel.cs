@@ -4,7 +4,8 @@
     {
         public MainWindowViewModel()
         {
-
+            IClient client = new ConsoleClient();
+            client.HandleClient();
         }
     }
 }

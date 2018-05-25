@@ -11,6 +11,7 @@ namespace GUI
     internal class SettingViewModel : ViewModel
     {
         
+        
         private SettingsModel sm;
 
         public ConsoleClient Client
@@ -21,7 +22,7 @@ namespace GUI
 
         public ObservableCollection<string> Settings
         {
-            get => sm.settings;
+            get { return sm.settings; }
             set
             {
                 NotifyPropertyChanged("Settings");
@@ -30,7 +31,7 @@ namespace GUI
 
         public ObservableCollection<string> Handlers
         {
-            get => sm.handlers;
+            get { return sm.handlers; }
             set
             {
                 NotifyPropertyChanged("Handlers");
