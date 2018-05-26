@@ -87,6 +87,7 @@ namespace GUI
             t.Elapsed += async (a, b) =>
             {
                 var logs2 = await _guiClient.GetLogs();
+                var settings2 = await _guiClient.GetSettings();
                 await Dispatcher.InvokeAsync(() =>
                 {
                     MainWindowViewModel.LogViewModel.Logs.Clear();
@@ -96,7 +97,14 @@ namespace GUI
                         MainWindowViewModel.LogViewModel.Logs.Add(log);
                     }
                     MainWindowViewModel.LogViewModel.clearLogs();
+
+                    MainWindowViewModel.SettingsViewModel.Handlers.Clear();
+                    foreach (var handler in settings2.Handlers)
+                    {
+                        MainWindowViewModel.SettingsViewModel.Handlers.Add(handler);
+                    }
                 });
+
             };
             t.AutoReset = true;
             t.Start();

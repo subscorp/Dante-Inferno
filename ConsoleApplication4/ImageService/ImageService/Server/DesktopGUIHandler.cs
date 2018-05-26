@@ -63,6 +63,7 @@ namespace ImageService.ImageService.ImageService.Server
                         else if (cmd.CommandId == 3)
                         {
                             settings.Handlers.Remove(cmd.Arg);
+                            writer.Write(settings.ToJSON());
                         }
 
                     }
