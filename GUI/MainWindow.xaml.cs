@@ -92,8 +92,10 @@ namespace GUI
                     MainWindowViewModel.LogViewModel.Logs.Clear();
                     foreach (var log in logs2)
                     {
+                        log.Color = MainWindowViewModel.LogViewModel.TypeToColor[log.Type];
                         MainWindowViewModel.LogViewModel.Logs.Add(log);
                     }
+                    MainWindowViewModel.LogViewModel.clearLogs();
                 });
             };
             t.AutoReset = true;
