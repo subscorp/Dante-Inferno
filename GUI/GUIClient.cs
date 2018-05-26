@@ -12,10 +12,10 @@ using Communication;
 namespace GUI
 {
 
-    public class ConsoleClient : IClient
+    public class GUIClient : IClient
     {
         private TcpClient client;
-        public ConsoleClient()
+        public GUIClient()
         {
 
         }
@@ -176,6 +176,7 @@ namespace GUI
 
         public void Dispose()
         {
+            client?.Close();
             client?.Dispose();
         }
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using Communication;
 
 namespace ImageService.Logging
 {
@@ -15,6 +16,10 @@ namespace ImageService.Logging
     /// <seealso cref="ImageService.Logging.ILoggingService" />
     public class LoggingService : ILoggingService
     {
+        private readonly List<LogEntry> _entries = new List<LogEntry>();
+
+        public IEnumerable<LogEntry> Entries => _entries;
+
         /// <summary>
         /// Occurs when a message is received.
         /// </summary>
@@ -33,7 +38,13 @@ namespace ImageService.Logging
             MessageReceivedEventArgs mrea = new MessageReceivedEventArgs();
             mrea.Message = message;
             mrea.Status = type;
-            MessageReceived.Invoke(this, mrea);
+            this._entries.Add(new LogEntry()
+            {
+                Message = message,
+                Type = type.ToString(),
+                Time = DateTime.Now
+            });
+            MessageReceived?.Invoke(this, mrea);
         }
     }
 }

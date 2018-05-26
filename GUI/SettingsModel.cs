@@ -6,8 +6,6 @@ namespace GUI
 {
     internal class SettingsModel : IModel
     {
-        private ConsoleClient Client;
-
         public ObservableCollection<string> settings
         {
             get;
@@ -27,14 +25,12 @@ namespace GUI
 
 
         public SettingsModel()
-        {
-            Client = ConsoleClient.Instance;
-            //Client.HandleClient();
+        {            //Client.HandleClient();
 
             settings = new ObservableCollection<string>()
-                                        { "output", "source", "log", "thumb" };
+                                        { };
             handlers = new ObservableCollection<string>()
-                                        { "dever", "herev", "haya" };
+                                        {  };
         }
 
     }

@@ -4,14 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
+            x:Name="UserControl"
+             Loaded="LogView_OnLoaded"
         mc:Ignorable="d" Height="460.762" Width="795.953">
-    <Viewbox x:Name="viewThing">
+    <Viewbox DataContext="{Binding ElementName=UserControl, Path=LogViewModel}">
         <Grid x:Name="Grid" Height="330" Width="401">
             <Grid.RowDefinitions>
                 <RowDefinition Height="4*"/>
-                <RowDefinition Height="51*"/>
+                <RowDefinition Height="51"/>
             </Grid.RowDefinitions>
-            <DataGrid ItemsSource="{Binding Logs}">
+            <DataGrid x:Name="dfdfff"  ItemsSource="{Binding Logs}" AutoGenerateColumns="False" Grid.RowSpan="2">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Type}" Header="Type">
                         
@@ -27,18 +29,18 @@
                     <GridView x:Name="lstNdames">
                         <GridViewColumn Header="Type">
                             <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Rectangle Width="150" Stroke="Black" Fill="{Binding Color}" Stretch="UniformToFill" HorizontalAlignment="Stretch"></Rectangle>
-                                    <Label Content="{Binding Type}"></Label>
-                                </Grid>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Rectangle Height="65" Width="65" Stroke="Black" Fill="{Binding Color}" Stretch="UniformToFill" HorizontalAlignment="Stretch"></Rectangle>
+                                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding Type}"></Label>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Message"  DisplayMemberBinding="{Binding Message}"/>
+                        <GridViewColumn Header="Message" DisplayMemberBinding="{Binding Message}" Width="Auto"/>
                     </GridView>
                 </ListView.View>
-            </ListView>-->
+            </ListView> -->
         </Grid>
     </Viewbox>
 </UserControl>

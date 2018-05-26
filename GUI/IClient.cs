@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GUI
 {
-    interface IClient
+    interface IClient : IDisposable
     {
         void HandleClient();
     }

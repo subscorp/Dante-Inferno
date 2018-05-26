@@ -4,18 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
+        x:Name="Window"
         mc:Ignorable="d"
+        Loaded="SettingsView_Loaded"
+        Closing="MainWindow_OnClosing"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="421" VerticalAlignment="Top" Width="793" Margin="0,0,0,-0.333">
             <TabItem Header="Settings">
                 <Viewbox>
-                    <local:SettingsView HorizontalAlignment="left" Height="260" Width="494" Loaded="SettingsView_Loaded"></local:SettingsView>
+                    <local:SettingsView HorizontalAlignment="left" Height="260" Width="494" SettingsViewModel="{Binding ElementName=Window, Path=MainWindowViewModel.SettingsViewModel}" ></local:SettingsView>
                 </Viewbox>
             </TabItem>
             <TabItem Header="Log">
                 <Viewbox>
-                    <local:LogView HorizontalAlignment="left"></local:LogView>
+                    <local:LogView HorizontalAlignment="left" LogViewModel="{Binding ElementName=Window, Path=MainWindowViewModel.LogViewModel}"></local:LogView>
                 </Viewbox>
             </TabItem>
         </TabControl>

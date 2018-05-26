@@ -47,9 +47,7 @@ namespace ImageService
     /// </summary>
     /// <seealso cref="System.ServiceProcess.ServiceBase" />
     public partial class ImgService : ServiceBase
-    {
-
-        private ImageServer m_imageServer;          // The Image Server
+    {        private ImageServer m_imageServer;          // The Image Server
 		private IImageServiceModal modal;
 		private IImageController controller;
         private ILoggingService logging;
@@ -95,18 +93,19 @@ namespace ImageService
 
             //adds the eventLog OnMsg method to the logging service event.
             logging.MessageReceived += OnMsg;
-
+            
 
             //creates modal, controller and server
             modal = new ImageServiceModal(outputDir, int.Parse(thumbnailSize));
             controller = new ImageController(modal);
             m_imageServer = new ImageServer(settings.Handlers, logging, controller);
 
-            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.AppConfigHandlerV2(settings);
+            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.AppConfigHandlerV2(settings, logging);
             ImageService.ImageService.Server.Server server = new ImageService.ImageService.Server.Server(8000, ch);
             server.Start();
 
-            LogContainer.Log.WriteEntry("ImageService started");
+            logging.Log("ImageService started", MessageTypeEnum.INFO);
+            
         }
         
         /// <summary>
@@ -116,7 +115,7 @@ namespace ImageService
         /// <param name="e">The Message.</param>
         protected void OnMsg(object sender, MessageReceivedEventArgs e)
         {
-            LogContainer.Log.WriteEntry(e.Message);        
+            LogContainer.Log.WriteEntry(e.Message); 
         }
 
         /// <summary>
@@ -125,7 +124,7 @@ namespace ImageService
         protected override void OnStop()
         {
             m_imageServer.CloseServer();
-            LogContainer.Log.WriteEntry("ImageService stopped.");
+            logging.Log("ImageService stopped.", MessageTypeEnum.INFO);
         }
 
         /// <summary>

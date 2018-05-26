@@ -18,9 +18,9 @@ namespace ImageService
         /// <param name="args">The arguments (null in this case).</param>
         static void Main(string[] args)
         {
-         //   new ImgService().ForceRun();
-         //   Console.Read();
-         //   return;
+            new ImgService().ForceRun();
+            Console.Read();
+            return;
 
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 

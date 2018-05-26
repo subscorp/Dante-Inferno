@@ -4,35 +4,21 @@ using System.Collections.ObjectModel;
 
 namespace GUI
 {
-    internal class LogViewModel : ViewModel
+    public class LogViewModel : ViewModel
     {
-        
-        private LogModel lm;
-
-        public Dictionary<string, string> TypeToColor
-        {
-            get;
-            set;
-        }
 
         public ObservableCollection<LogEntry> Logs
         {
-            get { return lm.Logs; }
-
-            set
-            {
-                NotifyPropertyChanged("Logs");
-            }
-        }
+            get;
+            set;
+        } = new ObservableCollection<LogEntry>()
+        {
+            new LogEntry()
+        };
 
         public LogViewModel()
         {
-            Logs = new ObservableCollection<LogEntry>();
-            lm = new LogModel();
-            TypeToColor = new Dictionary<string, string>();
-            TypeToColor.Add("INFO", "Green");
-            TypeToColor.Add("WARNING", "Yellow");
-            TypeToColor.Add("ERROR", "Red");
+
         }
         
     }

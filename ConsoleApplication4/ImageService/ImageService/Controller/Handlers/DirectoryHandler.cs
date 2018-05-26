@@ -53,7 +53,7 @@ namespace ImageService.Controller.Handlers
             // if the command is to close all handlers, or this particular one
             if(e.CommandID == 1 || (e.CommandID == 2 && e.RequestDirPath == m_path))
             {
-                DirectoryClose.Invoke(this, new DirectoryCloseEventArgs(m_path, "closed handler"));
+                DirectoryClose?.Invoke(this, new DirectoryCloseEventArgs(m_path, "closed handler"));
 
                 m_dirWatcher.Dispose();
                 m_logging.Log("closing handler for " + m_path, MessageTypeEnum.INFO);
