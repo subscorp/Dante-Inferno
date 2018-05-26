@@ -49,7 +49,7 @@ namespace GUI
                     foreach (var handler in args.OldItems.Cast<string>())
                     {
                         await _guiClient.RemoveHandler(handler);
-                        Thread.Sleep(1000);
+                        Thread.Sleep(3000);
                     }
                 }
             };
