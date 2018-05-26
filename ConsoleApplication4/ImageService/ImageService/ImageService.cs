@@ -116,6 +116,7 @@ namespace ImageService
         /// <param name="e">The Message.</param>
         protected void OnMsg(object sender, MessageReceivedEventArgs e)
         {
+
             LogContainer.Log.WriteEntry(e.Message);        
         }
 

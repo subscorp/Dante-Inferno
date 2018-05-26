@@ -1,4 +1,5 @@
 ﻿using Communication;
+using System;
 using System.Collections.ObjectModel;
 
 
@@ -6,7 +7,7 @@ namespace GUI
 {
     internal class SettingsModel : IModel
     {
-        private ConsoleClient Client;
+        private ConsoleClient client;
 
         public ObservableCollection<string> settings
         {
@@ -28,13 +29,17 @@ namespace GUI
 
         public SettingsModel()
         {
-            Client = ConsoleClient.Instance;
-            //Client.HandleClient();
+            client = ConsoleClient.Instance;
+            client.HandleClient();
+
+            Settings m_settings = client.Settings;
 
             settings = new ObservableCollection<string>()
-                                        { "output", "source", "log", "thumb" };
-            handlers = new ObservableCollection<string>()
-                                        { "dever", "herev", "haya" };
+            { m_settings.OutputDir, m_settings.LogSource, m_settings.LogName, m_settings.ThumbnailSize };
+
+            Console.WriteLine("Handlers:");
+
+            handlers = m_settings.Handlers;
         }
 
     }

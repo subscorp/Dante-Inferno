@@ -18,7 +18,7 @@
                             <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <Rectangle Width="150" Stroke="Black" Fill="{Binding Color}" Stretch="UniformToFill" HorizontalAlignment="Stretch"></Rectangle>
+                                    <Rectangle Height="50" Width="150" Stroke="Black" Fill="{Binding Color}" Stretch="UniformToFill" HorizontalAlignment="Stretch"></Rectangle>
                                     <Label Content="{Binding Type}"></Label>
                                 </Grid>
                             </DataTemplate>

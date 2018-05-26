@@ -51,7 +51,7 @@ namespace ImageService.ImageService.ImageService.Server
             });
 
             task.Start();
-            Console.WriteLine("waiting for complition of the task");
+            Console.WriteLine("waiting for completion of the task");
 
         }
         public void Stop()

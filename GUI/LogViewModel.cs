@@ -28,10 +28,10 @@ namespace GUI
         {
             Logs = new ObservableCollection<LogEntry>();
             lm = new LogModel();
-            TypeToColor = new Dictionary<string, string>();
-            TypeToColor.Add("INFO", "Green");
-            TypeToColor.Add("WARNING", "Yellow");
-            TypeToColor.Add("ERROR", "Red");
+            //TypeToColor = new Dictionary<string, string>();
+            //TypeToColor.Add("INFO", "Green");
+            //TypeToColor.Add("WARNING", "Yellow");
+            //TypeToColor.Add("ERROR", "Red");
         }
     }
 }

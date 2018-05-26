@@ -1,11 +1,13 @@
 ﻿using Communication;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace GUI
 {
     internal class LogModel
     {
-        //private mashehou shekashour leTCP
+        private ConsoleClient client;
+        private Dictionary<string, string> TypeToColor;
 
         public ObservableCollection<LogEntry> Logs
         {
@@ -15,8 +17,20 @@ namespace GUI
 
         public LogModel()
         {
+            client = ConsoleClient.Instance;
+
+            TypeToColor = new Dictionary<string, string>();
+            TypeToColor.Add("INFO", "Green");
+            TypeToColor.Add("WARNING", "Yellow");
+            TypeToColor.Add("ERROR", "Red");
+
             Logs = new ObservableCollection<LogEntry>();
 
+            foreach(LogEntry le in client.Logs)
+            {
+                le.Color = TypeToColor[le.Type];
+                Logs.Add(le);
+            }
             LogEntry l1 = new LogEntry();
             l1.Message = "Shalom lekha debil";
             l1.Type = "INFO";
