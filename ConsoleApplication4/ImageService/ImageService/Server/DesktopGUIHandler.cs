@@ -65,7 +65,6 @@ namespace ImageService.ImageService.ImageService.Server
                             settings.Handlers.Remove(cmd.Arg);
                         }
 
-                        Console.WriteLine();
                     }
 
                 }

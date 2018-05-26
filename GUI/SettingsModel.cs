@@ -25,7 +25,7 @@ namespace GUI
 
 
         public SettingsModel()
-        {            //Client.HandleClient();
+        {            
 
             settings = new ObservableCollection<string>()
                                         { };

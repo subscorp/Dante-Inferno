@@ -8,8 +8,7 @@ namespace GUI
 
         public MainWindowViewModel()
         {
-            //       IClient client = new GUIClient();
-            //       client.HandleClient();
+            
         }
 
         public LogViewModel LogViewModel { get; set; } = new LogViewModel();
