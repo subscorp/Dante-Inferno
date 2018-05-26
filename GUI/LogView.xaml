@@ -18,7 +18,7 @@
                     <DataGridTextColumn Binding="{Binding Type}" Header="Type">
                         
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Message}" Header="Message">
+                    <DataGridTextColumn Width="*" Binding="{Binding Message}" Header="Message">
                         
                     </DataGridTextColumn>
                 </DataGrid.Columns>
