@@ -1,10 +1,11 @@
 ﻿using Communication;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace GUI
 {
-    internal class LogViewModel : ViewModel
+    public class LogViewModel : ViewModel
     {
         private LogModel lm;
 
@@ -16,7 +17,7 @@ namespace GUI
 
         public ObservableCollection<LogEntry> Logs
         {
-            get => lm.Logs;
+            get { return lm.Logs; }
 
             set
             {
@@ -28,10 +29,26 @@ namespace GUI
         {
             Logs = new ObservableCollection<LogEntry>();
             lm = new LogModel();
-            //TypeToColor = new Dictionary<string, string>();
-            //TypeToColor.Add("INFO", "Green");
-            //TypeToColor.Add("WARNING", "Yellow");
-            //TypeToColor.Add("ERROR", "Red");
+            TypeToColor = new Dictionary<string, string>();
+            TypeToColor.Add("Information", "Green");
+            TypeToColor.Add("Warning", "Yellow");
+            TypeToColor.Add("Error", "Red");
+        }
+
+        //Clears logs from before the current starting of service
+        public void clearLogs()
+        {
+            for (int i = Logs.Count-1; i > 0; i--)
+            {
+                if(Logs[i].Message == "ImageService stopped.")
+                {
+                    do
+                    {
+                        Logs.RemoveAt(i);
+                        i--;
+                    } while (i > -1);
+                }
+            }
         }
     }
 }

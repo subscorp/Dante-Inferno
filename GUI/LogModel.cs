@@ -1,4 +1,5 @@
 ﻿using Communication;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -6,7 +7,7 @@ namespace GUI
 {
     internal class LogModel
     {
-        private ConsoleClient client;
+        //private ConsoleClient client;
         private Dictionary<string, string> TypeToColor;
 
         public ObservableCollection<LogEntry> Logs
@@ -17,7 +18,7 @@ namespace GUI
 
         public LogModel()
         {
-            client = ConsoleClient.Instance;
+            //client = ConsoleClient.Instance;
 
             TypeToColor = new Dictionary<string, string>();
             TypeToColor.Add("INFO", "Green");
@@ -26,8 +27,9 @@ namespace GUI
 
             Logs = new ObservableCollection<LogEntry>();
 
-            foreach(LogEntry le in client.Logs)
+            foreach(LogEntry le in Logs)
             {
+                Console.WriteLine(le.Type);
                 le.Color = TypeToColor[le.Type];
                 Logs.Add(le);
             }

@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
 using System.Timers;
+using Communication;
 
 namespace GUI
 {
@@ -61,10 +62,14 @@ namespace GUI
             await this.Dispatcher.InvokeAsync(() =>
             {
                 MainWindowViewModel.LogViewModel.Logs.Clear();
+
                 foreach (var logEntry in logs)
-                {
+                { 
+                    logEntry.Color = MainWindowViewModel.LogViewModel.TypeToColor[logEntry.Type];
                     MainWindowViewModel.LogViewModel.Logs.Add(logEntry);
                 }
+
+                MainWindowViewModel.LogViewModel.clearLogs();
 
                 var settingsCol = MainWindowViewModel.SettingsViewModel;
                 settingsCol.OutputDir = settings.OutputDir;
