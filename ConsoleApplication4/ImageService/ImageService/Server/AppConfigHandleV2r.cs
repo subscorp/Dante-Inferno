@@ -49,7 +49,7 @@ namespace ImageService.ImageService.ImageService.Server
                         }
                         catch (Exception ex)
                         {
-                            Ils.Log("Error when deserializing or getting string!", MessageTypeEnum.FAIL);
+                            Ils.Log("Error when deserializing or getting string! " + ex.ToString(), MessageTypeEnum.FAIL);
                             return;
                         }
 
