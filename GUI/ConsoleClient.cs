@@ -8,165 +8,175 @@ using System.Net.Sockets;
 using System.IO;
 using Newtonsoft.Json;
 using Communication;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
 
 namespace GUI
 {
-    class ConsoleClient : IClient
+
+    public class ConsoleClient : IClient
     {
         private TcpClient client;
-
-        private ConsoleClient()
+        public ConsoleClient()
         {
+
+        }
+
+        public Task Connect()
+        {
+
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
             client = new TcpClient();
-            client.Connect(ep);
-            Console.WriteLine("You are connected\n");
+            return client.ConnectAsync(ep.Address, ep.Port);
         }
 
-        private static ConsoleClient instance;
-
-        public static ConsoleClient Instance
+        public Task SendCommand(CommandArgs args)
         {
-            get
+            return SendCommand<object>(args);
+        }
+
+        private Task<TReturn> SendCommand<TReturn>(CommandArgs args)
+        {
+            return Task.Run(() =>
             {
-                if (instance == null) return new ConsoleClient();
-                return instance;
-            }
+                var stream = client.GetStream();
+                var reader = new BinaryReader(stream);
+                var writer = new BinaryWriter(stream);
+                writer.Write(JsonConvert.SerializeObject(args));
+                if (typeof(TReturn) == typeof(object)) return default(TReturn);
+                var json = reader.ReadString();
+                var obj = JsonConvert.DeserializeObject<TReturn>(json);
+                return obj;
+                
+            });
         }
 
-        //internal string getSettings()
-        //{
-        //    using (NetworkStream stream = client.GetStream())
-        //    using (BinaryReader reader = new BinaryReader(stream))
-        //    using (BinaryWriter writer = new BinaryWriter(stream))
-        //    {
-        //        writer.Write(JsonConvert.SerializeObject(new CommandArgs()
-        //        {
-        //            CommandId = 1
-        //        }));
-        //        Console.WriteLine("Settings:");
-        //        return reader.ReadString();
-        //    }
-        //}
-
-        //public void SettingsCommunication()
-        //{
-
-        //}
-        public event PropertyChangedEventHandler PropertyChanged; 
-
-        //public void HandleClient() { }
-        public Settings Settings
+        public Task<Settings> GetSettings()
         {
-            get;
-            set;
+            return SendCommand<Settings>(new CommandArgs()
+            {
+                CommandId = 1,
+            });
         }
 
-        public ObservableCollection<LogEntry> Logs
+        public Task<LogEntry[]> GetLogs()
         {
-            get;
-            set;
+            return SendCommand<LogEntry[]>(new CommandArgs()
+            {
+                CommandId = 2
+            });
+        }
+
+        public Task RemoveHandler(string handler)
+        {
+            return SendCommand(new CommandArgs()
+            {
+                CommandId = 3,
+                Arg = handler
+            });
         }
 
         public void HandleClient()
         {
-            Console.WriteLine("ani metapel besettingim");
-            Settings = new Settings();
+            Settings settings = new Settings();
             string settingsStr;
             int numHandlers;
 
-            string logStr;
-            LogEntry entry;
-
-            
+            Console.WriteLine("You are connected\n");
 
             using (NetworkStream stream = client.GetStream())
             using (BinaryReader reader = new BinaryReader(stream))
             using (BinaryWriter writer = new BinaryWriter(stream))
             {
-                if(client.Connected)
+                //getting and printing the Settings
+                Console.WriteLine("Settings:");
+                settingsStr = reader.ReadString();
+                settings = Settings.FromJSON(settingsStr);
+                numHandlers = settings.Handlers.Count;
+                Console.WriteLine("Output Directory: {0}", settings.OutputDir);
+                Console.WriteLine("Source Name: {0}", settings.LogSource);
+                Console.WriteLine("Log Name: {0}", settings.LogName);
+                Console.WriteLine("Thumbnail Size: {0}", settings.ThumbnailSize);
+                Console.WriteLine("Handlers:");
+                for (int i = 0; i < numHandlers; i++)
+                    Console.WriteLine(settings.Handlers[i]);
+
+                //getting and printing the log
+                Console.WriteLine("Log:");
+                var json = reader.ReadString();
+                var arr = JsonConvert.DeserializeObject<LogEntry[]>(json);
+                foreach (var obj in arr)
                 {
-                    Console.WriteLine("Settings:");
-                    settingsStr = reader.ReadString();
-                    Settings = Settings.FromJSON(settingsStr);
-                    numHandlers = Settings.Handlers.Count;
-
-                    var json = reader.ReadString();
-                    var arr = JsonConvert.DeserializeObject<LogEntry[]>(json);
-
-                    foreach (var obj in arr)
-                    {
-                        LogEntry le = new LogEntry();
-                        le.Message = obj.Message;
-                        le.Type = obj.Type;
-                        Logs.Add(le);
-                    }
+                    Console.WriteLine(obj.Type);
+                    Console.WriteLine(obj.Message);
                 }
-            //    while (client.Connected)
-            //    {
-            //        Console.WriteLine("please choose operation: enter 1 for Settings or 2 for Log");
-            //        int num = int.Parse(Console.ReadLine());
+
+                while (client.Connected)
+                {
+                    Console.WriteLine("please choose operation: enter 1 for Settings or 2 for Log");
+                    int num = int.Parse(Console.ReadLine());
 
 
-            //        if (num == 1)
-            //        {
-            //            writer.Write(JsonConvert.SerializeObject(new CommandArgs()
-            //            {
-            //                CommandId = num
-            //            }));
-            //            Console.WriteLine("Settings:");
-            //            settingsStr = reader.ReadString();
-            //            settings = Settings.FromJSON(settingsStr);
-            //            numHandlers = settings.Handlers.Count;
+                    if (num == 1)
+                    {
+                        writer.Write(JsonConvert.SerializeObject(new CommandArgs()
+                        {
+                            CommandId = num
+                        }));
+                        Console.WriteLine("Settings:");
+                        settingsStr = reader.ReadString();
+                        settings = Settings.FromJSON(settingsStr);
+                        numHandlers = settings.Handlers.Count;
 
-            //            Console.WriteLine("Output Directory: {0}", settings.OutputDir);
+                        Console.WriteLine("Output Directory: {0}", settings.OutputDir);
 
-            //            Console.WriteLine("Source Name: {0}", settings.LogSource);
+                        Console.WriteLine("Source Name: {0}", settings.LogSource);
 
-            //            Console.WriteLine("Log Name: {0}", settings.LogName);
+                        Console.WriteLine("Log Name: {0}", settings.LogName);
 
-            //            Console.WriteLine("Thumbnail Size: {0}", settings.ThumbnailSize);
+                        Console.WriteLine("Thumbnail Size: {0}", settings.ThumbnailSize);
 
-            //            Console.WriteLine("Handlers:");
+                        Console.WriteLine("Handlers:");
 
-            //            for (int i = 0; i < numHandlers; i++)
-            //                Console.WriteLine(settings.Handlers[i]);
-            //        }
+                        for (int i = 0; i < numHandlers; i++)
+                            Console.WriteLine(settings.Handlers[i]);
+                    }
 
-            //        else if (num == 2)
-            //        {
-            //            writer.Write(JsonConvert.SerializeObject(new CommandArgs()
-            //            {
-            //                CommandId = num
-            //            }));
-            //            Console.WriteLine("Log:");
-            //            var json = reader.ReadString();
-            //            var arr = JsonConvert.DeserializeObject<LogEntry[]>(json);
+                    else if (num == 2)
+                    {
+                        writer.Write(JsonConvert.SerializeObject(new CommandArgs()
+                        {
+                            CommandId = num
+                        }));
+                        Console.WriteLine("Log:");
+                        var json2 = reader.ReadString();
+                        var arr2 = JsonConvert.DeserializeObject<LogEntry[]>(json2);
 
-            //            foreach (var obj in arr)
-            //            {
-            //                Console.WriteLine(obj.Type);
-            //                Console.WriteLine(obj.Message);
-            //            }
+                        foreach (var obj in arr2)
+                        {
+                            Console.WriteLine(obj.Type);
+                            Console.WriteLine(obj.Message);
+                        }
 
-            //        }
-            //        else if (num == 3)
-            //        {
-            //            Console.WriteLine("Path:");
-            //            var path = Console.ReadLine();
-            //            var json = JsonConvert.SerializeObject(new CommandArgs()
-            //            {
-            //                CommandId = 3,
-            //                Arg = path
-            //            });
-            //            writer.Write(json);
-            //        }
-            //        Console.WriteLine();
-            //    }
-            //}
-            //client.Close();
+                    }
+                    else if (num == 3)
+                    {
+                        Console.WriteLine("Path:");
+                        var path = Console.ReadLine();
+                        var json3 = JsonConvert.SerializeObject(new CommandArgs()
+                        {
+                            CommandId = 3,
+                            Arg = path
+                        });
+                        writer.Write(json3);
+                    }
+                    Console.WriteLine();
+                }
+            }
+            client.Close();
+        }
+
+        public void Dispose()
+        {
+            client?.Dispose();
         }
     }
 }

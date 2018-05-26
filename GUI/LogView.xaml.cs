@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using Communication;
 
 namespace GUI
 {
@@ -20,11 +21,25 @@ namespace GUI
     /// </summary>
     public partial class LogView : UserControl
     {
+        
         public LogView()
         {
             InitializeComponent();
-            DataContext = new LogViewModel();
-            Console.WriteLine((this.DataContext as LogViewModel).Logs);
+        }
+
+        public static readonly DependencyProperty LogViewModelProperty = DependencyProperty.Register(
+            "LogViewModel", typeof(LogViewModel), typeof(LogView), new PropertyMetadata(default(LogViewModel)));
+
+        public LogViewModel LogViewModel
+        {
+            get { return (LogViewModel) GetValue(LogViewModelProperty); }
+            set { SetValue(LogViewModelProperty, value); }
+        }
+
+
+        private void LogView_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var ss = 4;
         }
     }
 }

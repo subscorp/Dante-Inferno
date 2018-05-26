@@ -8,34 +8,45 @@ using System.ComponentModel;
 
 namespace GUI
 {
-    internal class SettingViewModel : ViewModel
+    public class SettingViewModel : ViewModel, INotifyPropertyChanged
     {
-        
+
+
         private SettingsModel sm;
 
-        public ConsoleClient Client
+        /*
+         *                 settingsCol.Add(settings.OutputDir);
+                settingsCol.Add(settings.LogSource);
+                settingsCol.Add(settings.LogName);
+                settingsCol.Add(settings.ThumbnailSize);
+         */
+
+        public string OutputDir
         {
-            get;
-            private set;
+            get { return _outputDir; }
+            set { _outputDir = value; NotifyPropertyChanged(); }
         }
 
-        public ObservableCollection<string> Settings
+        public string LogSource
         {
-            get => sm.settings;
-            set
-            {
-                NotifyPropertyChanged("Settings");
-            }
+            get { return _logSource; }
+            set { _logSource = value; NotifyPropertyChanged(); }
         }
 
-        public ObservableCollection<string> Handlers
+        public string LogName
         {
-            get => sm.handlers;
-            set
-            {
-                NotifyPropertyChanged("Handlers");
-            }
+            get { return _logName; }
+            set { _logName = value; NotifyPropertyChanged(); }
         }
+
+        public string ThumbnailSize
+        {
+            get { return _thumbnailSize; }
+            set { _thumbnailSize = value; NotifyPropertyChanged(); }
+        }
+
+        public ObservableCollection<string> Handlers { get; set; } = new ObservableCollection<string>();
+
 
         private void CanExecuteRemoveChanged()
         {
@@ -44,7 +55,11 @@ namespace GUI
 
         public ICommand RemoveCommand { get; private set; }
         private string toRemove;
-        
+        private string _outputDir;
+        private string _logSource;
+        private string _logName;
+        private string _thumbnailSize;
+
 
         public string ToRemove
         {
@@ -53,16 +68,16 @@ namespace GUI
             {
                 toRemove = value;
                 NotifyPropertyChanged("ToRemove");
-                CanExecuteRemoveChanged();  
+                CanExecuteRemoveChanged();
             }
         }
 
         private void RemoveHandler(object obj)
         {
-            Console.WriteLine("I remove handler!!!");
             while (toRemove != null)
             {
                 Handlers.Remove(toRemove);
+                // remove from server
             }
         }
 
@@ -73,13 +88,8 @@ namespace GUI
 
         public SettingViewModel()
         {
-            RemoveCommand =  new DelegateCommand<object>(RemoveHandler, CanRemove);
-            sm = new SettingsModel();
-            sm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
-            {
-                NotifyPropertyChanged(e.PropertyName);
-            };
+            RemoveCommand = new DelegateCommand<object>(RemoveHandler, CanRemove);
         }
-        
+
     }
 }

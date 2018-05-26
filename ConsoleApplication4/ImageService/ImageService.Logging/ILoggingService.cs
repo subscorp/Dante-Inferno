@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Communication;
 
 namespace ImageService.Logging
 {
@@ -12,6 +13,9 @@ namespace ImageService.Logging
     /// </summary>
     public interface ILoggingService
     {
+
+        IEnumerable<LogEntry> Entries { get; }
+
         /// <summary>
         /// Occurs when a message is received.
         /// </summary>

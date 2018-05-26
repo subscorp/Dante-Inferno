@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
@@ -13,14 +12,18 @@ using System.Configuration;
 using System.Diagnostics;
 using System.ComponentModel;
 using Communication;
+using ImageService.Logging;
+using ImageService.Logging.Modal;
 
 namespace ImageService.ImageService.ImageService.Server
 {
-    class AppConfigHandlerV2 : IClientHandler
+    class DesktopGUIHandler : IClientHandler
     {
+        public ILoggingService Ils { get; }
         private Settings settings;
-        public AppConfigHandlerV2(Settings settings)
+        public DesktopGUIHandler(Settings settings, ILoggingService ils)
         {
+            Ils = ils;
             this.settings = settings;
         }
 
@@ -45,42 +48,23 @@ namespace ImageService.ImageService.ImageService.Server
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine(ex);
                             return;
                         }
 
 
                         if (cmd.CommandId == 1)
                         {
-                            Console.WriteLine("sending settings to the client:\n");
                             writer.Write(settings.ToJSON());
                         }
                         else if (cmd.CommandId == 2)
                         {
-                            Console.WriteLine("sending log to the client\n");
-                            var arr = eventLog1.Entries.Cast<EventLogEntry>();
-
-                            var logEntries = new List<LogEntry>();
-
-                            foreach (var entry in arr)
-                            {
-                                var msg = entry.Message;
-                                var type = entry.EntryType;
-                                var logEntry = new LogEntry();
-                                logEntry.Message = msg;
-                                logEntry.Type = type.ToString();
-                                logEntries.Add(logEntry);
-                            }
-
-                            int numLogEntries = logEntries.Count;
-                            writer.Write(JsonConvert.SerializeObject(logEntries.ToArray(), Formatting.Indented));
+                            writer.Write(JsonConvert.SerializeObject(Ils.Entries.Reverse().ToArray(), Formatting.Indented));
                         }
                         else if (cmd.CommandId == 3)
                         {
                             settings.Handlers.Remove(cmd.Arg);
                         }
 
-                        Console.WriteLine();
                     }
 
                 }

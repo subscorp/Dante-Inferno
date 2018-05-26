@@ -19,6 +19,7 @@ namespace Communication
 
         public string Message { get; set; }
         public string Type { get; set; }
+        public DateTime? Time { get; set; }
         public string Color { get; set; }
 
         public string ToJSON()

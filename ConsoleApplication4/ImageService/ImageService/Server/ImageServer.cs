@@ -57,7 +57,7 @@ namespace ImageService.Server
         public void CloseServer()
         {
             // commandID 1 means - close all handlers, so no particular path is required
-            CommandReceived.Invoke(this, new CommandReceivedEventArgs(1, null, null));
+            CommandReceived?.Invoke(this, new CommandReceivedEventArgs(1, null, null));
         }
 
         /// <summary>
