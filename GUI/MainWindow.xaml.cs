@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
+using System.Timers;
+
 namespace GUI
 {
     /// <summary>
@@ -53,7 +55,10 @@ namespace GUI
                     }
                 }
             };
-            this.Dispatcher.Invoke(() =>
+
+   
+
+            await this.Dispatcher.InvokeAsync(() =>
             {
                 MainWindowViewModel.LogViewModel.Logs.Clear();
                 foreach (var logEntry in logs)
@@ -72,6 +77,22 @@ namespace GUI
                     MainWindowViewModel.SettingsViewModel.Handlers.Add(handler);
                 }
             });
+
+            System.Timers.Timer t = new System.Timers.Timer(10 * 1000);
+            t.Elapsed += async (a, b) =>
+            {
+                var logs2 = await _guiClient.GetLogs();
+                await Dispatcher.InvokeAsync(() =>
+                {
+                    MainWindowViewModel.LogViewModel.Logs.Clear();
+                    foreach (var log in logs2)
+                    {
+                        MainWindowViewModel.LogViewModel.Logs.Add(log);
+                    }
+                });
+            };
+            t.AutoReset = true;
+            t.Start();
 
         }
 
