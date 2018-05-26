@@ -76,9 +76,9 @@ namespace ImageService.Controller.Handlers
             m_controller.ExecuteCommand(0, args, out result);
             if (result)
             {
-                m_logging.Log("Successfully added " + e.Name + "to folder", MessageTypeEnum.INFO);
+                m_logging.Log("Successfully added " + e.Name + " to folder", MessageTypeEnum.INFO);
             }
-            else m_logging.Log("Couldn't add " + e.Name + "to folder", MessageTypeEnum.FAIL);
+            else m_logging.Log("Couldn't add " + e.Name + "to folder", MessageTypeEnum.ERROR);
         }
 
         /// <summary>

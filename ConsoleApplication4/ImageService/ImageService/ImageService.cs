@@ -100,7 +100,7 @@ namespace ImageService
             controller = new ImageController(modal);
             m_imageServer = new ImageServer(settings.Handlers, logging, controller);
 
-            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.AppConfigHandlerV2(settings, logging);
+            ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.DesktopGUIHandler(settings, logging);
             ImageService.ImageService.Server.Server server = new ImageService.ImageService.Server.Server(8000, ch);
             server.Start();
 

@@ -90,12 +90,10 @@
     <Compile Include="ImageService\ImageService\Modal\IImageServiceModal.cs" />
     <Compile Include="ImageService\ImageService\Modal\ImageServiceModal.cs" />
     <Compile Include="ImageService\ImageService\Server\ConsoleClientHandler.cs" />
-    <Compile Include="ImageService\ImageService\Server\AppConfigHandleV2r.cs" />
+    <Compile Include="ImageService\ImageService\Server\DesktopGUIHandler.cs" />
     <Compile Include="ImageService\ImageService\Server\IClientHandler.cs" />
     <Compile Include="ImageService\ImageService\Server\ImageServer.cs" />
-    <Compile Include="ImageService\ImageService\Server\LoggingHandler.cs" />
     <Compile Include="ImageService\ImageService\Server\Server.cs" />
-    <Compile Include="ImageService\ImageService\Server\tcp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>

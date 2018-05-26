@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
@@ -18,11 +17,11 @@ using ImageService.Logging.Modal;
 
 namespace ImageService.ImageService.ImageService.Server
 {
-    class AppConfigHandlerV2 : IClientHandler
+    class DesktopGUIHandler : IClientHandler
     {
         public ILoggingService Ils { get; }
         private Settings settings;
-        public AppConfigHandlerV2(Settings settings, ILoggingService ils)
+        public DesktopGUIHandler(Settings settings, ILoggingService ils)
         {
             Ils = ils;
             this.settings = settings;
@@ -39,7 +38,7 @@ namespace ImageService.ImageService.ImageService.Server
                 using (BinaryReader reader = new BinaryReader(stream))
                 using (BinaryWriter writer = new BinaryWriter(stream))
                 {
-                        while (client.Connected)
+                    while (client.Connected)
                     {
                         CommandArgs cmd;
                         try
@@ -49,19 +48,16 @@ namespace ImageService.ImageService.ImageService.Server
                         }
                         catch (Exception ex)
                         {
-                            Ils.Log("Error when deserializing or getting string! " + ex.ToString(), MessageTypeEnum.FAIL);
                             return;
                         }
 
 
                         if (cmd.CommandId == 1)
                         {
-                            Ils.Log("sending settings to the client:", MessageTypeEnum.INFO);
                             writer.Write(settings.ToJSON());
                         }
                         else if (cmd.CommandId == 2)
                         {
-                            Ils.Log("sending log to the client\n", MessageTypeEnum.INFO);
                             writer.Write(JsonConvert.SerializeObject(Ils.Entries.Reverse().ToArray(), Formatting.Indented));
                         }
                         else if (cmd.CommandId == 3)
