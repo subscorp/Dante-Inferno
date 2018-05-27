@@ -82,7 +82,5 @@ namespace ImageService.Server
         // The event that notifies the handlers about a new Command being Received
         public event EventHandler<CommandReceivedEventArgs> CommandReceived;
         #endregion
-
-
     }
 }

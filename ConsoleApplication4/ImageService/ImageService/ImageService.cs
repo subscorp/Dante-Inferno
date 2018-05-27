@@ -95,11 +95,12 @@ namespace ImageService
             logging.MessageReceived += OnMsg;
             
 
-            //creates modal, controller and server
+            //creates modal, controller and ImageServer
             modal = new ImageServiceModal(outputDir, int.Parse(thumbnailSize));
             controller = new ImageController(modal);
             m_imageServer = new ImageServer(settings.Handlers, logging, controller);
 
+            //creates desktop client handler and server for handling the tcp connection
             ImageService.ImageService.Server.IClientHandler ch = new ImageService.ImageService.Server.DesktopGUIHandler(settings, logging);
             ImageService.ImageService.Server.Server server = new ImageService.ImageService.Server.Server(8000, ch);
             server.Start();

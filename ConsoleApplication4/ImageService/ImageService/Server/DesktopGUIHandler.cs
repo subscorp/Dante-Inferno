@@ -43,6 +43,7 @@ namespace ImageService.ImageService.ImageService.Server
                         CommandArgs cmd;
                         try
                         {
+                            //getting command from the client
                             var json = reader.ReadString();
                             cmd = JsonConvert.DeserializeObject<CommandArgs>(json);
                         }
@@ -51,15 +52,19 @@ namespace ImageService.ImageService.ImageService.Server
                             return;
                         }
 
-
+                        //settings command
                         if (cmd.CommandId == 1)
                         {
                             writer.Write(settings.ToJSON());
                         }
+
+                        //log command
                         else if (cmd.CommandId == 2)
                         {
                             writer.Write(JsonConvert.SerializeObject(Ils.Entries.Reverse().ToArray(), Formatting.Indented));
                         }
+
+                        //remove handler command
                         else if (cmd.CommandId == 3)
                         {
                             settings.Handlers.Remove(cmd.Arg);
@@ -70,11 +75,6 @@ namespace ImageService.ImageService.ImageService.Server
 
                 }
             }).Start();
-        }
-
-        private string ExecuteCommand(string commandLine, TcpClient client)
-        {
-            throw new NotImplementedException();
         }
     }
 }
