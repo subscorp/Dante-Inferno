@@ -8,7 +8,8 @@
         mc:Ignorable="d" Height="460.762" Width="795.953">
     <Viewbox>
         <Grid x:Name="Grid" Height="330" Width="401">
-            <ListView x:Name="lstNames" ItemsSource="{Binding Logs}" Margin="-78,5,-75,5" Grid.Row="0" Grid.RowSpan="2">
+            <TextBlock HorizontalAlignment="Center" FontSize="26" FontWeight="Heavy" Foreground="BlueViolet">Logs</TextBlock>
+            <ListView x:Name="lstNames" ItemsSource="{Binding Logs}" Margin="-78,40,-75,5" Grid.Row="0">
                 <ListView.View>
                     <GridView x:Name="lstNdames">
                         <GridViewColumn Header="Type">
