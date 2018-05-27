@@ -62,10 +62,10 @@ namespace GUI
             Logs = new ObservableCollection<LogEntry>();
             BindingOperations.EnableCollectionSynchronization(Logs, Logs);
 
-            //recheck for log update every 5 seconds
+            //recheck for log update every 3 seconds
             new Task(() =>
             {
-                System.Timers.Timer t = new System.Timers.Timer(5000);
+                System.Timers.Timer t = new System.Timers.Timer(3 * 1000);
                 t.Elapsed += async (a, b) =>
                 {
                     var logs = await _guiClient.GetLogs();

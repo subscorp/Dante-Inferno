@@ -90,10 +90,10 @@ namespace GUI
                 }
             };
 
-            //check for settings every 5 seconds
+            //check for settings every 3 seconds
             new Task(() =>
             {
-                System.Timers.Timer t = new System.Timers.Timer(5 * 1000);
+                System.Timers.Timer t = new System.Timers.Timer(3 * 1000);
                 t.Elapsed += async (a, b) =>
                 {
                     var settings = await _guiClient.GetSettings();
