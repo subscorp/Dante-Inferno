@@ -9,11 +9,19 @@ using System.Windows.Threading;
 
 namespace GUI
 {
+
+    /// <summary>
+    /// A model for managing log information.
+    /// </summary>
     internal class LogModel : IModel
     {
         //private ConsoleClient client;
         private Dictionary<string, string> TypeToColor;
 
+        /// <summary>
+        /// Gets or sets the logs' list.
+        /// </summary>
+        /// <value>The logs.</value>
         public ObservableCollection<LogEntry> Logs
         {
             get;
@@ -21,6 +29,9 @@ namespace GUI
         }
 
 
+        /// <summary>
+        /// Clears the logs from before current service start.
+        /// </summary>
         public void ClearLogs()
         {
             for (int i = Logs.Count - 1; i > 0; i--)
@@ -37,8 +48,12 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogModel"/> class.
+        /// </summary>
         public LogModel(): base()
         {
+            //Initializes type to color dictionary for background colors
             TypeToColor = new Dictionary<string, string>();
             TypeToColor.Add("INFO", "Green");
             TypeToColor.Add("WARNING", "Yellow");

@@ -21,7 +21,10 @@ namespace GUI
     /// </summary>
     public partial class LogView : UserControl
     {
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogView"/> class.
+        /// </summary>
         public LogView()
         {
             InitializeComponent();
