@@ -30,9 +30,6 @@ namespace ImageService.ImageService.ImageService.Server
             listener.Start();
             Console.WriteLine("Waiting for connections...");
 
-            //      if (Console.ReadLine().Equals("exit"))
-            //          Stop();
-
             Task task = new Task(() => {
                 while (true)
                 {

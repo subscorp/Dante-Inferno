@@ -85,9 +85,7 @@ namespace GUI
             });
         }
 
-        public void HandleClient()
-        {
-        }
+        public void HandleClient() { }
 
         public void Dispose()
         {

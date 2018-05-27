@@ -42,17 +42,5 @@ namespace Communication
             return appConfigObj.ToString();
         }
 
-        public static Settings FromJSON(string str)
-        {
-            Settings settings = new Settings();
-            JObject appConfigObj = JObject.Parse(str);
-            settings.LogSource = (string)appConfigObj["LogSource"];
-            settings.LogName = (string)appConfigObj["LogName"];
-            settings.OutputDir = (string)appConfigObj["OutputDir"];
-            settings.ThumbnailSize = (string)appConfigObj["ThumbnailSize"];
-            JArray handlers = (JArray)appConfigObj["Handlers"];
-            settings.Handlers = new ObservableCollection<string>(handlers.Select(jv => (string)jv).ToArray());
-            return settings;
-        }
     }
 }

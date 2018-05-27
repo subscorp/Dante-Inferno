@@ -89,7 +89,6 @@
     <Compile Include="ImageService\ImageService\Modal\Event\DirectoryCloseEventArgs.cs" />
     <Compile Include="ImageService\ImageService\Modal\IImageServiceModal.cs" />
     <Compile Include="ImageService\ImageService\Modal\ImageServiceModal.cs" />
-    <Compile Include="ImageService\ImageService\Server\ConsoleClientHandler.cs" />
     <Compile Include="ImageService\ImageService\Server\DesktopGUIHandler.cs" />
     <Compile Include="ImageService\ImageService\Server\IClientHandler.cs" />
     <Compile Include="ImageService\ImageService\Server\ImageServer.cs" />

@@ -11,8 +11,6 @@ namespace GUI
         public IModel()
         {
             var t = Query();
-            Console.WriteLine("am connected birch!");
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,7 +24,6 @@ namespace GUI
         {
             _guiClient = GUIClient.Instance;
             await _guiClient.Connect();
-            Console.WriteLine("me connect");
         }
 
 

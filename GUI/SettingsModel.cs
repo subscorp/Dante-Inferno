@@ -16,12 +16,6 @@ namespace GUI
         private string logName;
         private string thumbnailSize;
 
-        public ObservableCollection<string> handlers
-        {
-            get;
-            set;
-        }
-
         public ObservableCollection<string> Handlers
         {
             get;

@@ -20,30 +20,12 @@ namespace GUI
             set;
         }
 
-        //public async Task GetLogs()
-        //{
-        //    System.Timers.Timer t = new System.Timers.Timer(10 * 1000);
-        //    t.Interval = 5000;
-        //    t.Elapsed += async (a, b) =>
-        //    {
-        //        var logs = await _guiClient.GetLogs();
-        //        Logs.Clear();
-
-        //        foreach (var logEntry in logs)
-        //        {
-        //            logEntry.Color = TypeToColor[logEntry.Type];
-        //            Logs.Add(logEntry);
-        //        }
-
-        //        ClearLogs();
-        //    };
-        //    t.Enabled = true;
-        //}
 
         public void ClearLogs()
         {
             for (int i = Logs.Count - 1; i > 0; i--)
             {
+                //if there's a message from before current start of service, erase it. 
                 if (Logs[i].Message == "ImageService stopped.")
                 {
                     do
@@ -65,11 +47,10 @@ namespace GUI
             Logs = new ObservableCollection<LogEntry>();
             BindingOperations.EnableCollectionSynchronization(Logs, Logs);
 
+            //recheck for log update every 5 seconds
             new Task(() =>
             {
-                Console.WriteLine("im alive");
-                System.Timers.Timer t = new System.Timers.Timer(10 * 1000);
-                t.Interval = 5000;
+                System.Timers.Timer t = new System.Timers.Timer(5000);
                 t.Elapsed += async (a, b) =>
                 {
                     var logs = await _guiClient.GetLogs();

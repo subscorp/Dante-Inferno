@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
             x:Name="UserControl"
-             Loaded="LogView_OnLoaded"
         mc:Ignorable="d" Height="460.762" Width="795.953">
-    <Viewbox DataContext="{Binding ElementName=UserControl, Path=LogViewModel}">
+    <Viewbox>
         <Grid x:Name="Grid" Height="330" Width="401">
         <!--    <Grid.RowDefinitions>
                 <RowDefinition Height="4*"/>

@@ -16,7 +16,7 @@
             </TabItem>
             <TabItem Header="Log">
                 <Viewbox>
-                    <local:LogView HorizontalAlignment="left" LogViewModel="{Binding LogViewModel}"></local:LogView>
+                    <local:LogView HorizontalAlignment="left"></local:LogView>
                 </Viewbox>
             </TabItem>
         </TabControl>
