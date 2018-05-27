@@ -16,5 +16,6 @@ namespace GUI
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+        
     }
 }

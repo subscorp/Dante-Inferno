@@ -8,8 +8,9 @@ namespace GUI
 
         public MainWindowViewModel()
         {
-            
+
         }
+
 
         public LogViewModel LogViewModel { get; set; } = new LogViewModel();
 

@@ -9,12 +9,6 @@ namespace GUI
     {
         private LogModel lm;
 
-        public Dictionary<string, string> TypeToColor
-        {
-            get;
-            set;
-        }
-
         public ObservableCollection<LogEntry> Logs
         {
             get { return lm.Logs; }
@@ -29,26 +23,26 @@ namespace GUI
         {
             Logs = new ObservableCollection<LogEntry>();
             lm = new LogModel();
-            TypeToColor = new Dictionary<string, string>();
-            TypeToColor.Add("Information", "Green");
-            TypeToColor.Add("Warning", "Yellow");
-            TypeToColor.Add("Error", "Red");
+            //TypeToColor = new Dictionary<string, string>();
+            //TypeToColor.Add("Information", "Green");
+            //TypeToColor.Add("Warning", "Yellow");
+            //TypeToColor.Add("Error", "Red");
         }
 
-        //Clears logs from before the current starting of service
-        public void clearLogs()
-        {
-            for (int i = Logs.Count-1; i > 0; i--)
-            {
-                if(Logs[i].Message == "ImageService stopped.")
-                {
-                    do
-                    {
-                        Logs.RemoveAt(i);
-                        i--;
-                    } while (i > -1);
-                }
-            }
-        }
+        ////Clears logs from before the current starting of service
+        //public void clearLogs()
+        //{
+        //    for (int i = Logs.Count-1; i > 0; i--)
+        //    {
+        //        if(Logs[i].Message == "ImageService stopped.")
+        //        {
+        //            do
+        //            {
+        //                Logs.RemoveAt(i);
+        //                i--;
+        //            } while (i > -1);
+        //        }
+        //    }
+        //}
     }
 }

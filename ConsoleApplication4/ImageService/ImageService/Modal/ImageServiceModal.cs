@@ -1,6 +1,7 @@
 ﻿using ImageService.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -124,7 +125,7 @@ namespace ImageService.Modal
                     if (!File.Exists(imagePath))
                     {
                         File.Move(path, imagePath);
-                    }
+                    } else { File.Delete(path);  result = false; return null; }
 
                     //creating thumbnail and saving it in the correct folder
                     thumb.Save(Path.ChangeExtension(thumbnailPath, "thumb"));

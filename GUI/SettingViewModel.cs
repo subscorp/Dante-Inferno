@@ -5,48 +5,45 @@ using System.Windows.Controls;
 using Microsoft.Practices.Prism.Commands;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Communication;
+using System.Threading;
 
 namespace GUI
 {
     public class SettingViewModel : ViewModel, INotifyPropertyChanged
     {
 
-
         private SettingsModel sm;
-
-        /*
-         *                 settingsCol.Add(settings.OutputDir);
-                settingsCol.Add(settings.LogSource);
-                settingsCol.Add(settings.LogName);
-                settingsCol.Add(settings.ThumbnailSize);
-         */
-
+        
         public string OutputDir
         {
-            get { return _outputDir; }
+            get { return sm.OutputDir; }
             set { _outputDir = value; NotifyPropertyChanged(); }
         }
 
         public string LogSource
         {
-            get { return _logSource; }
+            get { return sm.LogSource; }
             set { _logSource = value; NotifyPropertyChanged(); }
         }
 
         public string LogName
         {
-            get { return _logName; }
+            get { return sm.LogName; }
             set { _logName = value; NotifyPropertyChanged(); }
         }
 
         public string ThumbnailSize
         {
-            get { return _thumbnailSize; }
+            get { return sm.ThumbnailSize; }
             set { _thumbnailSize = value; NotifyPropertyChanged(); }
         }
 
-        public ObservableCollection<string> Handlers { get; set; } = new ObservableCollection<string>();
-
+        public ObservableCollection<string> Handlers
+        {
+            get { return sm.Handlers; }
+            set { }
+        }
 
         private void CanExecuteRemoveChanged()
         {
@@ -77,7 +74,6 @@ namespace GUI
             while (toRemove != null)
             {
                 Handlers.Remove(toRemove);
-                // remove from server
             }
         }
 
@@ -88,6 +84,17 @@ namespace GUI
 
         public SettingViewModel()
         {
+            sm = new SettingsModel();
+
+            //all settings change at once
+            sm.PropertyChanged += delegate
+             {
+                 OutputDir = sm.OutputDir;
+                 LogName = sm.LogName;
+                 LogSource = sm.LogSource;
+                 ThumbnailSize = sm.ThumbnailSize;
+             };
+
             RemoveCommand = new DelegateCommand<object>(RemoveHandler, CanRemove);
         }
 

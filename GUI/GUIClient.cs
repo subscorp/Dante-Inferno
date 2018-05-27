@@ -15,9 +15,18 @@ namespace GUI
     public class GUIClient : IClient
     {
         private TcpClient client;
-        public GUIClient()
-        {
+        private static GUIClient instance = null;
 
+        private GUIClient()
+        {}
+
+        public static GUIClient Instance
+        {
+            get
+            {
+                if (instance == null) return new GUIClient();
+                return instance;
+            }
         }
 
         public Task Connect()
@@ -48,6 +57,8 @@ namespace GUI
                 
             });
         }
+
+        public bool Connected() { return client.Connected;  }
 
         public Task<Settings> GetSettings()
         {

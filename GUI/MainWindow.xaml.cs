@@ -24,16 +24,17 @@ namespace GUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window//, INotifyPropertyChanged
     {
-        private GUIClient _guiClient;
+        //private GUIClient _guiClient;
 
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
         }
 
-        public MainWindowViewModel MainWindowViewModel
+/**        public MainWindowViewModel MainWindowViewModel
         {
             get;
             set;
@@ -113,6 +114,7 @@ namespace GUI
 
         public  void SettingsView_Loaded(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("ani po o lo?");
             var t = Query();
 
         }
@@ -127,6 +129,6 @@ namespace GUI
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
             _guiClient?.Dispose();
-        }
+        }*/
     }
 }

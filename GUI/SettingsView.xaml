@@ -7,10 +7,10 @@
              x:Name="UserControl"
              
         mc:Ignorable="d" d:DesignWidth="687.742" d:DesignHeight="423.812"
-             Loaded="SettingsView_OnLoaded"
+             
              >
     <Viewbox>
-        <StackPanel Height="264" Width="434" DataContext="{Binding ElementName=UserControl, Path=SettingsViewModel}">
+        <StackPanel Height="264" Width="434">
             <StackPanel.Resources>
             <Style TargetType="{x:Type TextBlock}">
             <Setter Property="Margin" Value="0,5,0,0"/>
@@ -18,7 +18,7 @@
             </StackPanel.Resources>
             <TextBlock HorizontalAlignment="Center" FontSize="26" FontWeight="Heavy" Foreground="BlueViolet">Settings</TextBlock>
             <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Output Directory:"/><InlineUIContainer>
-            		<TextBlock VerticalAlignment="Stretch" Margin="5,0,0,5" Text="{Binding OutputDir, FallbackValue=dfsdfsdffsd}"/>
+            		<TextBlock VerticalAlignment="Stretch" Margin="5,0,0,5" Text="{Binding OutputDir}"/>
             	</InlineUIContainer></TextBlock>
             <TextBlock HorizontalAlignment="Left"><Run FontWeight="Bold" Text="Source Name:"/><InlineUIContainer>
             		<TextBlock Margin="5,0,0,5" Text="{Binding LogSource}"/>
@@ -30,7 +30,7 @@
                     <TextBlock Margin="5,0,0,5" Text="{Binding ThumbnailSize}"/>
                 </InlineUIContainer></TextBlock>
             <Button x:Name="button" Content="Remove" Command="{Binding RemoveCommand}"></Button>
-            <ListBox x:Name="listbox1" SelectionMode="Multiple"  SelectedItem="{Binding ToRemove}" ItemsSource="{Binding Handlers}"/>
+            <ListBox x:Name="listbox1" SelectionMode="Multiple"  SelectedItem="{Binding ToRemove}" ItemsSource="{Binding Handlers}" ScrollViewer.CanContentScroll="True"/>
         </StackPanel>
     </Viewbox>
 </UserControl>
