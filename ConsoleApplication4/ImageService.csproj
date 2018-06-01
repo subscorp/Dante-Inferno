@@ -132,6 +132,10 @@
       <Project>{15a1bdcf-f435-4caa-8901-2090cc461eb0}</Project>
       <Name>Communication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebApplication2\WebApplication2\WebApplication2.csproj">
+      <Project>{df8a4e08-06d8-4e5d-8f37-a4ab82b39562}</Project>
+      <Name>WebApplication2</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
