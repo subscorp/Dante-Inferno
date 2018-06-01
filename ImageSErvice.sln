@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication", "Communication\Communication.csproj", "{15A1BDCF-F435-4CAA-8901-2090CC461EB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication2\WebApplication2\WebApplication.csproj", "{DF8A4E08-06D8-4E5D-8F37-A4AB82B39562}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2\WebApplication2.csproj", "{DF8A4E08-06D8-4E5D-8F37-A4AB82B39562}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
