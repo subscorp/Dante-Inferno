@@ -24,6 +24,7 @@ namespace WebApplication2.Controllers
             ImageWebModel iwm = new ImageWebModel();
             ViewData.Add("Status", iwm.Status);
             ViewData.Add("Details", iwm.Student_Details);
+            ViewData.Add("PhotosNumber", iwm.PhotosNumber);
             return View();
         }
 

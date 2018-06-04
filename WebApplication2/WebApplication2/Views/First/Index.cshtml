@@ -10,13 +10,17 @@
     var details = ViewData["Details"];
 }
 
+@{ 
+    var photos_number = ViewData["PhotosNumber"];
+}
+
 <h1>Image Web</h1>
 
 <h2>Status</h2>
 <p>@a</p>
 
 <h2>Number of photos</h2>
-<p>here we will have the number of photos</p>
+<p>@photos_number</p>
 
 <h2>Student details</h2>
 <p>@details</p>

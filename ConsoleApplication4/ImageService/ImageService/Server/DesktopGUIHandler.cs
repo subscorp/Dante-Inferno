@@ -71,6 +71,11 @@ namespace ImageService.ImageService.ImageService.Server
                             writer.Write(settings.ToJSON());
                         }
 
+                        //remove handler command
+                        else if (cmd.CommandId == 4)
+                        {
+                            writer.Write("54");
+                        }
                     }
 
                 }

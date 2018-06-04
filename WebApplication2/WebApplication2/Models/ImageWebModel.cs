@@ -15,6 +15,12 @@ public class ImageWebModel
         set { status = value; }
     }
 
+    public int PhotosNumber
+    {
+        get { return photos_number; }
+        set { photos_number = value; }
+    }
+
     public string Student_Details {
         get { return student_details; }
         set { student_details = value; }
@@ -30,7 +36,9 @@ public class ImageWebModel
             Student_Details = sr.ReadToEnd();
         }
 
-        Status = client.Connected() ? "Running" : "Stopped"; 
+        Status = client.Connected() ? "Running" : "Stopped";
+
+        PhotosNumber = client.GetNumberOfPhotos();
 
 	}
 }

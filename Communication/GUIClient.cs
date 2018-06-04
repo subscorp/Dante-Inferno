@@ -35,6 +35,27 @@ namespace Communication
             }
         }
 
+        public int GetNumberOfPhotos()
+        {
+            return sendCommand(new CommandArgs()
+            {
+                CommandId = 4,
+            });
+    
+        }
+
+        public int sendCommand(CommandArgs args)
+        {
+            var stream = client.GetStream();
+            var reader = new BinaryReader(stream);
+            var writer = new BinaryWriter(stream);
+            writer.Write(JsonConvert.SerializeObject(args));
+            if (typeof(int) == typeof(object)) return default(int);
+            var json = reader.ReadString();
+            var obj = JsonConvert.DeserializeObject<int>(json);
+            return obj;
+        }
+
         /// <summary>
         /// Connects the client to the server
         /// </summary>
