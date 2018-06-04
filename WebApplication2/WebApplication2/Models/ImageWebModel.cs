@@ -10,18 +10,27 @@ public class ImageWebModel
     private int photos_number;
     private string student_details;
 
-    public string Student_Details
-    {
+    public string Status {
+        get { return status; }
+        set { status = value; }
+    }
+
+    public string Student_Details {
         get { return student_details; }
+        set { student_details = value; }
     }
 
     public ImageWebModel()
 	{
         client = GUIClient.Instance;
+        client.Connect();
 
         using (StreamReader sr = new StreamReader(VirtualPathProvider.OpenFile("/App_Data/info.txt")))
         {
-            student_details = sr.ReadToEnd();
+            Student_Details = sr.ReadToEnd();
         }
+
+        Status = client.Connected() ? "Running" : "Stopped"; 
+
 	}
 }

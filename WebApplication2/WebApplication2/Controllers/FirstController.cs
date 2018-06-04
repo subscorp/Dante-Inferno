@@ -22,7 +22,7 @@ namespace WebApplication2.Controllers
         public ActionResult Index()
         {
             ImageWebModel iwm = new ImageWebModel();
-            ViewData.Add("Status", "bla");
+            ViewData.Add("Status", iwm.Status);
             ViewData.Add("Details", iwm.Student_Details);
             return View();
         }

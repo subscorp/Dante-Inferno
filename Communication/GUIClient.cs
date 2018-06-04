@@ -122,7 +122,7 @@ namespace Communication
         public void Dispose()
         {
             client?.Close();
-            //client?.Dispose();
+            client?.Client.Dispose();
         }
     }
 }
