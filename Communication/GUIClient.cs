@@ -37,22 +37,31 @@ namespace Communication
 
         public int GetNumberOfPhotos()
         {
-            return sendCommand(new CommandArgs()
+            return sendCommand<int>(new CommandArgs()
             {
                 CommandId = 4,
             });
     
         }
 
-        public int sendCommand(CommandArgs args)
+        public LogEntry[] GetLogs()
+        {
+            return sendCommand<LogEntry[]>(new CommandArgs()
+            {
+                CommandId = 2,
+            });
+
+        }
+
+        public T sendCommand<T>(CommandArgs args)
         {
             var stream = client.GetStream();
             var reader = new BinaryReader(stream);
             var writer = new BinaryWriter(stream);
             writer.Write(JsonConvert.SerializeObject(args));
-            if (typeof(int) == typeof(object)) return default(int);
+            if (typeof(T) == typeof(object)) return default(T);
             var json = reader.ReadString();
-            var obj = JsonConvert.DeserializeObject<int>(json);
+            var obj = JsonConvert.DeserializeObject<T>(json);
             return obj;
         }
 
@@ -116,13 +125,13 @@ namespace Communication
         /// <summary>
         /// Gets the logs from server.
         /// </summary>
-        public Task<LogEntry[]> GetLogs()
-        {
-            return SendCommand<LogEntry[]>(new CommandArgs()
-            {
-                CommandId = 2
-            });
-        }
+        //public Task<LogEntry[]> GetLogs()
+        //{
+        //    return SendCommand<LogEntry[]>(new CommandArgs()
+        //    {
+        //        CommandId = 2
+        //    });
+        //}
 
         /// <summary>
         /// Removes a handler from server - the handler will not be followed anymore.

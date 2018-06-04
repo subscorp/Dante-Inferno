@@ -4,8 +4,12 @@
     ViewBag.Title = "Logs";
 }
 
+@{ 
+    var logs = ViewData["Logs"];
+}
+
 <h2>Logs</h2>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @logs
 </div>
