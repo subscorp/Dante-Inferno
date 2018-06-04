@@ -21,6 +21,9 @@ namespace WebApplication2.Controllers
         // GET: First
         public ActionResult Index()
         {
+            ImageWebModel iwm = new ImageWebModel();
+            ViewData.Add("Status", "bla");
+            ViewData.Add("Details", iwm.Student_Details);
             return View();
         }
 
