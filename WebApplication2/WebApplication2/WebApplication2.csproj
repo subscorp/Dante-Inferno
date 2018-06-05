@@ -179,6 +179,7 @@
     <Content Include="Views\First\Photos.cshtml" />
     <Content Include="Views\First\Logs.cshtml" />
     <Content Include="Views\First\Example.cshtml" />
+    <Content Include="Views\First\Question.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

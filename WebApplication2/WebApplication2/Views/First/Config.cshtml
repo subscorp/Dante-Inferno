@@ -20,6 +20,9 @@
     var thumbnailSize = ViewData["ThumbnailSize"];
 }
 
+@{ 
+    var handlers = ViewData["Handlers"];
+}
 <h2>Configurations</h2>
 
 <div>
@@ -27,7 +30,11 @@
     SourceName: @sourceName<br />
     LogName: @logName<br />
     ThumbnailSize: @thumbnailSize<br />
-    Handlers: <br />
+    Handlers:@{ foreach (string handler in (handlers as IList<string>))
+        {
+            @Html.ActionLink(handler, "Question", "First") <br />
+        }
+    }<br />
 </div>
 
 <div>

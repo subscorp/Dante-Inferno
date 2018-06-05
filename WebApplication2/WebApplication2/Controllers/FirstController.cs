@@ -22,6 +22,10 @@ namespace WebApplication2.Controllers
             return View();
         }
 
+        public ActionResult Question()
+        {
+            return View();
+        }
 
         // GET: First/Config
         public ActionResult Config()
@@ -32,6 +36,7 @@ namespace WebApplication2.Controllers
             ViewData["LogName"] = sm.Settings.LogName;
             ViewData["LogSource"] = sm.Settings.LogSource;
             ViewData["ThumbnailSize"] = sm.Settings.ThumbnailSize;
+            ViewData["Handlers"] = sm.Settings.Handlers;
             return View();
         }
 
