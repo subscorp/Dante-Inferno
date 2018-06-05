@@ -63,6 +63,12 @@ namespace WebApplication2.Controllers
         // GET: First/Config
         public ActionResult Config()
         {
+            SettingsModel sm = new SettingsModel();
+
+            ViewData["OutputDir"] = sm.Settings.OutputDir;
+            ViewData["LogName"] = sm.Settings.LogName;
+            ViewData["LogSource"] = sm.Settings.LogSource;
+            ViewData["ThumbnailSize"] = sm.Settings.ThumbnailSize;
             return View();
         }
 

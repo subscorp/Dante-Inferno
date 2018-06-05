@@ -2,10 +2,10 @@
 using System.IO;
 using System.Web.Hosting;
 using Communication;
+using WebApplication2.Models;
 
-public class ImageWebModel
+public class ImageWebModel : WebModel
 {
-    private GUIClient client;
     private string status;
     private int photos_number;
     private string student_details;
@@ -26,11 +26,9 @@ public class ImageWebModel
         set { student_details = value; }
     }
 
-    public ImageWebModel()
+    public ImageWebModel() : base()
 	{
-        client = GUIClient.Instance;
-        client.Connect();
-
+       
         using (StreamReader sr = new StreamReader(VirtualPathProvider.OpenFile("/App_Data/info.txt")))
         {
             Student_Details = sr.ReadToEnd();

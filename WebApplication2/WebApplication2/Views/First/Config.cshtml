@@ -4,13 +4,29 @@
     ViewBag.Title = "Config";
 }
 
+@{
+    var outputDir = ViewData["OutputDir"];
+}
+
+@{
+    var sourceName = ViewData["LogSource"];
+}
+
+@{
+    var logName = ViewData["LogName"];
+}
+
+@{
+    var thumbnailSize = ViewData["ThumbnailSize"];
+}
+
 <h2>Configurations</h2>
 
 <div>
-    OutputDir:<br />
-    SourceName: <br />
-    LogName: <br />
-    ThumbnailSize: <br />
+    OutputDir: @outputDir<br />
+    SourceName: @sourceName<br />
+    LogName: @logName<br />
+    ThumbnailSize: @thumbnailSize<br />
     Handlers: <br />
 </div>
 

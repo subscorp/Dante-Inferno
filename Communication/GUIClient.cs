@@ -53,6 +53,15 @@ namespace Communication
 
         }
 
+        public Settings GetSettings()
+        {
+            return sendCommand<Settings>(new CommandArgs()
+            {
+                CommandId = 1,
+            });
+
+        }
+
         public T sendCommand<T>(CommandArgs args)
         {
             var stream = client.GetStream();
@@ -114,13 +123,13 @@ namespace Communication
         /// <summary>
         /// Gets the settings from server.
         /// </summary>
-        public Task<Settings> GetSettings()
-        {
-            return SendCommand<Settings>(new CommandArgs()
-            {
-                CommandId = 1,
-            });
-        }
+        //public Task<Settings> GetSettings()
+        //{
+        //    return SendCommand<Settings>(new CommandArgs()
+        //    {
+        //        CommandId = 1,
+        //    });
+        //}
 
         /// <summary>
         /// Gets the logs from server.

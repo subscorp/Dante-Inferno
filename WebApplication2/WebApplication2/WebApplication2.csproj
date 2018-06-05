@@ -153,6 +153,8 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ImageWebModel.cs" />
     <Compile Include="Models\LogModel.cs" />
+    <Compile Include="Models\SettingsModel.cs" />
+    <Compile Include="Models\WebModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

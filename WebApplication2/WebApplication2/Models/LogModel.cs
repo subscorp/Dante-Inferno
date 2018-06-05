@@ -6,9 +6,8 @@ using System.Web;
 
 namespace WebApplication2.Models
 {
-    public class LogModel
+    public class LogModel : WebModel
     {
-        private GUIClient client;
         private LogEntry[] logs;
 
         public LogEntry[] Logs
@@ -17,11 +16,8 @@ namespace WebApplication2.Models
             set { logs = value; }
         }
 
-        public LogModel()
+        public LogModel() : base()
         {
-            client = GUIClient.Instance;
-            client.Connect();
-
             logs = client.GetLogs();
         }
     }
