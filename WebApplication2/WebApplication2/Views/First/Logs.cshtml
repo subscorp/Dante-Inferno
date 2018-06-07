@@ -1,19 +1,5 @@
 ﻿@model Communication.LogEntry
 
-@using (Html.BeginForm())
-{
-    <div>
-        @Html.LabelFor(x => x.Message):
-        @Html.EditorFor(x => x.Message)
-
-        @Html.LabelFor(x => x.Time):
-        @Html.EditorFor(x => x.Time)
-
-        @Html.LabelFor(x => x.Type):
-        @Html.EditorFor(x => x.Type)
-    </div>
-}
-
 @{
     ViewBag.Title = "Logs";
 }
@@ -26,5 +12,18 @@
 <h2>Logs</h2>
 
 <div>
-
+    @{ 
+            foreach (Communication.LogEntry l in (logs as Communication.LogEntry[]))
+            {
+                <table>
+                    <tr>
+                        <td>  @l.Type </td>
+                        <td>     </td>
+                        <td>  @l.Message </td>
+                        <td>             </td>
+                        <td>  @l.Time </td>
+                   </tr>
+                </table>
+            }
+      }
 </div>
