@@ -75,7 +75,7 @@ namespace ImageService.ImageService.ImageService.Server
                         else if (cmd.CommandId == 4)
                         {
                             int fCount = Directory.GetFiles(settings.OutputDir, "*", SearchOption.AllDirectories).Length;
-                            writer.Write(fCount);
+                            writer.Write(fCount.ToString());
                         }
                     }
 

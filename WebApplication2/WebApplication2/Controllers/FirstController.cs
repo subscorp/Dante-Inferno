@@ -64,7 +64,7 @@ namespace WebApplication2.Controllers
         // GET: First/Logs
         public ActionResult Logs()
         {
-            ViewData["Logs"] = lm.Logs[0].Message;
+            ViewData["Logs"] = lm.Logs;
             return View();
         }
 

@@ -36,7 +36,7 @@ public class ImageWebModel : WebModel
 
         Status = client.Connected() ? "Running" : "Stopped";
 
-        //PhotosNumber = client.GetNumberOfPhotos();
+        PhotosNumber = client.GetNumberOfPhotos();
 
 	}
 }
