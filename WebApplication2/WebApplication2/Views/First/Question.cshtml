@@ -3,5 +3,13 @@
     ViewBag.Title = "Question";
 }
 
-<h2>Question</h2>
+@{ 
+    var toErase = ViewData["ToErase"];
+}
+
+<h2>Are You Sure You Want To Remove "@toErase"?</h2>
+
+
+@Html.ActionLink("OK", "RemoveHandler", "First", new { handler = toErase }, null)
+@Html.ActionLink("Cancel", "Config", "First")
 

@@ -21,5 +21,11 @@ namespace WebApplication2.Models
         {
             settings = client.GetSettings();
         }
+
+        public void Remove(string toErase)
+        {
+            Settings.Handlers.Remove(toErase);
+            client.RemoveHandler(toErase);
+        }
     }
 }

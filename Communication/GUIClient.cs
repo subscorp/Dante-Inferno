@@ -62,8 +62,17 @@ namespace Communication
 
         }
 
-        public T sendCommand<T>(CommandArgs args)
+        public Settings RemoveHandler(string handler)
         {
+            return sendCommand<Settings>(new CommandArgs()
+            {
+                CommandId = 3,
+                Arg = handler
+            });
+        }
+
+        public T sendCommand<T>(CommandArgs args)
+        {  
             var stream = client.GetStream();
             var reader = new BinaryReader(stream);
             var writer = new BinaryWriter(stream);
@@ -146,14 +155,14 @@ namespace Communication
         /// Removes a handler from server - the handler will not be followed anymore.
         /// </summary>
         /// <param name="handler">The handler.</param>
-        public Task RemoveHandler(string handler)
-        {
-            return SendCommand(new CommandArgs()
-            {
-                CommandId = 3,
-                Arg = handler
-            });
-        }
+        //public Task RemoveHandler(string handler)
+        //{
+        //    return SendCommand(new CommandArgs()
+        //    {
+        //        CommandId = 3,
+        //        Arg = handler
+        //    });
+        //}
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

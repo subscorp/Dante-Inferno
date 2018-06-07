@@ -30,9 +30,10 @@
     SourceName: @sourceName<br />
     LogName: @logName<br />
     ThumbnailSize: @thumbnailSize<br />
-    Handlers:@{ foreach (string handler in (handlers as IList<string>))
+    Handlers:<br /> 
+    @{ foreach (string handler in (handlers as IList<string>))
         {
-            @Html.ActionLink(handler, "Question", "First") <br />
+            @Html.ActionLink(handler, "Question", "First", new {  toErase = handler }, null) <br />
         }
     }<br />
 </div>
