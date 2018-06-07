@@ -35,9 +35,14 @@ namespace WebApplication2.Controllers
         {
             sm.Remove(handler);
 
-            return Config();
-        }
+            ViewData["OutputDir"] = sm.Settings.OutputDir;
+            ViewData["LogName"] = sm.Settings.LogName;
+            ViewData["LogSource"] = sm.Settings.LogSource;
+            ViewData["ThumbnailSize"] = sm.Settings.ThumbnailSize;
+            ViewData["Handlers"] = sm.Settings.Handlers;
 
+            return View("Config");
+        }
 
         // GET: First/Config
         public ActionResult Config()
