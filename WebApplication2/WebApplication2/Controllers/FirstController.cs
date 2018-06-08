@@ -19,6 +19,7 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            iwm.UpdateParameters();
             ViewData.Add("Status", iwm.Status);
             ViewData.Add("Details", iwm.Student_Details);
             ViewData.Add("PhotosNumber", iwm.PhotosNumber);

@@ -27,6 +27,14 @@ public class ImageWebModel : WebModel
         set { student_details = value; }
     }
 
+    public void UpdateParameters()
+    {
+        Status = client.Connected() ? "Running" : "Stopped";
+
+        if (client.Connected())
+            PhotosNumber = client.GetNumberOfPhotos();
+    }
+
     public ImageWebModel() : base()
 	{
         using (StreamReader sr = new StreamReader(VirtualPathProvider.OpenFile("/App_Data/info.txt")))
@@ -34,10 +42,8 @@ public class ImageWebModel : WebModel
             Student_Details = sr.ReadToEnd();
         }
 
-        Status = client.Connected() ? "Running" : "Stopped";
 
-        if(client.Connected())
-        PhotosNumber = client.GetNumberOfPhotos();
+        UpdateParameters();
 
 	}
 }
