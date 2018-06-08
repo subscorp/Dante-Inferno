@@ -1,6 +1,7 @@
 ﻿using Communication;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
@@ -19,7 +20,15 @@ namespace WebApplication2.Models
 
         public SettingsModel() : base()
         {
-            settings = client.GetSettings();
+            settings = new Settings();
+            settings.Handlers = new ObservableCollection<string>();
+            GetSettings();
+        }
+
+        public void GetSettings()
+        {
+            if (client.Connected())
+                settings = client.GetSettings();
         }
 
         public void Remove(string toErase)

@@ -47,6 +47,7 @@ namespace WebApplication2.Controllers
         // GET: First/Config
         public ActionResult Config()
         {
+            sm.GetSettings();
             ViewData["OutputDir"] = sm.Settings.OutputDir;
             ViewData["LogName"] = sm.Settings.LogName;
             ViewData["LogSource"] = sm.Settings.LogSource;
@@ -64,6 +65,7 @@ namespace WebApplication2.Controllers
         // GET: First/Logs
         public ActionResult Logs()
         {
+            lm.GetLogs();
             ViewData["Logs"] = lm.Logs;
             return View();
         }

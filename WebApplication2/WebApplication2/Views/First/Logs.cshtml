@@ -12,18 +12,20 @@
 <h2>Logs</h2>
 
 <div>
-    @{ 
-            foreach (Communication.LogEntry l in (logs as Communication.LogEntry[]))
-            {
-                <table>
-                    <tr>
-                        <td>  @l.Type </td>
-                        <td>     </td>
-                        <td>  @l.Message </td>
-                        <td>             </td>
-                        <td>  @l.Time </td>
-                   </tr>
-                </table>
-            }
-      }
-</div>
+    <table>
+        @{
+        foreach (Communication.LogEntry l in (logs as Communication.LogEntry[]))
+        {
+
+            <tr>
+                <td>  @l.Type </td>
+                <td>     </td>
+                <td>  @l.Message </td>
+                <td>             </td>
+                <td>  @l.Time </td>
+            </tr>
+
+        }
+        }
+    </table>
+    </div>
