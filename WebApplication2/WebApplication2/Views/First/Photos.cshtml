@@ -10,6 +10,23 @@
     Thumbnails:
 </div>
 
+<grid-view>
+    @for (int i = 0; i < 3; i++)
+    {
+        <div style="width:200px;height:242px;border:1px solid #000;">
+            <img src="~/pictures/butterfly.jpg" alt="butterfly" style="width:150px; height: 150px; border-radius: 50%" />
+        <!--  <img src="https://boygeniusreport.files.wordpress.com/2015/08/url-explanation.jpg?quality=98&strip=all" alt="testing" style ="width:100px; height:100px;" /> -->
+            <br />
+            Thumbnail lable:
+            <br />
+            Date:
+            <br />
+            <button type="button">View</button>
+            <button type="button">Delete</button>
+        </div>
+    }
+</grid-view>
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

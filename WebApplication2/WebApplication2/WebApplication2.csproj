@@ -127,6 +127,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="pictures\bigstock-Young-Student-Overwhelmed-Aski-looking for help but doesnt get any help doesnt know what to do54688616.jpg" />
+    <Content Include="pictures\butterfly.jpg" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="scripts\bootstrap.js" />
