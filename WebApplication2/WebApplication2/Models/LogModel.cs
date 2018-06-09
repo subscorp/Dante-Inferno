@@ -33,7 +33,7 @@ namespace WebApplication2.Models
             IList<LogEntry> newLogs = new List<LogEntry>();
             foreach(LogEntry l in logs)
             {
-                if(l.Type == typeToShow)
+                if(l.Type == typeToShow || l.Type == typeToShow.ToUpper())
                 {
                     newLogs.Add(l);
                 }
