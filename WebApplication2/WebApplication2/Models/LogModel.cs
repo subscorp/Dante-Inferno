@@ -25,7 +25,11 @@ namespace WebApplication2.Models
 
         public void Hide(string typeToShow)
         {
-            if (typeToShow == null) return;
+            if (typeToShow == "")
+            {
+                logsPresented = logs;
+                return;
+            }
             IList<LogEntry> newLogs = new List<LogEntry>();
             foreach(LogEntry l in logs)
             {
