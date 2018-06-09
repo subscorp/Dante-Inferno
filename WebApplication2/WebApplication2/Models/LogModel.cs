@@ -20,15 +20,16 @@ namespace WebApplication2.Models
         public void GetLogs()
         {
             if (client.Connected())
-                logs = client.GetLogs();
+                logsPresented = logs = client.GetLogs();
         }
 
-        public void Hide(string type)
+        public void Hide(string typeToShow)
         {
+            if (typeToShow == null) return;
             IList<LogEntry> newLogs = new List<LogEntry>();
             foreach(LogEntry l in logs)
             {
-                if(l.Type == type)
+                if(l.Type == typeToShow)
                 {
                     newLogs.Add(l);
                 }

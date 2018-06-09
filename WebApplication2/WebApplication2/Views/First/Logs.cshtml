@@ -1,9 +1,12 @@
 ﻿@model Communication.LogEntry
 
+@{ var typeToShow = ""; }
+
+
 @using (Html.BeginForm("HideTypes", "First"))
 {
-    <input type="text" name="typeToShow" required="required" />
-    <input type="submit" name="typeToShow" value="show only">
+    <input type="text" name=@typeToShow required="required" />
+    <input type="submit" name=@typeToShow value="show only">
 }
 
 

@@ -32,9 +32,9 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        public ActionResult HideTypes(string typeToHide)
+        public ActionResult HideTypes(string typeToShow)
         {
-            lm.Hide(typeToHide);
+            lm.Hide(typeToShow);
             ViewData["Logs"] = lm.Logs;
             return View("Logs");
         }
