@@ -9,10 +9,11 @@ namespace WebApplication2.Models
     public class LogModel : WebModel
     {
         private LogEntry[] logs = new LogEntry[0];
+        private LogEntry[] logsPresented = new LogEntry[0];
 
         public LogEntry[] Logs
         {
-            get { return logs; }
+            get { return logsPresented; }
             set { logs = value; }
         }
 
@@ -22,9 +23,24 @@ namespace WebApplication2.Models
                 logs = client.GetLogs();
         }
 
+        public void Hide(string type)
+        {
+            IList<LogEntry> newLogs = new List<LogEntry>();
+            foreach(LogEntry l in logs)
+            {
+                if(l.Type == type)
+                {
+                    newLogs.Add(l);
+                }
+            }
+
+            logsPresented = newLogs.ToArray();
+        }
+
         public LogModel() : base()
         {
             GetLogs();
+            logsPresented = logs;
         }
     }
 }

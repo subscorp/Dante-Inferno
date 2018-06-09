@@ -1,11 +1,18 @@
 ﻿@model Communication.LogEntry
 
+@using (Html.BeginForm("HideTypes", "First"))
+{
+    <input type="text" name="typeToShow" required="required" />
+    <input type="submit" name="typeToShow" value="show only">
+}
+
+
+
 @{
     ViewBag.Title = "Logs";
 }
 
 @{
-    //TODO Sheyikra Tavla vehide vekhou'
     var logs = ViewData["Logs"];
 }
 
@@ -14,18 +21,18 @@
 <div>
     <table>
         @{
-        foreach (Communication.LogEntry l in (logs as Communication.LogEntry[]))
-        {
+            foreach (Communication.LogEntry l in (logs as Communication.LogEntry[]))
+            {
 
-            <tr>
-                <td>  @l.Type </td>
-                <td>     </td>
-                <td>  @l.Message </td>
-                <td>             </td>
-                <td>  @l.Time </td>
-            </tr>
+                <tr>
+                    <td>  @l.Type </td>
+                    <td>     </td>
+                    <td>  @l.Message </td>
+                    <td>             </td>
+                    <td>  @l.Time </td>
+                </tr>
 
-        }
+            }
         }
     </table>
-    </div>
+</div>

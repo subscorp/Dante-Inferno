@@ -32,6 +32,14 @@ namespace WebApplication2.Controllers
             return View();
         }
 
+        public ActionResult HideTypes(string typeToHide)
+        {
+            lm.Hide(typeToHide);
+            ViewData["Logs"] = lm.Logs;
+            return View("Logs");
+        }
+
+
         public ActionResult RemoveHandler(string handler)
         {
             sm.Remove(handler);
