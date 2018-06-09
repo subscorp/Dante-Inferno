@@ -128,7 +128,7 @@ namespace ImageService.Modal
                     } else { /*File.Delete(path);*/  result = false; return null; }
 
                     //creating thumbnail and saving it in the correct folder
-                    thumb.Save(Path.ChangeExtension(thumbnailPath, "thumb"));
+                    thumb.Save(thumbnailPath);
                     result = true;
                     return null;
                 }

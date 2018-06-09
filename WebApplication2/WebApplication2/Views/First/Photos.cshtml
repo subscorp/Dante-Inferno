@@ -26,13 +26,23 @@
     Thumbnails:
 </div>
 
+@foreach (var item in Directory.EnumerateFiles(Server.MapPath("~/pictures/Thumbnails")))
+{
+    string appPath = HttpContext.Current.Server.MapPath("~");
+    string res = string.Format("~{0}", item.Replace(appPath, "").Replace("\\", "/"));
+    @(res)
+    <img src= res  alt="butterfly" style="width:150px; height: 150px; border-radius: 50%" />
+    <br />
+}
+
+
 @for (int i = 0; i < 5; i++)
 {
     <div class="row">
         @for (int j = 0; j < 5; j++)
         {
             <div class="column" style="text-align:center; width:200px;height:242px;border:2px solid #000; margin:2px">
-                <img align="middle" src="~/pictures/butterfly.jpg" alt="butterfly" style="width:150px; height: 150px; border-radius: 50%" />
+                <img src="~/pictures/Thumbnails/butterfly.jpg" alt="butterfly" style="width:150px; height: 150px; border-radius: 50%" />
                 <br />
                 Thumbnail lable:
                 <br />

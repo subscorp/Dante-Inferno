@@ -129,6 +129,9 @@
     <Content Include="Global.asax" />
     <Content Include="pictures\bigstock-Young-Student-Overwhelmed-Aski-looking for help but doesnt get any help doesnt know what to do54688616.jpg" />
     <Content Include="pictures\butterfly.jpg" />
+    <Content Include="pictures\Thumbnails\bigstock-Young-Student-Overwhelmed-Aski-looking for help but doesnt get any help doesnt know what to do54688616.jpg" />
+    <Content Include="pictures\Thumbnails\butterfly.jpg" />
+    <Content Include="pictures\Thumbnails\Screenshot %281122%29.jpg" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="scripts\bootstrap.js" />
