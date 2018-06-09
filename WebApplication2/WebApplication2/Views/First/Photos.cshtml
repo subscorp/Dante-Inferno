@@ -26,23 +26,31 @@
     Thumbnails:
 </div>
 
-@foreach (var item in Directory.EnumerateFiles(Server.MapPath("~/pictures/Thumbnails")))
-{
-    string appPath = HttpContext.Current.Server.MapPath("~");
-    string res = string.Format("~{0}", item.Replace(appPath, "").Replace("\\", "/"));
-    @(res)
-    <img src=res  alt="butterfly" style="width:150px; height: 150px; border-radius: 50%" />
-    <br />
+@{ 
+    string[] arr = Directory.EnumerateFiles(Server.MapPath("~/pictures/Thumbnails")).ToArray();
+    int arrLength = arr.Length;
+    double temp = arrLength / 7.0;
+    double numRows = Math.Ceiling(temp);
+    int photoNum = 0;
 }
 
-
-@for (int i = 0; i < 5; i++)
+@for (int k = 0; k < numRows; k++)
 {
-    <div class="row">
-        @for (int j = 0; j < 5; j++)
+    <div class="row" style="width:200px"   >
+        @for(; photoNum < 7 * (k + 1); photoNum++)
         {
+            if (photoNum == arrLength)
+            {
+                break;
+            }
+            var item = arr[photoNum];
+
             <div class="column" style="text-align:center; width:200px;height:242px;border:2px solid #000; margin:2px">
-                <img src="~/pictures/Thumbnails/butterfly.jpg" alt="butterfly" style="width:150px; height: 150px; border-radius: 50%" />
+                @{
+                    string appPath = HttpContext.Current.Server.MapPath("~");
+                    string res = string.Format("{0}", item.Replace(appPath, "").Replace("\\", "/"));
+                }
+                <img src="~/@res" alt="thumb" style="width:150px; height: 150px; border-radius: 50%" />
                 <br />
                 Thumbnail lable:
                 <br />
@@ -51,7 +59,8 @@
                 <button type="button">View</button>
                 <button type="button">Delete</button>
             </div>
-        }
+            <br />
+         }
     </div>
 }
 
