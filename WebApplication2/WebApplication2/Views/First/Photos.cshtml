@@ -1,4 +1,4 @@
-﻿@model WebApplication2.Models.Employee
+﻿@model WebApplication2.Models.SettingsModel
 
 @{
     ViewBag.Title = "Photos";
@@ -18,13 +18,17 @@
         flex: 33.33%;
         padding: 5px;
     }
+    .button {
+    border: solid;
+    border-color:black;
+    color: white;
+    text-align: center;
+    font-size:16px;
+    cursor: pointer;
+}
 </style>
 
 <h2>Photos</h2>
-
-<div>
-    Thumbnails:
-</div>
 
 @{ 
     string[] arr = Directory.EnumerateFiles(Server.MapPath("~/pictures/Thumbnails")).ToArray();
@@ -32,7 +36,6 @@
     double temp = arrLength / 7.0;
     double numRows = Math.Ceiling(temp);
     int photoNum = 0;
-    DateTime date;
 }
 
 @for (int k = 0; k < numRows; k++)
@@ -50,17 +53,24 @@
                 @{
                     string appPath = HttpContext.Current.Server.MapPath("~");
                     string res = string.Format("{0}", item.Replace(appPath, "").Replace("\\", "/"));
-                    string photoName = Path.GetFileName(res);
-                    @photoName;
+                    DateTime date = File.GetCreationTime("C:\\Users\\Ori\\Documents\\Visual Studio 2015\\Projects\\ConsoleApplication5\\WebApplication2\\WebApplication2\\pictures\\Thumbnails");
+                    //DateTime date = File.GetCreationTime();
+                    var x = date;
+                    int year = x.Year;
+                    int month = x.Month;
+                    
+                    string photoName = Path.GetFileNameWithoutExtension(res);
+                    string photoDate = month + "/" + year;
+
                 }
                 <img src="~/@res" alt="thumb" style="width:150px; height: 150px; border-radius: 50%" />
                 <br />
-                Thumbnail lable:
+                @photoName
                 <br />
-                Date:
+                @photoDate
                 <br />
-                <button type="button">View</button>
-                <button type="button">Delete</button>
+                <button class="button" style="background-color:blue" type="button">View</button>
+                <button class="button" style="background-color:red" type="button" >Delete</button>
             </div>
             <br />
          }
