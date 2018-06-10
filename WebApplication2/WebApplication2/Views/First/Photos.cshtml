@@ -39,6 +39,15 @@
     int photoNum = 0;
 }
 
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+
+
 @for (int k = 0; k < numRows; k++)
 {
     <div class="row" style="width:200px"   >
@@ -70,14 +79,16 @@
                 <br />
                 @photoDate
                 <br />
-                <button class="button" style="background-color:blue" type="button">View</button>
-                <button class="button" style="background-color:red" type="button" >Delete</button>
+                <button onclick="location.href = 'ViewPhoto';" class="button" style="background-color:blue" type="button">View</button>
+                <button onclick="location.href = 'Delete';" class="button" style="background-color:red" type="button" >Delete</button>
             </div>
             <br />
          }
     </div>
 }
 
+<br /><br />
+
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Image Web", "Index")
 </div>

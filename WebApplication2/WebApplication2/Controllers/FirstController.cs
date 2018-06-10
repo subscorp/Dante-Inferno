@@ -39,7 +39,6 @@ namespace WebApplication2.Controllers
             return View("Logs");
         }
 
-
         public ActionResult RemoveHandler(string handler)
         {
             sm.Remove(handler);
@@ -67,6 +66,16 @@ namespace WebApplication2.Controllers
 
         // GET: First/Photos
         public ActionResult Photos()
+        {
+            return View();
+        }
+
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        public ActionResult ViewPhoto()
         {
             return View();
         }
