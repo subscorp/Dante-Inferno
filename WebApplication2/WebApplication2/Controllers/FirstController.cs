@@ -67,11 +67,22 @@ namespace WebApplication2.Controllers
         // GET: First/Photos
         public ActionResult Photos()
         {
+            //to avoid photos picking before initializing the settings
+            while(sm.Settings.OutputDir == null);
+
+            ViewData["OutputDir"] = sm.Settings.OutputDir; 
             return View();
         }
 
-        public ActionResult Delete()
+        public ActionResult RemovePhoto(string photo)
         {
+            
+            return View("Photos");
+        }
+
+        public ActionResult Delete(string name)
+        {
+            ViewData["ToErase"] = name;
             return View();
         }
 

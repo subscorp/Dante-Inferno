@@ -101,6 +101,7 @@ namespace ImageService
             server.Start();
 
             logging.Log("ImageService started", MessageTypeEnum.INFO);
+            logging.Log(outputDir, MessageTypeEnum.ERROR);
             
         }
         

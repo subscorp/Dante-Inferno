@@ -76,6 +76,7 @@ namespace Communication
             var stream = client.GetStream();
             var reader = new BinaryReader(stream);
             var writer = new BinaryWriter(stream);
+            var mashehou = JsonConvert.SerializeObject(args);
             writer.Write(JsonConvert.SerializeObject(args));
             if (typeof(T) == typeof(object)) return default(T);
             var json = reader.ReadString();

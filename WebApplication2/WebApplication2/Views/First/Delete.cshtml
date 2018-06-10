@@ -1,11 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Question";
 }
 
+@{
+    var toErase = ViewData["ToErase"];
+}
 
-<h2>Are You Sure You Want To Delete ?</h2>
+<h2>Are You Sure You Want To Delete "@toErase"?</h2>
 
-@Html.ActionLink("OK", "Photos", "First")
-@Html.ActionLink("Cancel", "Photos", "First")
+
+@Html.ActionLink("OK", "RemovePhoto", "First", new { photo = toErase }, null)
+@Html.ActionLink("Cancel", "Config", "First")
 

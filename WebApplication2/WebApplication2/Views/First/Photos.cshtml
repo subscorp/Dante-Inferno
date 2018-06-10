@@ -4,6 +4,13 @@
     ViewBag.Title = "Photos";
 }
 
+@{
+    var outputDir = ViewData["OutputDir"];
+}
+
+@{
+    var path = (outputDir as string) + "\\Thumbnails";
+}
 <style>
     * {
         box-sizing: border-box;
@@ -18,21 +25,21 @@
         flex: 33.33%;
         padding: 5px;
     }
+
     .button {
-    border: solid;
-    border-color:black;
-    color: white;
-    text-align: center;
-    font-size:16px;
-    cursor: pointer;
-}
- 
+        border: solid;
+        border-color: black;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+    }
 </style>
 
 <h2>Photos</h2>
 
-@{ 
-    string[] arr = Directory.EnumerateFiles(Server.MapPath("~/pictures/Thumbnails")).ToArray();
+@{
+    string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
     int arrLength = arr.Length;
     double temp = arrLength / 7.0;
     double numRows = Math.Ceiling(temp);
@@ -42,16 +49,16 @@
 <p id="demo"></p>
 
 <script>
-function myFunction() {
-  document.getElementById("demo").innerHTML = "Hello World";
-}
+    function myFunction() {
+        document.getElementById("demo").innerHTML = "Hello World";
+    }
 </script>
 
 
 @for (int k = 0; k < numRows; k++)
 {
-    <div class="row" style="width:200px"   >
-        @for(; photoNum < 7 * (k + 1); photoNum++)
+    <div class="row" style="width:200px">
+        @for (; photoNum < 7 * (k + 1); photoNum++)
         {
             if (photoNum == arrLength)
             {
@@ -68,9 +75,10 @@ function myFunction() {
                     var x = date;
                     int year = x.Year;
                     int month = x.Month;
-                    
+
                     string photoName = Path.GetFileNameWithoutExtension(res);
                     string photoDate = month + "/" + year;
+                    
 
                 }
                 <img src="~/@res" alt="thumb" style="width:150px; height: 150px; border-radius: 50%" />
@@ -79,11 +87,11 @@ function myFunction() {
                 <br />
                 @photoDate
                 <br />
-                <button onclick="location.href = 'ViewPhoto';" class="button" style="background-color:blue" type="button">View</button>
-                <button onclick="location.href = 'Delete';" class="button" style="background-color:red" type="button" >Delete</button>
+                <button onclick="location.href = '@Url.Action("ViewPhoto", "First" , new {name = photoName})';" class="button" style="background-color:blue" type="button">View</button>
+                <button onclick="location.href = '@Url.Action("Delete", "First" , new {name = photoName})';" class="button" style="background-color:red" type="button">Delete</button>
             </div>
             <br />
-         }
+        }
     </div>
 }
 
