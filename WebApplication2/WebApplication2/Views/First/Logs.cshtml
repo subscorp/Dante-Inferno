@@ -1,12 +1,24 @@
 ﻿@model Communication.LogEntry
 
+<style>
+    .input {
+        background-color:darkcyan;
+        border: solid;
+        border-color: black;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        cursor: pointer;
+    }
+</style>
+
 <h2>Logs</h2>
 
 
 @using (Html.BeginForm("HideTypes", "First"))
 {
     <input type="text" name="typeToShow" value="" />
-    <input type="submit" name="typeToShow" value="submit">
+    <input class="input" type="submit" name="typeToShow" value="submit">
     <br /> <br />
 }
 
