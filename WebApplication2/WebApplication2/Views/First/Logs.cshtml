@@ -1,9 +1,13 @@
 ﻿@model Communication.LogEntry
 
+<h2>Logs</h2>
+
+
 @using (Html.BeginForm("HideTypes", "First"))
 {
     <input type="text" name="typeToShow" value="" />
-    <input type="submit" name="typeToShow" value="show only">
+    <input type="submit" name="typeToShow" value="submit">
+    <br /> <br />
 }
 
 
@@ -15,8 +19,6 @@
 @{
     var logs = ViewData["Logs"];
 }
-
-<h2>Logs</h2>
 
 <div>
     <table>

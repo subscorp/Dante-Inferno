@@ -74,7 +74,7 @@ namespace ImageService.ImageService.ImageService.Server
                         //remove handler command
                         else if (cmd.CommandId == 4)
                         {
-                            int fCount = Directory.GetFiles(settings.OutputDir, "*", SearchOption.AllDirectories).Length;
+                            int fCount = Directory.GetFiles(settings.OutputDir + "\\Thumbnails", "*", SearchOption.AllDirectories).Length;
                             writer.Write(fCount.ToString());
                         }
                     }

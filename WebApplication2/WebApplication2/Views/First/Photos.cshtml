@@ -32,6 +32,7 @@
     double temp = arrLength / 7.0;
     double numRows = Math.Ceiling(temp);
     int photoNum = 0;
+    DateTime date;
 }
 
 @for (int k = 0; k < numRows; k++)
@@ -49,6 +50,8 @@
                 @{
                     string appPath = HttpContext.Current.Server.MapPath("~");
                     string res = string.Format("{0}", item.Replace(appPath, "").Replace("\\", "/"));
+                    string photoName = Path.GetFileName(res);
+                    @photoName;
                 }
                 <img src="~/@res" alt="thumb" style="width:150px; height: 150px; border-radius: 50%" />
                 <br />
