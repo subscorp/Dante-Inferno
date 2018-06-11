@@ -35,6 +35,9 @@ namespace Communication
             }
         }
 
+        /// <summary>
+        /// Gets the number of photos
+        /// </summary>
         public int GetNumberOfPhotos()
         {
             return sendCommand<int>(new CommandArgs()
@@ -44,6 +47,9 @@ namespace Communication
     
         }
 
+        /// <summary>
+        /// Gets logs
+        /// </summary>
         public LogEntry[] GetLogs()
         {
             return sendCommand<LogEntry[]>(new CommandArgs()
@@ -53,6 +59,9 @@ namespace Communication
 
         }
 
+        /// <summary>
+        /// Gets the settings
+        /// </summary>
         public Settings GetSettings()
         {
             return sendCommand<Settings>(new CommandArgs()
@@ -62,6 +71,10 @@ namespace Communication
 
         }
 
+        /// <summary>
+        /// Removes a handler, and return the updated settings
+        /// </summary>
+        /// <param name="handler">The handler to remove</param>
         public Settings RemoveHandler(string handler)
         {
             return sendCommand<Settings>(new CommandArgs()
@@ -71,6 +84,9 @@ namespace Communication
             });
         }
 
+        /// <summary>
+        /// Sends a command to service and returns result
+        /// </summary>
         public T sendCommand<T>(CommandArgs args)
         {  
             var stream = client.GetStream();
@@ -97,73 +113,9 @@ namespace Communication
         }
 
         /// <summary>
-        /// Sends a command to the server of Image Service
-        /// </summary>
-        /// <param name="args">The arguments of command</param>
-        /// <returns>Task.</returns>
-        public Task SendCommand(CommandArgs args)
-        {
-            return SendCommand<object>(args);
-        }
-
-        /// </summary>
-        /// <param name="args">The arguments of command.</param>
-        /// <returns>Task.</returns>
-        private Task<TReturn> SendCommand<TReturn>(CommandArgs args)
-        {
-            return Task.Run(() =>
-            {
-                var stream = client.GetStream();
-                var reader = new BinaryReader(stream);
-                var writer = new BinaryWriter(stream);
-                writer.Write(JsonConvert.SerializeObject(args));
-                if (typeof(TReturn) == typeof(object)) return default(TReturn);
-                var json = reader.ReadString();
-                var obj = JsonConvert.DeserializeObject<TReturn>(json);
-                return obj;
-                
-            });
-        }
-
-        /// <summary>
         /// returns true if the GUIclient is connected, false otherwise.
         /// </summary>
         public bool Connected() { return client.Connected;  }
-
-        /// <summary>
-        /// Gets the settings from server.
-        /// </summary>
-        //public Task<Settings> GetSettings()
-        //{
-        //    return SendCommand<Settings>(new CommandArgs()
-        //    {
-        //        CommandId = 1,
-        //    });
-        //}
-
-        /// <summary>
-        /// Gets the logs from server.
-        /// </summary>
-        //public Task<LogEntry[]> GetLogs()
-        //{
-        //    return SendCommand<LogEntry[]>(new CommandArgs()
-        //    {
-        //        CommandId = 2
-        //    });
-        //}
-
-        /// <summary>
-        /// Removes a handler from server - the handler will not be followed anymore.
-        /// </summary>
-        /// <param name="handler">The handler.</param>
-        //public Task RemoveHandler(string handler)
-        //{
-        //    return SendCommand(new CommandArgs()
-        //    {
-        //        CommandId = 3,
-        //        Arg = handler
-        //    });
-        //}
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

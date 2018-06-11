@@ -17,6 +17,7 @@ namespace WebApplication2.Controllers
         private static LogModel lm = new LogModel();
 
         // GET: First
+        // ImageWeb View
         [HttpGet]
         public ActionResult Index()
         {
@@ -27,12 +28,14 @@ namespace WebApplication2.Controllers
             return View();
         }
 
+        // Page for asking whether to erase a handler
         public ActionResult Question(string toErase)
         {
             ViewData["ToErase"] = toErase;
             return View();
         }
 
+        // Hides all logs, except mentioned type
         public ActionResult HideTypes(string typeToShow)
         {
             lm.Hide(typeToShow);
@@ -40,6 +43,7 @@ namespace WebApplication2.Controllers
             return View("Logs");
         }
 
+        // Removes a handler, and updates settings
         public ActionResult RemoveHandler(string handler)
         {
             sm.Remove(handler);
@@ -54,6 +58,7 @@ namespace WebApplication2.Controllers
         }
 
         // GET: First/Config
+        // Configuration view
         public ActionResult Config()
         {
             sm.GetSettings();
@@ -66,6 +71,7 @@ namespace WebApplication2.Controllers
         }
 
         // GET: First/Photos
+        // Photos View
         public ActionResult Photos()
         {
             //to avoid photos picking before initializing the settings
@@ -75,8 +81,10 @@ namespace WebApplication2.Controllers
             return View();
         }
 
+        // Removes a photo, and leading back to Photos view
         public ActionResult RemovePhoto(string photo)
         {
+            // creating arrays of all photos in photos and thumbnail directories
             string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/photos"), "*", SearchOption.AllDirectories).ToArray();
             string[] arr2 = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
 
@@ -102,13 +110,15 @@ namespace WebApplication2.Controllers
             
             return View("Photos");
         }
-
+        
+        // Page for asking whether to erase a photo or not
         public ActionResult Delete(string name)
         {
             ViewData["ToErase"] = name;
             return View();
         }
 
+        // Page for viewing photo
         public ActionResult ViewPhoto(string name)
         {
             ViewData["Name"] = name;
@@ -116,6 +126,7 @@ namespace WebApplication2.Controllers
         }
 
         // GET: First/Logs
+        // logs view
         public ActionResult Logs()
         {
             lm.GetLogs();
