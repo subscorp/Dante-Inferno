@@ -26,24 +26,32 @@
 <h1>Image Web</h1>
 
 <h2>Status</h2>
+
 <p>@a</p>
 
 <h2>Number of photos</h2>
+
 <p>@photos_number</p>
 
 <h2>Student details</h2>
+
 <p><table border="1" cellspacing="10">
-    <tr><td>name</td><td>last name</td><td>id</td></tr>
+    <tr>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>ID</th>
+    </tr>
  @{foreach (string s in students)
      {
        <tr>
            @{
                string[] studetails = s.Split(' ');
-       <td>@studetails[0]</td>
-       <td>@studetails[1]</td>
-       <td>@studetails[2]</td>
-               }
-        </tr>
+               <td>@studetails[0]</td>
+               <td>@studetails[1]</td>
+               <td>@studetails[2]</td>
+            }
+       </tr>
     }
-    }
+}
+
 </table></p>
