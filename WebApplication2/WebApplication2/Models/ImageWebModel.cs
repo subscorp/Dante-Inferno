@@ -5,6 +5,9 @@ using System.Web.Hosting;
 using Communication;
 using WebApplication2.Models;
 
+/// <summary>
+/// Class for model, which manages the main window in the ASP.net app
+/// </summary>
 public class ImageWebModel : WebModel
 {
     private string status;
@@ -27,22 +30,26 @@ public class ImageWebModel : WebModel
         set { student_details = value; }
     }
 
+    //checks whether the service is running, and number of photos
     public void UpdateParameters()
     {
         Status = client.Connected() ? "Running" : "Stopped";
-
+        
         if (client.Connected())
             PhotosNumber = client.GetNumberOfPhotos();
     }
 
+    // Constructor
     public ImageWebModel() : base()
 	{
 
+        //reading the details of students from file
         using (StreamReader sr = new StreamReader(VirtualPathProvider.OpenFile("/App_Data/info.txt")))
         {
             Student_Details = sr.ReadToEnd();
         }
 
+        //updating status and photo number parameters
         UpdateParameters();
 	}
 }

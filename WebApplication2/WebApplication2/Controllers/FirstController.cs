@@ -77,8 +77,34 @@ namespace WebApplication2.Controllers
             //to avoid photos picking before initializing the settings
             while(sm.Settings.OutputDir == null);
 
-            ViewData["OutputDir"] = sm.Settings.OutputDir; 
+            ViewData["Photos"] = getPictures(); 
             return View();
+        }
+
+        //getting the Current source of pictures in the output directory
+        private string[] getPictures()
+        {
+            string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
+            int arrLength = arr.Length;
+
+            //calculating number of rows to show, each row has seven items
+            double temp = arrLength / 7.0;
+            double numRows = Math.Ceiling(temp);
+
+            //initializing the current photo number to zero
+            int photoNum = 0;
+
+            string appPath = Server.MapPath("~");
+
+            string[] imgSrc = new string[arr.Length];
+
+            foreach (string s in arr)
+            {
+                imgSrc[photoNum] = string.Format("{0}", s.Replace(appPath, "").Replace("\\", "/"));
+                photoNum++;
+            }
+
+            return imgSrc;
         }
 
         // Removes a photo, and leading back to Photos view
@@ -109,7 +135,8 @@ namespace WebApplication2.Controllers
                     System.IO.File.Delete(item);
                 }
             }
-            
+
+            ViewData["Photos"] = getPictures();
             return View("Photos");
         }
         
