@@ -11,11 +11,11 @@
         text-align: center;
         font-size: 35px;
         cursor: pointer;
+    }
 </style>
 
 @{
     var name = ViewData["Name"];
-    var photoName = "";
     string[] arr = Directory.EnumerateFiles(Server.MapPath("~/pictures/photos"), "*", SearchOption.AllDirectories).ToArray();
 
     foreach (var item2 in arr)
@@ -24,15 +24,17 @@
         {
             string appPath = HttpContext.Current.Server.MapPath("~");
             string res = string.Format("{0}", item2.Replace(appPath, "").Replace("\\", "/"));
-            DateTime date = File.GetCreationTime("C:\\Users\\Ori\\Documents\\Visual Studio 2015\\Projects\\ConsoleApplication5\\WebApplication2\\WebApplication2\\pictures\\Thumbnails");
-            var x = date;
-            int year = x.Year;
-            int month = x.Month;
+
+            //extract date from thumbnail location
+            string[] split = res.Split('/');
+            string year = split[split.Length - 3];
+            string month = split[split.Length - 2];
             string photoDate = month + "/" + year;
+
             <h2>@name</h2>
             <h4>@photoDate</h4>
             <br />
-            <img src="~/@res" alt="photo" style="width:400px; height: 400px;" />
+            <img src="~/@res" alt="photo"/>
             <br /><br />
             break;
         }

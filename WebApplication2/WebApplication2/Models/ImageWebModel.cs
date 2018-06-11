@@ -43,8 +43,6 @@ public class ImageWebModel : WebModel
             Student_Details = sr.ReadToEnd();
         }
 
-
         UpdateParameters();
-
 	}
 }

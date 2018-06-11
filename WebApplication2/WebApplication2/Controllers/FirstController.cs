@@ -88,6 +88,7 @@ namespace WebApplication2.Controllers
             string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/photos"), "*", SearchOption.AllDirectories).ToArray();
             string[] arr2 = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
 
+            //delete the photo
             foreach (var item in arr)
             {
                 if (Path.GetFileNameWithoutExtension(item).Equals(photo))
@@ -98,6 +99,7 @@ namespace WebApplication2.Controllers
                 }
             }
 
+            //delete the corresponding thumbnail
             foreach (var item in arr2)
             {
                 if (Path.GetFileNameWithoutExtension(item).Equals(photo))

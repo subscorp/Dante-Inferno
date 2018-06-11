@@ -129,8 +129,12 @@
     <Content Include="Global.asax" />
     <Content Include="pictures\Photos\butterfly.jpg" />
     <Content Include="pictures\Photos\city.jpg" />
+    <Content Include="pictures\Photos\desert.jpg" />
+    <Content Include="pictures\Photos\help.jpg" />
     <Content Include="pictures\Thumbnails\butterfly.jpg" />
     <Content Include="pictures\Thumbnails\city.jpg" />
+    <Content Include="pictures\Thumbnails\desert.jpg" />
+    <Content Include="pictures\Thumbnails\help.jpg" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -145,8 +149,6 @@
     <Content Include="scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\First\Create.cshtml" />
-    <Content Include="Views\First\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -154,7 +156,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ImageWebModel.cs" />
     <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />
@@ -174,15 +175,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\First\Edit.cshtml" />
-    <Content Include="Views\First\Error.cshtml" />
-    <Content Include="Views\First\AjaxView.cshtml" />
     <Content Include="scripts\jquery-3.0.0.min.map" />
     <Content Include="scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Views\First\Config.cshtml" />
     <Content Include="Views\First\Photos.cshtml" />
     <Content Include="Views\First\Logs.cshtml" />
-    <Content Include="Views\First\Example.cshtml" />
     <Content Include="Views\First\Question.cshtml" />
     <Content Include="Views\First\Delete.cshtml" />
     <Content Include="Views\First\ViewPhoto.cshtml" />
