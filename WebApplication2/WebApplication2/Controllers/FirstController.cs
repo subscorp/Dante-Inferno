@@ -75,8 +75,7 @@ namespace WebApplication2.Controllers
         }
 
         public ActionResult RemovePhoto(string photo)
-        {
-            
+        {   
             return View("Photos");
         }
 
