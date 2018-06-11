@@ -26,14 +26,6 @@
         padding: 5px;
     }
 
-    .button {
-        border: solid;
-        border-color: black;
-        color: white;
-        text-align: center;
-        font-size: 16px;
-        cursor: pointer;
-    }
 </style>
 
 <h2>Photos</h2>
@@ -83,8 +75,8 @@
                 <br />
                 @photoDate
                 <br />
-                <button onclick="location.href = '@Url.Action("ViewPhoto", "First" , new {name = photoName})';" class="button" style="background-color:blue" type="button">View</button>
-                <button onclick="location.href = '@Url.Action("Delete", "First" , new {name = photoName})';" class="button" style="background-color:red" type="button">Delete</button>
+                <button onclick="location.href = '@Url.Action("ViewPhoto", "First" , new {name = photoName})';" class="btn btn-primary" style="background-color:blue" type="button">View</button>
+                <button onclick="location.href = '@Url.Action("Delete", "First" , new {name = photoName})';" class="btn btn-primary" style="background-color:red" type="button">Delete</button>
             </div>
             <br />
         }

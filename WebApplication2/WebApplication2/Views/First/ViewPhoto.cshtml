@@ -3,17 +3,6 @@
     ViewBag.Title = "ViewPhoto";
 }
 
-<style>
-    .button {
-        border: solid;
-        border-color: black;
-        color: white;
-        text-align: center;
-        font-size: 35px;
-        cursor: pointer;
-    }
-</style>
-
 @{
     var name = ViewData["Name"];
     string[] arr = Directory.EnumerateFiles(Server.MapPath("~/pictures/photos"), "*", SearchOption.AllDirectories).ToArray();
@@ -41,7 +30,7 @@
     }
 }
 
-<button onclick="location.href = '@Url.Action("Delete", "First" , new {name = name})';" class="button" style="background-color:red" type="button">Delete</button>
+<button onclick="location.href = '@Url.Action("Delete", "First" , new {name = name})';" class="btn btn-primary" style="background-color:red; font-size:35px" type="button">Delete</button>
 
 <br /><br />
 

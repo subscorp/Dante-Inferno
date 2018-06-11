@@ -60,11 +60,11 @@ namespace ImageService
             InitializeComponent();
         }
 
-        /// <summary>
-        /// executes when Start command is sent to the service by the SCM
-        /// </summary>
-        /// <param name="args">Data passed by the start command (null in our case).</param>
-        protected override void OnStart(string[] args)
+    /// <summary>
+    /// executes when Start command is sent to the service by the SCM
+    /// </summary>
+    /// <param name="args">Data passed by the start command (null in our case).</param>
+    protected override void OnStart(string[] args)
         {
             logging = new LoggingService();
 
