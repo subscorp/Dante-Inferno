@@ -37,6 +37,7 @@ public class ImageWebModel : WebModel
 
     public ImageWebModel() : base()
 	{
+
         using (StreamReader sr = new StreamReader(VirtualPathProvider.OpenFile("/App_Data/info.txt")))
         {
             Student_Details = sr.ReadToEnd();

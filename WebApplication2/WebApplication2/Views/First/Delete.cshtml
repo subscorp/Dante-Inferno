@@ -7,38 +7,6 @@
     var toErase = ViewData["ToErase"];
 }
 
-@{
-    @*var photoName = "";
-    string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/photos"),"*", SearchOption.AllDirectories).ToArray();
-    string[] arr2 = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"),"*", SearchOption.AllDirectories).ToArray();
-
-    foreach (var item in arr)
-    {
-        if (Path.GetFileNameWithoutExtension(item).Equals(toErase))
-        {
-            @item
-            string appPath = HttpContext.Current.Server.MapPath("~");
-            string res = string.Format("{0}", item.Replace(appPath, "").Replace("\\", "/"));
-            @res
-            File.Delete(item);
-        }
-    }
-
-    foreach (var item in arr2)
-    {
-        @item
-        @arr2.Length
-        if (Path.GetFileNameWithoutExtension(item).Equals(toErase))
-        {
-            @item
-            string appPath = HttpContext.Current.Server.MapPath("~");
-            string res = string.Format("{0}", item.Replace(appPath, "").Replace("\\", "/"));
-            @res
-            File.Delete(item);
-        }
-    }*@
-}
-
 <h2>Are You Sure You Want To Delete "@toErase"?</h2>
 
 
