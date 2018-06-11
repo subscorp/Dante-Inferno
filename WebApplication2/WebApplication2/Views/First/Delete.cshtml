@@ -8,7 +8,7 @@
 }
 
 @{
-    var photoName = "";
+    @*var photoName = "";
     string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/photos"),"*", SearchOption.AllDirectories).ToArray();
     string[] arr2 = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"),"*", SearchOption.AllDirectories).ToArray();
 
@@ -36,7 +36,7 @@
             @res
             File.Delete(item);
         }
-    }
+    }*@
 }
 
 <h2>Are You Sure You Want To Delete "@toErase"?</h2>

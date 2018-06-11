@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -75,7 +76,30 @@ namespace WebApplication2.Controllers
         }
 
         public ActionResult RemovePhoto(string photo)
-        {   
+        {
+            string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/photos"), "*", SearchOption.AllDirectories).ToArray();
+            string[] arr2 = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
+
+            foreach (var item in arr)
+            {
+                if (Path.GetFileNameWithoutExtension(item).Equals(photo))
+                {
+                    string appPath = Server.MapPath("~");
+                    string res = string.Format("{0}", item.Replace(appPath, "").Replace("\\", "/"));
+                    System.IO.File.Delete(item);
+                }
+            }
+
+            foreach (var item in arr2)
+            {
+                if (Path.GetFileNameWithoutExtension(item).Equals(photo))
+                {
+                    string appPath = Server.MapPath("~");
+                    string res = string.Format("{0}", item.Replace(appPath, "").Replace("\\", "/"));
+                    System.IO.File.Delete(item);
+                }
+            }
+            
             return View("Photos");
         }
 
