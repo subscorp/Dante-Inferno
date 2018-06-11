@@ -70,8 +70,8 @@
                 @{
                     string appPath = HttpContext.Current.Server.MapPath("~");
                     string res = string.Format("{0}", item.Replace(appPath, "").Replace("\\", "/"));
-                    DateTime date = File.GetCreationTime("C:\\Users\\Ori\\Documents\\Visual Studio 2015\\Projects\\ConsoleApplication5\\WebApplication2\\WebApplication2\\pictures\\Thumbnails");
-                    //DateTime date = File.GetCreationTime();
+                    //DateTime date = File.GetCreationTime("C:\\Users\\Ori\\Documents\\Visual Studio 2015\\Projects\\ConsoleApplication5\\WebApplication2\\WebApplication2\\pictures\\Thumbnails");
+                    DateTime date = File.GetCreationTime(item);
                     var x = date;
                     int year = x.Year;
                     int month = x.Month;
