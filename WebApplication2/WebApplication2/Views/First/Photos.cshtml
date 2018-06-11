@@ -71,14 +71,15 @@
                     string appPath = HttpContext.Current.Server.MapPath("~");
                     string res = string.Format("{0}", item.Replace(appPath, "").Replace("\\", "/"));
                     //DateTime date = File.GetCreationTime("C:\\Users\\Ori\\Documents\\Visual Studio 2015\\Projects\\ConsoleApplication5\\WebApplication2\\WebApplication2\\pictures\\Thumbnails");
-                    DateTime date = File.GetCreationTime(item);
-                    var x = date;
-                    int year = x.Year;
-                    int month = x.Month;
+
+                    //extract date from thumbnail location
+                    string[] split = res.Split('/');
+                    string year = split[split.Length-3];
+                    string month = split[split.Length - 2];
 
                     string photoName = Path.GetFileNameWithoutExtension(res);
                     string photoDate = month + "/" + year;
-                    
+
 
                 }
                 <img src="~/@res" alt="thumb" style="width:150px; height: 150px; border-radius: 50%" />
