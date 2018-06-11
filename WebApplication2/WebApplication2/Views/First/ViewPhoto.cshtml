@@ -16,7 +16,7 @@
 @{
     var name = ViewData["Name"];
     var photoName = "";
-    string[] arr = Directory.EnumerateFiles(Server.MapPath("~/pictures/photos")).ToArray();
+    string[] arr = Directory.EnumerateFiles(Server.MapPath("~/pictures/photos"), "*", SearchOption.AllDirectories).ToArray();
 
     foreach (var item2 in arr)
     {
@@ -39,7 +39,7 @@
     }
 }
 
-<button onclick="location.href = 'Delete';" class="button" style="background-color:red" type="button">Delete</button>
+<button onclick="location.href = '@Url.Action("Delete", "First" , new {name = name})';" class="button" style="background-color:red" type="button">Delete</button>
 
 <br /><br />
 
