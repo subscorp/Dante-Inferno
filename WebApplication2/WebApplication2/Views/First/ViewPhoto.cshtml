@@ -3,9 +3,45 @@
     ViewBag.Title = "ViewPhoto";
 }
 
+<style>
+    .button {
+        border: solid;
+        border-color: black;
+        color: white;
+        text-align: center;
+        font-size: 35px;
+        cursor: pointer;
+</style>
 
-<h2>Are You Sure You Want To View the photo ?</h2>
+@{
+    var name = ViewData["Name"];
+    var photoName = "";
+    string[] arr = Directory.EnumerateFiles(Server.MapPath("~/pictures/photos")).ToArray();
 
-@Html.ActionLink("OK", "Photos", "First")
-@Html.ActionLink("Cancel", "Photos", "First")
+    foreach (var item2 in arr)
+    {
+        if (Path.GetFileNameWithoutExtension(item2).Equals(name))
+        {
+            string appPath = HttpContext.Current.Server.MapPath("~");
+            string res = string.Format("{0}", item2.Replace(appPath, "").Replace("\\", "/"));
+            DateTime date = File.GetCreationTime("C:\\Users\\Ori\\Documents\\Visual Studio 2015\\Projects\\ConsoleApplication5\\WebApplication2\\WebApplication2\\pictures\\Thumbnails");
+            var x = date;
+            int year = x.Year;
+            int month = x.Month;
+            string photoDate = month + "/" + year;
+            <h2>@name</h2>
+            <h4>@photoDate</h4>
+            <br />
+            <img src="~/@res" alt="photo" style="width:400px; height: 400px;" />
+            <br /><br />
+            break;
+        }
+    }
+}
+
+<button onclick="location.href = 'Delete';" class="button" style="background-color:red" type="button">Delete</button>
+
+<br /><br />
+
+@Html.ActionLink("Back to Photos", "Photos", "First")
 

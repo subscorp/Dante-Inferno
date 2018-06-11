@@ -86,8 +86,9 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        public ActionResult ViewPhoto()
+        public ActionResult ViewPhoto(string name)
         {
+            ViewData["Name"] = name;
             return View();
         }
 

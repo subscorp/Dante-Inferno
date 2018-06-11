@@ -87,7 +87,7 @@ namespace ImageService.Modal
                     int month = x.Month;
 
                     //getting  the imagePath and the thumbnailPath
-                    var imageYearPath = m_OutputFolder + "\\" + year;
+                    var imageYearPath = m_OutputFolder + "\\Photos" + "\\" + year;
                     var imageMonthPath = imageYearPath + "\\" + month;
                     var imagePath = imageMonthPath + "\\" + Path.GetFileName(path);
                     var thumbnailYearPath = m_thumbnailsFolder + "\\" + year;
@@ -99,6 +99,7 @@ namespace ImageService.Modal
                     {
                         di = Directory.CreateDirectory(m_OutputFolder);
                         di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+                        Directory.CreateDirectory(m_OutputFolder + "\\Photos");
                     }
 
                     //check if thumbnailFolder exists, if not- create it

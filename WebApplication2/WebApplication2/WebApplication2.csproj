@@ -127,7 +127,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="pictures\butterfly.jpg" />
+    <Content Include="pictures\Photos\butterfly.jpg" />
     <Content Include="pictures\Thumbnails\help.jpg" />
     <Content Include="pictures\Thumbnails\butterfly.jpg" />
     <Content Include="pictures\Thumbnails\flower %281%29.jpg" />
