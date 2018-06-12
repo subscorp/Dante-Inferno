@@ -71,11 +71,21 @@ namespace ImageService.ImageService.ImageService.Server
                             writer.Write(settings.ToJSON());
                         }
 
-                        //remove handler command
+                        //count photos command
                         else if (cmd.CommandId == 4)
                         {
-                            int fCount = Directory.GetFiles(settings.OutputDir + "\\Thumbnails", "*", SearchOption.AllDirectories).Length;
-                            writer.Write(fCount.ToString());
+                            int fCount;
+                            if (Directory.Exists(settings.OutputDir + "\\Thumbnails"))
+                            {
+                                fCount = Directory.GetFiles(settings.OutputDir + "\\Thumbnails", "*", SearchOption.AllDirectories).Length;
+                                writer.Write(fCount.ToString());
+                            }
+
+                            else
+                            {
+                                fCount = 0;
+                                writer.Write(fCount.ToString()); 
+                            }
                         }
                     }
 

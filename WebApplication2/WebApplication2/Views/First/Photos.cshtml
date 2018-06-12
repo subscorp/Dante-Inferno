@@ -28,53 +28,61 @@
 <h2>Photos</h2>
 
 @{
-    //calculating number of rows to show, each row has seven items
-    double temp = (photos as string[]).Length / 7.0;
-    double numRows = Math.Ceiling(temp);
-
-    //initializing the current photo number to zero
+    double temp = 0, numRows = 0;
     int photoNum = 0;
+    //calculating number of rows to show, each row has seven items
+    if (photos != null)
+    {
+        temp = (photos as string[]).Length / 7.0;
+        numRows = Math.Ceiling(temp);
+
+        //initializing the current photo number to zero
+        photoNum = 0;
+    }
 }
 
-@for (int k = 0; k < numRows; k++)
+@if (photos != null)
 {
-    //for every row show seven thumbnails, except for the last row
-    <div class="row" style="width:200px">
-        @for (; photoNum < 7 * (k + 1); photoNum++)
-        {
-            if (photoNum == (photos as string[]).Length)
+    for (int k = 0; k < numRows; k++)
+    {
+        //for every row show seven thumbnails, except for the last row
+        <div class="row" style="width:200px">
+            @for (; photoNum < 7 * (k + 1); photoNum++)
             {
-                break;
+                if (photoNum == (photos as string[]).Length)
+                {
+                    break;
+                }
+
+                string res = (photos as string[])[photoNum];
+
+                //get the creation date from directory structure
+                string[] split = res.Split('/');
+                string year = split[split.Length - 3];
+                string month = split[split.Length - 2];
+                string photoDate = month + "/" + year;
+
+                //extract photo name
+                string photoName = Path.GetFileNameWithoutExtension(res);
+
+
+                <div class="column" style="text-align:center; width:200px;height:242px;border:2px solid #000; margin:2px">
+                    <img src="~/@res" alt="thumb" style="width:150px; height: 150px; border-radius: 50%" />
+                    <br />
+                    @photoName
+                    <br />
+                    @photoDate
+                    <br />
+                    <button onclick="location.href = '@Url.Action("ViewPhoto", "First", new { name = photoName })';" class="btn btn-primary" style="background-color:blue" type="button">View</button>
+                    <button onclick="location.href = '@Url.Action("Delete", "First", new { name = photoName })';" class="btn btn-primary" style="background-color:red" type="button">Delete</button>
+                </div>
+                <br />
             }
+        </div>
+    }
 
-            string res= (photos as string[])[photoNum];
-
-            //get the creation date from directory structure
-            string[] split = res.Split('/');
-            string year = split[split.Length - 3];
-            string month = split[split.Length - 2];
-            string photoDate = month + "/" + year;
-
-            //extract photo name
-            string photoName = Path.GetFileNameWithoutExtension(res);
-
-
-            <div class="column" style="text-align:center; width:200px;height:242px;border:2px solid #000; margin:2px">
-                <img src="~/@res" alt="thumb" style="width:150px; height: 150px; border-radius: 50%" />
-                <br />
-                @photoName
-                <br />
-                @photoDate
-                <br />
-                <button onclick="location.href = '@Url.Action("ViewPhoto", "First" , new {name = photoName})';" class="btn btn-primary" style="background-color:blue" type="button">View</button>
-                <button onclick="location.href = '@Url.Action("Delete", "First" , new {name = photoName})';" class="btn btn-primary" style="background-color:red" type="button">Delete</button>
-            </div>
-            <br />
-        }
-    </div>
+    <br /><br />
 }
-
-<br /><br />
 
 <div>
     @Html.ActionLink("Back to Image Web", "Index")

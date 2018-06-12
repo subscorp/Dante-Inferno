@@ -84,27 +84,36 @@ namespace WebApplication2.Controllers
         //getting the Current source of pictures in the output directory
         private string[] getPictures()
         {
-            string[] arr = Directory.GetFiles(sm.Settings.OutputDir + "/Thumbnails", "*", SearchOption.AllDirectories).ToArray();
-            int arrLength = arr.Length;
-
-            //calculating number of rows to show, each row has seven items
-            double temp = arrLength / 7.0;
-            double numRows = Math.Ceiling(temp);
-
-            //initializing the current photo number to zero
-            int photoNum = 0;
-
-            string appPath = Server.MapPath("~");
-
-            string[] imgSrc = new string[arr.Length];
-
-            foreach (string s in arr)
+            if (Directory.Exists(sm.Settings.OutputDir + "/Thumbnails"))
             {
-                imgSrc[photoNum] = string.Format("{0}", s.Replace(appPath, "").Replace("\\", "/"));
-                photoNum++;
+                string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
+                int arrLength = arr.Length;
+
+                //calculating number of rows to show, each row has seven items
+                double temp = arrLength / 7.0;
+                double numRows = Math.Ceiling(temp);
+
+                //initializing the current photo number to zero
+                int photoNum = 0;
+
+                string appPath = Server.MapPath("~");
+
+                string[] imgSrc = new string[arr.Length];
+
+                foreach (string s in arr)
+                {
+                    imgSrc[photoNum] = string.Format("{0}", s.Replace(appPath, "").Replace("\\", "/"));
+                    photoNum++;
+                }
+
+                return imgSrc;
             }
 
-            return imgSrc;
+            else
+            {
+                string[] arr2 = null;
+                return arr2;
+            }
         }
 
         // Removes a photo, and leading back to Photos view
