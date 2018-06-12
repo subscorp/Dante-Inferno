@@ -84,7 +84,7 @@ namespace WebApplication2.Controllers
         //getting the Current source of pictures in the output directory
         private string[] getPictures()
         {
-            string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
+            string[] arr = Directory.GetFiles(sm.Settings.OutputDir + "/Thumbnails", "*", SearchOption.AllDirectories).ToArray();
             int arrLength = arr.Length;
 
             //calculating number of rows to show, each row has seven items

@@ -1,10 +1,5 @@
 ﻿using Communication;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Web;
 
 namespace WebApplication2.Models
 {

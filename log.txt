@@ -1,0 +1,699 @@
+commit 83e8424ae5182cbe399a35448416bdfe347acba3
+Merge: 4061af5 b2fa65b
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Mon Jun 11 23:02:50 2018 +0300
+
+    Merge branch 'master' of https://github.com/subscorp/Dante-Inferno.git
+
+commit 4061af5ad4ae3cedc5b1bc21d4f8db3e5d3ffc41
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Mon Jun 11 23:02:09 2018 +0300
+
+    update with use of bootsrap
+
+commit b2fa65b1248a5643ed1f8bc4306564a5bc257807
+Author: mm <meirtor1@gmail.com>
+Date:   Mon Jun 11 21:19:17 2018 +0300
+
+    documentation
+
+commit 783b47df69007a703df9dded1b52b4b6fc14396d
+Author: mm <meirtor1@gmail.com>
+Date:   Mon Jun 11 21:08:17 2018 +0300
+
+    hatmounot tmounot bacontroller
+
+commit 71d521d2772015161ff3c45febe65da90b13bb64
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Mon Jun 11 17:55:08 2018 +0300
+
+    some cleanup, more doc, removed limitation on size of the photo
+
+commit 6f85fd3c976edce296449c6e1b74ba4a9c80cf92
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Mon Jun 11 16:51:44 2018 +0300
+
+    update to student details
+
+commit 7550aca4fdb73f4a9d6d3ce28fd87c75f38aa2a6
+Author: mm <meirtor1@gmail.com>
+Date:   Mon Jun 11 16:28:14 2018 +0300
+
+    some comments
+
+commit 5b6458e89433d2aee9a056a7d8a6309150aa1144
+Author: mm <meirtor1@gmail.com>
+Date:   Mon Jun 11 11:25:24 2018 +0300
+
+    We got the date!!!
+
+commit 4ed016f97819947c319d399c890ee9522fc6fcf3
+Author: mm <meirtor1@gmail.com>
+Date:   Mon Jun 11 11:13:20 2018 +0300
+
+    date of file working??? lets hope so
+
+commit af71960f85200213b3f7a686b6049ddc49f082fc
+Author: mm <meirtor1@gmail.com>
+Date:   Mon Jun 11 10:47:57 2018 +0300
+
+    student details are in table
+
+commit 34c8fec7e7dc2edeac99906f33916223e3929060
+Author: mm <meirtor1@gmail.com>
+Date:   Mon Jun 11 10:27:00 2018 +0300
+
+    moved delete photo logic to controller
+
+commit b25508c428e3135dc23ee724c4578ebe7df6a7f4
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Mon Jun 11 04:30:27 2018 +0300
+
+    small update to delete photo
+
+commit 8fb9d7a80b7a7ae8217c38eaa78e8d05300ebbb9
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Mon Jun 11 03:59:28 2018 +0300
+
+    delete works
+
+commit ba8c3fe1cf0267cc6e49a2c237b57a552e81be68
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Mon Jun 11 03:08:08 2018 +0300
+
+    small change to imageModal, implemented view button in photos
+
+commit d75650e8cb31fd973120f5073b750bdcdc48d29f
+Author: mm <meirtor1@gmail.com>
+Date:   Mon Jun 11 01:45:47 2018 +0300
+
+    service writing to wherever it should, photos read like they should
+    (do not worry, it will find another reason not to work)
+
+commit 25a8eb1c8f520adbb29fa56dd8cdbf05eb0a7f25
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun Jun 10 21:23:03 2018 +0300
+
+    added skeleton to the delete and view pages, linked them to their corresponding buttons. also did some more small cosmetic changes.
+
+commit 59c0a2d07a3f8bdf5ea70d86227bd7e1b7ff1d11
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun Jun 10 17:23:26 2018 +0300
+
+    another small update to the logs
+
+commit 271f3d8f947df3f8550c6d4ba0da6249aa8601b1
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun Jun 10 17:07:44 2018 +0300
+
+    another update to the style of the submit button
+
+commit a2bf10817cf4fc1fdb1e2a2583465c3ee2b2e747
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun Jun 10 16:42:35 2018 +0300
+
+    added style to the submit button in logs
+
+commit a8acd33b45724a1e2a3d64b78857730dd1967215
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun Jun 10 16:20:59 2018 +0300
+
+    added file name to the photos and style to the buttons view and delete
+
+commit 82eaa0ab7abbb64832a20f7aba2dd53e58df0d07
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun Jun 10 14:41:50 2018 +0300
+
+    small update to Image Web. also small update to the logs design.
+
+commit 590040a9425e763606d59c48c25ac8c55e6263e3
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun Jun 10 02:19:55 2018 +0300
+
+    small update to log filtering
+
+commit 46e2fbbb6e4aaf5d7dce84a02131b3f4549dff95
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun Jun 10 02:06:36 2018 +0300
+
+    getting photos from directory, layout fixed.
+
+commit cdef82699beed288ee88bc0e7a6291ee39ca20b5
+Author: mm <meirtor1@gmail.com>
+Date:   Sun Jun 10 00:30:15 2018 +0300
+
+    this time logs filtering does work
+
+commit 99084c518b337ecef374a421d978230cadf3a50e
+Author: mm <meirtor1@gmail.com>
+Date:   Sat Jun 9 23:18:04 2018 +0300
+
+    logs well filtered (including with empty form)
+
+commit 4f360a016efd60fce561018e921f9bb12bb33cba
+Author: mm <meirtor1@gmail.com>
+Date:   Sat Jun 9 22:55:53 2018 +0300
+
+    log hiding working
+
+commit 7d6ce662ebb18e513e33fa8f5cfdd0415dab8def
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sat Jun 9 19:52:06 2018 +0300
+
+    small update to photos, also changed thumbnail extension in imageModal
+
+commit 945775584508aab2a829ab96cd3ebc9f6889a7c6
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sat Jun 9 15:25:19 2018 +0300
+
+    handled allignment, rows, photos appear in a circle shape
+
+commit 507811dd2419f4c489108b3c845452aa00a91244
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri Jun 8 20:38:44 2018 +0300
+
+    added skeleton for the photos
+
+commit 07cf71dc43997438538f2c9aaaa2ffac96a3d40f
+Author: mm <meirtor1@gmail.com>
+Date:   Fri Jun 8 17:54:39 2018 +0300
+
+    refresh works
+
+commit 4af7649b595793a097051f8c1156777c63d75143
+Merge: ea5b00a 44d7fb2
+Author: mm <meirtor1@gmail.com>
+Date:   Fri Jun 8 17:44:19 2018 +0300
+
+    Merge branch 'master' of https://github.com/subscorp/Dante-Inferno
+
+commit ea5b00a953c5c6052813090fee116495a024b1a7
+Author: mm <meirtor1@gmail.com>
+Date:   Fri Jun 8 17:40:19 2018 +0300
+
+    works when service stopped
+
+commit 44d7fb2bacdf0151c5190ec7b990afa99068b838
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri Jun 8 15:28:29 2018 +0300
+
+    testing...
+
+commit a056c61991e1eb0fb4cb1089604c72f8ddb0842f
+Author: mm <meirtor1@gmail.com>
+Date:   Fri Jun 8 00:15:20 2018 +0300
+
+    Logs are well presented
+
+commit 734a8e48515b5e0bcb125d621f8bcc349869c875
+Author: mm <meirtor1@gmail.com>
+Date:   Fri Jun 8 00:01:14 2018 +0300
+
+    Set number of photos to be well presented
+
+commit c682407f84effca88a4f58d0267975ae8f459370
+Author: mm <meirtor1@gmail.com>
+Date:   Thu Jun 7 09:42:18 2018 +0300
+
+    Handlers removal fixed
+
+commit 55aa931e90741f6d51478ea97ded210ee1f0ad0c
+Author: mm <meirtor1@gmail.com>
+Date:   Thu Jun 7 09:30:36 2018 +0300
+
+    members of controller are static - to avoid connection problems
+
+commit 4c1e461c6b84a4d5989cfcb3cd0e46b6350396a1
+Author: mm <meirtor1@gmail.com>
+Date:   Tue Jun 5 11:16:10 2018 +0300
+
+    Handlers on config, with redirect to new page ("are you sure" will be inserted later)
+
+commit 63a40c4af20b488cde7fa71bddf8ef2bb893b93f
+Author: mm <meirtor1@gmail.com>
+Date:   Tue Jun 5 10:58:27 2018 +0300
+
+    Removed examples and arranged config
+
+commit 54f5326d2f6c3eefd3e4f0a7ab0ecf5a3de3a35d
+Author: mm <meirtor1@gmail.com>
+Date:   Tue Jun 5 10:40:28 2018 +0300
+
+    Configuration view working (except the handlers, that will be handled later)
+
+commit d6c130cd3a5171780ed310d96c65d8c79028c856
+Author: mm <meirtor1@gmail.com>
+Date:   Tue Jun 5 02:50:27 2018 +0300
+
+    reading correctly the logs. changed SendCommand
+
+commit 9369ef53b22ea142f691ed26bc32bdd31708155b
+Author: mm <meirtor1@gmail.com>
+Date:   Tue Jun 5 02:33:49 2018 +0300
+
+    basic communication with service working
+
+commit fa8b02fa89a5f75b75f1cb7db7500e8dc900a030
+Author: mm <meirtor1@gmail.com>
+Date:   Tue Jun 5 02:06:46 2018 +0300
+
+    Reading status correctly
+
+commit 2213cb186519559a358b778025b2b0491c637d69
+Author: mm <meirtor1@gmail.com>
+Date:   Mon Jun 4 13:19:37 2018 +0300
+
+    tried to add "GUIClient" to web.
+    added details to ImageWeb view
+
+commit acf2af43f2b61fbc7251288ebe3f78c412c26f81
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri Jun 1 23:19:02 2018 +0300
+
+    testing again
+
+commit 9a342108a9e31326c3ea928860877fa11e6b1173
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri Jun 1 23:11:47 2018 +0300
+
+    testing
+
+commit c1ef9837810ee7c731e7326a8611bb7d531874fe
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri Jun 1 23:04:21 2018 +0300
+
+    added web-Application project
+
+commit a667795bfb07023b24093477cec73df8f85a8f7c
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun May 27 20:43:35 2018 +0300
+
+    some fixes
+
+commit ca55cf4955fd6b40ccfe915f5dd893d3615cbafa
+Author: mm <meirtor1@gmail.com>
+Date:   Sun May 27 19:09:12 2018 +0300
+
+    Logs header is fine
+
+commit 9ad8ffd23cd36a0e44e8eaf379a9d761e7e606c1
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun May 27 18:34:34 2018 +0300
+
+    more cleanup
+
+commit 64add1dcb4a0b0f1bb25e45fd73a90e2e10676b5
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun May 27 16:44:55 2018 +0300
+
+    some more doc and cleanup
+
+commit d915ee9c322507b486068fadda7f32222d845fd1
+Author: mm <meirtor1@gmail.com>
+Date:   Sun May 27 11:59:20 2018 +0300
+
+    documentation
+
+commit a740deb3cc3f28e057488013b1a198e905158c3a
+Author: mm <meirtor1@gmail.com>
+Date:   Sun May 27 06:38:19 2018 +0300
+
+    some cleaning
+
+commit a125d8637ab3fe010bff626a14521b432b3f15a1
+Author: mm <meirtor1@gmail.com>
+Date:   Sun May 27 06:20:02 2018 +0300
+
+    structuring the logic in mvvm
+
+commit 34e3a7c799265bed3ab12397b56ea7abbe55afef
+Author: mm <meirtor1@gmail.com>
+Date:   Sun May 27 02:08:45 2018 +0300
+
+    Removing handlers removes them for multiple clients
+
+commit 2ee277aba52383943a56687894fa21367c0b9547
+Author: mm <meirtor1@gmail.com>
+Date:   Sun May 27 01:54:25 2018 +0300
+
+    minor corrections to color
+
+commit a9de0f9b285657684c14d5382f3271b1f3fb64c1
+Author: mm <meirtor1@gmail.com>
+Date:   Sun May 27 01:23:09 2018 +0300
+
+    Colors of type working.
+    Clearing logs from before current start
+
+commit ea3d8aaf37e22ff76cc0536e0eb6f3a4d47502eb
+Merge: a5531e4 9d4a5f1
+Author: mm <meirtor1@gmail.com>
+Date:   Sun May 27 00:24:49 2018 +0300
+
+    merged
+
+commit a5531e4092e443dd4a56be5cc2a75ce5d37a4ac3
+Author: mm <meirtor1@gmail.com>
+Date:   Sun May 27 00:17:00 2018 +0300
+
+    minor changes
+
+commit 9d4a5f16cc017aaa8255559bb7cf75e36258cfac
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sat May 26 23:32:32 2018 +0300
+
+    another small update to the gui
+
+commit 5e7af7154be8da011d0b477b850c3ea1e6bb6ec9
+Author: subscorp <ori81510@gmail.com>
+Date:   Sat May 26 22:09:35 2018 +0300
+
+    Simple timer to refresh the logs
+
+commit 34d9394fee0a558ecbc53bc003161b5f0823c079
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sat May 26 21:01:58 2018 +0300
+
+    small update to the gui
+
+commit 10383b9bbe192d903887fb553a8c31a591b5d9b4
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sat May 26 20:34:53 2018 +0300
+
+    some small changes to the server
+
+commit 52a95eaa5de70987f676d29d0cb1de7b2b3e88b4
+Author: subscorp <ori81510@gmail.com>
+Date:   Sat May 26 19:25:17 2018 +0300
+
+    added error desc
+
+commit cceab894d9236910c5eed9ff0448e91942a4f74c
+Author: subscorp <ori81510@gmail.com>
+Date:   Sat May 26 19:24:27 2018 +0300
+
+    fix
+
+commit 91edcc0d1f66b34848a27b37c0a74c55df9027d5
+Author: subscorp <ori81510@gmail.com>
+Date:   Sat May 26 18:44:38 2018 +0300
+
+    development
+
+commit 2574abdf8e17962993e75ad4ce749e5ebac6b897
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri May 25 17:38:35 2018 +0300
+
+    small update to the GUI
+
+commit a4c2e55e53532d2759340ab89cce333c4fc0c9a3
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri May 25 15:17:27 2018 +0300
+
+    update to the server and consoleClient
+
+commit 15d13c262b14a8587447d0dfdfeb0a15cd3bb907
+Author: mm <meirtor1@gmail.com>
+Date:   Thu May 24 03:57:10 2018 +0300
+
+    added color property to logs
+
+commit c5197adef28c91154351feba507cbb5b1a88e850
+Author: mm <meirtor1@gmail.com>
+Date:   Thu May 24 02:46:19 2018 +0300
+
+    client and server projects united in same repository
+
+commit 6d84e216e0686792bb7fa3d6ff7661607ebcf8fd
+Author: mm <meirtor1@gmail.com>
+Date:   Wed May 23 03:58:37 2018 +0300
+
+    now erasing multiple handlers at once
+
+commit fde12fc12b796340725c243996be2118b1a07e58
+Merge: 919dee5 0280bca
+Author: mm <meirtor1@gmail.com>
+Date:   Wed May 23 03:34:57 2018 +0300
+
+    Merge branch 'master' of https://github.com/subscorp/Dante-Inferno
+
+commit 919dee5c527dad1370cb79f3708a261bfc9a3a4c
+Author: mm <meirtor1@gmail.com>
+Date:   Wed May 23 03:34:42 2018 +0300
+
+    removing handlers work (only one at a time for now)
+
+commit 0280bca60b894638f2ad0e987dc743bd672a53a2
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Wed May 23 00:16:42 2018 +0300
+
+    added remove handler logic
+
+commit 68afb65c78ac557f5b24a97077d3af4ed029b70c
+Merge: dfa1fe0 bea16a2
+Author: mm <meirtor1@gmail.com>
+Date:   Tue May 22 01:29:06 2018 +0300
+
+    Merge branch 'master' of https://github.com/subscorp/Dante-Inferno
+
+commit dfa1fe06c30404e23ce32055c8cc7a83b1c0d6af
+Author: mm <meirtor1@gmail.com>
+Date:   Tue May 22 01:28:53 2018 +0300
+
+    minor changes
+
+commit bea16a23892f8b69ac022f9a27928766e50dfc49
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Mon May 21 15:10:09 2018 +0300
+
+    added log functionality to the tcp
+
+commit ac5372712899a75f7561dc37771aa34c911d217a
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Mon May 21 00:48:35 2018 +0300
+
+    minor update to the server
+
+commit 37ca37311220d21b03bf5e996dc75422021075b8
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Mon May 21 00:35:23 2018 +0300
+
+    added communication project, tcp works with the service for the appSettings for now
+
+commit ee632a6b7ae80f22c7d851074adc9cc0dadcedce
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun May 20 20:38:42 2018 +0300
+
+    another update to the tcpServer
+
+commit 5c9dd61a070cc00e1259b2d91e5a7162e86d0a53
+Author: mm <meirtor1@gmail.com>
+Date:   Fri May 18 12:55:47 2018 +0300
+
+    started creating button dependency on selected items
+
+commit 8ad242a2dc76744ccc489f9d19066a5d9c60af8b
+Author: mm <meirtor1@gmail.com>
+Date:   Fri May 18 05:21:16 2018 +0300
+
+    button and list of handlers added
+
+commit 2a78eea773d9021580211a9d5058c5da9618543d
+Author: mm <meirtor1@gmail.com>
+Date:   Fri May 18 04:29:21 2018 +0300
+
+    Beginning of MVVM
+
+commit 7e5c271e12ef5c5ae46ad7a26dc1b1817654dbd6
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Wed May 16 12:15:56 2018 +0300
+
+    added consoleClient handler logic and other related classes
+
+commit 0530790540a286199297c8f5748d51f418b964e8
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Thu May 10 22:39:16 2018 +0300
+
+    some more steps in building the tcp
+
+commit bba7f4902e3da9e0bd5bc81515bd1f1a9a9bacb7
+Merge: de63882 dfec3cd
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Thu May 10 21:50:48 2018 +0300
+
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+
+commit de638822bf91f8b7d65b5bfc524e38bafa68b09d
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Thu May 10 21:45:04 2018 +0300
+
+    Initial commit to add default .gitIgnore and .gitAttribute files.
+
+commit dfec3cd6153305dbb2652db1de00f21b65458689
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri May 4 15:44:04 2018 +0300
+
+    added basic tcp logic for the server
+
+commit 1a42b34f39027972cca1203ed48a78d0416f689d
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri May 4 14:04:34 2018 +0300
+
+    added skeleton for the tcp in the server
+
+commit 734ed684f052c365985ebb55dff9fb5714497b5c
+Merge: 060cffb 9fa4d5b
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sat Apr 14 22:09:49 2018 +0300
+
+    Merge branch 'master' of https://github.com/subscorp/Dante-Inferno.git
+
+commit 060cffbdd67e545cec906994f61a42eccfa681c2
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sat Apr 14 22:08:39 2018 +0300
+
+    outputFolder is now created as hidden folder
+
+commit 9fa4d5bd5e9b0fd03ab6b61b1d3c24b5e1ddc32c
+Author: mm <meirtor1@gmail.com>
+Date:   Fri Apr 13 11:54:00 2018 +0300
+
+    documentation
+
+commit 96373740507ccb6b770b6131377f5f15ca368a77
+Author: mm <meirtor1@gmail.com>
+Date:   Fri Apr 13 11:11:24 2018 +0300
+
+    moving files works on several folders
+
+commit 52841f4c2538cc6cc868e1dc07828421e7d3b48b
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Thu Apr 12 22:31:36 2018 +0300
+
+    Added logic to take "Date Taken" info from photo or use Creation Date when not available
+
+commit af4d4bb22a012052a326d370a6ca7b1f3bb3296a
+Author: mm <meirtor1@gmail.com>
+Date:   Thu Apr 12 14:36:56 2018 +0300
+
+    documentation of command, handler and controller
+
+commit e630e0d264b4c050c084713dd3cf2decf34a56a0
+Author: mm <meirtor1@gmail.com>
+Date:   Thu Apr 12 11:58:12 2018 +0300
+
+    service working - the folders are watched and files are created correctly
+
+commit 804f51f38b19ce442f0cdc902841ed47c417874a
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun Apr 1 17:43:29 2018 +0300
+
+    a small change to the AddFile method in imageModal
+
+commit 63b0729e89978f975b72d156d5705e632bfa09b3
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sun Apr 1 17:33:35 2018 +0300
+
+    added thumbnails creation
+
+commit 26e1cc4e9847632045ce2cb50ee25351c26078aa
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Sat Mar 31 15:22:27 2018 +0300
+
+    successfully used the controller to execute the newFile command
+
+commit f8e76c242ed11ab03c3ad6a1bb011f336486218e
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri Mar 30 00:38:11 2018 +0300
+
+    changed app.config file
+
+commit 78ca46eef1410abc08f8a2fbbeb24d4b1b7ecc1f
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Fri Mar 30 00:18:24 2018 +0300
+
+    some minor changes
+
+commit 9abb3dc1be04100b167058e11a046bde4ef66d78
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Thu Mar 29 20:10:22 2018 +0300
+
+    a small update to addFile method in ImageServiceModal.cs
+
+commit 53e2f312bfb0481e8a79b59d4bec27513b82e230
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Thu Mar 29 20:01:51 2018 +0300
+
+    implemented AddFile in ImageServiceModal.cs
+
+commit e541352ab8af2e17b2402f9c7996c4207f2f62fd
+Author: mm <meirtor1@gmail.com>
+Date:   Thu Mar 29 16:00:41 2018 +0300
+
+    OnStart & OnStop working
+
+commit 7b12db1e29717b655cf4297b2942c1d0a7bf9c53
+Author: mm <meirtor1@gmail.com>
+Date:   Thu Mar 29 15:10:26 2018 +0300
+
+    service installing and running (for real this time)
+
+commit f9e19291dfb3c9e6b888a9225c14bf546cba46db
+Author: mm <meirtor1@gmail.com>
+Date:   Thu Mar 29 04:44:16 2018 +0300
+
+    beggining of logging service. some changes in server and handler classes
+
+commit df8ddae5d854a67edf40df7a10d2ef97c49b63f9
+Author: mm <meirtor1@gmail.com>
+Date:   Thu Mar 29 03:54:04 2018 +0300
+
+    beginning the server class
+
+commit 9881be2e3e7e162b0e525114078722cd4fba9c85
+Author: mm <meirtor1@gmail.com>
+Date:   Thu Mar 29 03:25:10 2018 +0300
+
+    service running properly
+
+commit f7f3a4e0db620f8580acd4e549574a18f1733f42
+Author: mm <meirtor1@gmail.com>
+Date:   Wed Mar 28 15:40:26 2018 +0300
+
+    install works
+
+commit a47950b488c1f92793fa13762b11581e577dfa00
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Thu Mar 22 12:51:11 2018 +0200
+
+    added folders
+
+commit fd9f8b6aab0a44d42643102a3eb00a27b3ce0d29
+Author: subscorp <33960879+subscorp@users.noreply.github.com>
+Date:   Thu Mar 22 12:25:27 2018 +0200
+
+    added structure
+
+commit 3669a438e6af0b847f674f697ec1a04f01c3ef71
+Author: brain-chain <37620796+brain-chain@users.noreply.github.com>
+Date:   Thu Mar 22 12:06:56 2018 +0200
+
+    commt
+
+commit 365ffef45d6fbdabc1ab4704730b76f79680d843
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Thu Mar 22 12:01:26 2018 +0200
+
+    bla bla
+
+commit 9d3545166562d0141300ccfc98e03fe874d181df
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Thu Mar 22 11:56:55 2018 +0200
+
+    mess
+
+commit 0fb1d9c908fac3e7f80cef05f89e51f5fa278d06
+Author: Ori Hirshfeld <ori81510@gmail.com>
+Date:   Thu Mar 22 11:56:41 2018 +0200
+
+    Initial commit to add default .gitIgnore and .gitAttribute files.
