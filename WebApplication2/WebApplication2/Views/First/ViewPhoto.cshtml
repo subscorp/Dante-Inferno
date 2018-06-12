@@ -5,7 +5,7 @@
 
 @{
     var name = ViewData["Name"];
-    string[] arr = Directory.EnumerateFiles(Server.MapPath("~/pictures/photos"), "*", SearchOption.AllDirectories).ToArray();
+    string[] arr = Directory.EnumerateFiles(Server.MapPath("~/output/photos"), "*", SearchOption.AllDirectories).ToArray();
 
     foreach (var item2 in arr)
     {

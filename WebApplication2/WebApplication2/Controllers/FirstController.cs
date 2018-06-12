@@ -86,7 +86,7 @@ namespace WebApplication2.Controllers
         {
             if (Directory.Exists(sm.Settings.OutputDir + "/Thumbnails"))
             {
-                string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
+                string[] arr = Directory.GetFiles(Server.MapPath("~/output/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
                 int arrLength = arr.Length;
 
                 //calculating number of rows to show, each row has seven items
@@ -120,8 +120,8 @@ namespace WebApplication2.Controllers
         public ActionResult RemovePhoto(string photo)
         {
             // creating arrays of all photos in photos and thumbnail directories
-            string[] arr = Directory.GetFiles(Server.MapPath("~/pictures/photos"), "*", SearchOption.AllDirectories).ToArray();
-            string[] arr2 = Directory.GetFiles(Server.MapPath("~/pictures/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
+            string[] arr = Directory.GetFiles(Server.MapPath("~/output/photos"), "*", SearchOption.AllDirectories).ToArray();
+            string[] arr2 = Directory.GetFiles(Server.MapPath("~/output/Thumbnails"), "*", SearchOption.AllDirectories).ToArray();
 
             //delete the photo
             foreach (var item in arr)
