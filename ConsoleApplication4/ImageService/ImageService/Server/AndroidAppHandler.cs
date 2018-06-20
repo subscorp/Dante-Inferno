@@ -43,10 +43,12 @@ namespace ImageService.ImageService.ImageService.Server
                 {
                     try
                     {
+
+                            
                             //getting pictures from the client
-                            //int numBytes = reader.ReadInt32();
-                            byte[] json = reader.ReadBytes(800 * 1000);
-                            //byte[] json = reader.ReadBytes(numBytes);
+                            int numBytes = reader.ReadInt32();
+                            //byte[] json = reader.ReadBytes(800 * 1000);
+                            byte[] json = reader.ReadBytes(numBytes);
                             Console.WriteLine("read {0} bytes", json.Length);
                             MemoryStream ms = new MemoryStream(json);
 
@@ -61,8 +63,8 @@ namespace ImageService.ImageService.ImageService.Server
                             Console.WriteLine("trying to save the photo");
                             returnImage.Save(@"C:\ImageFolders\folder1\" + imgName);
                             Console.WriteLine("saved the image");
-                            //cmd = JsonConvert.DeserializeObject<CommandArgs>(json);
-                        }
+                            //cmd = JsonConvert.DeserializeObject<CommandArgs>(json); 
+                        }   
                         catch (Exception ex)
                         {
                             return;
