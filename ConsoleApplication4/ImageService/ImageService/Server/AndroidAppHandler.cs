@@ -41,41 +41,32 @@ namespace ImageService.ImageService.ImageService.Server
             {
                 while (client.Connected)
                 {
-                        int i = 0;
                     try
                     {
-                            //getting pictures from the client
+                            //getting the name of the image
+                            byte[] nameLength = reader.ReadBytes(4);
+                            int nameLen = convertBytes(nameLength);
+                            byte[] nameFromBytes = reader.ReadBytes(nameLen);
+                            var imgName = System.Text.Encoding.Default.GetString(nameFromBytes);
+                            Console.WriteLine("nameToString is:" + imgName);
+                            
+                            //getting the image
                             byte[] bytes = reader.ReadBytes(4);
-                            foreach (byte byt in bytes)
-                                Console.WriteLine(byt);
-                            //convert binary number in byte array to int
-                            int multiplier = 1;
-                            int exponent = 8;
-                            int bin = 0;
-                            for (int j = 3; j >= 0; --j)
-                            {
-                                bin += (multiplier * bytes[j]);
-                                multiplier = (int)Math.Pow(2,exponent);
-                                exponent += 8;
-                            }
-
+                            int bin = convertBytes(bytes);
                             Console.WriteLine("numBytes is {0}", bin);
                             byte[] json = reader.ReadBytes(bin);
                             Console.WriteLine("read {0} bytes", json.Length);
                             MemoryStream ms = new MemoryStream(json);
 
+                            //saving the image
                             Console.WriteLine("before Image img");
                             Image img = Image.FromStream(ms,true,true);
                             Console.WriteLine("after Image img");
-
                             Bitmap returnImage = new Bitmap(img, img.Width, img.Height);
-                            //   img.Tag = "myImage.jpg";
-                            //   string imgName = img.Tag.ToString();
-                            string imgName = i + "myImage.jpg";
                             Console.WriteLine("trying to save the photo");
                             returnImage.Save(@"C:\ImageFolders\folder1\" + imgName);
                             Console.WriteLine("saved the image {0}",imgName);
-                            i++;
+                            Console.WriteLine();
                         }   
                         catch (Exception ex)
                         {
@@ -86,6 +77,21 @@ namespace ImageService.ImageService.ImageService.Server
 
                 }
             }).Start();
+        }
+
+        int convertBytes(byte[] bytes)
+        {
+            //convert binary number in byte array to int
+            int multiplier = 1;
+            int exponent = 8;
+            int bin = 0;
+            for (int j = 3; j >= 0; --j)
+            {
+                bin += (multiplier * bytes[j]);
+                multiplier = (int)Math.Pow(2, exponent);
+                exponent += 8;
+            }
+            return bin;
         }
     }
 }
