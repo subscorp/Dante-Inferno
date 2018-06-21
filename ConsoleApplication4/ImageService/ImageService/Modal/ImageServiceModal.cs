@@ -81,6 +81,7 @@ namespace ImageService.Modal
                             date = File.GetCreationTime(path);
                         }
                         thumb = image.GetThumbnailImage(m_thumbnailSize, m_thumbnailSize, () => false, IntPtr.Zero);
+                        image.Dispose();
                     }
                     var x = date;
                     int year = x.Year;
@@ -145,6 +146,7 @@ namespace ImageService.Modal
                     {
                         thumb.Dispose();
                     }
+                    
                 }
             }
             result = false;
