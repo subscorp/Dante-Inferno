@@ -41,14 +41,26 @@ namespace ImageService.ImageService.ImageService.Server
             {
                 while (client.Connected)
                 {
+                        int i = 0;
                     try
                     {
-
-                            
                             //getting pictures from the client
-                            int numBytes = reader.ReadInt32();
-                            //byte[] json = reader.ReadBytes(800 * 1000);
-                            byte[] json = reader.ReadBytes(numBytes);
+                            byte[] bytes = reader.ReadBytes(4);
+                            foreach (byte byt in bytes)
+                                Console.WriteLine(byt);
+                            //convert binary number in byte array to int
+                            int multiplier = 1;
+                            int exponent = 8;
+                            int bin = 0;
+                            for (int j = 3; j >= 0; --j)
+                            {
+                                bin += (multiplier * bytes[j]);
+                                multiplier = (int)Math.Pow(2,exponent);
+                                exponent += 8;
+                            }
+
+                            Console.WriteLine("numBytes is {0}", bin);
+                            byte[] json = reader.ReadBytes(bin);
                             Console.WriteLine("read {0} bytes", json.Length);
                             MemoryStream ms = new MemoryStream(json);
 
@@ -59,17 +71,18 @@ namespace ImageService.ImageService.ImageService.Server
                             Bitmap returnImage = new Bitmap(img, img.Width, img.Height);
                             //   img.Tag = "myImage.jpg";
                             //   string imgName = img.Tag.ToString();
-                            string imgName = "myImage.jpg";
+                            string imgName = i + "myImage.jpg";
                             Console.WriteLine("trying to save the photo");
                             returnImage.Save(@"C:\ImageFolders\folder1\" + imgName);
-                            Console.WriteLine("saved the image");
-                            //cmd = JsonConvert.DeserializeObject<CommandArgs>(json); 
+                            Console.WriteLine("saved the image {0}",imgName);
+                            i++;
                         }   
                         catch (Exception ex)
                         {
                             return;
                         } 
                     }
+                    Console.WriteLine("got out of while loop");
 
                 }
             }).Start();
