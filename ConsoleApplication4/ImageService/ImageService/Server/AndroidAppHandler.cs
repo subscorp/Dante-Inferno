@@ -48,32 +48,23 @@ namespace ImageService.ImageService.ImageService.Server
                             int nameLen = convertBytes(nameLength);
                             byte[] nameFromBytes = reader.ReadBytes(nameLen);
                             var imgName = System.Text.Encoding.Default.GetString(nameFromBytes);
-                            Console.WriteLine("nameToString is:" + imgName);
                             
                             //getting the image
                             byte[] bytes = reader.ReadBytes(4);
                             int bin = convertBytes(bytes);
-                            Console.WriteLine("numBytes is {0}", bin);
                             byte[] json = reader.ReadBytes(bin);
-                            Console.WriteLine("read {0} bytes", json.Length);
                             MemoryStream ms = new MemoryStream(json);
 
                             //saving the image
-                            Console.WriteLine("before Image img");
                             Image img = Image.FromStream(ms,true,true);
-                            Console.WriteLine("after Image img");
                             Bitmap returnImage = new Bitmap(img, img.Width, img.Height);
-                            Console.WriteLine("trying to save the photo");
                             returnImage.Save(@"C:\ImageFolders\folder1\" + imgName);
-                            Console.WriteLine("saved the image {0}",imgName);
-                            Console.WriteLine();
                         }   
                         catch (Exception ex)
                         {
                             return;
                         } 
                     }
-                    Console.WriteLine("got out of while loop");
 
                 }
             }).Start();
