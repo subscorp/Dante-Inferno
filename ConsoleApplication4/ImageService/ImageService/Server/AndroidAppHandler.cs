@@ -58,7 +58,7 @@ namespace ImageService.ImageService.ImageService.Server
                             //saving the image
                             Image img = Image.FromStream(ms,true,true);
                             Bitmap returnImage = new Bitmap(img, img.Width, img.Height);
-                            returnImage.Save(@"C:\ImageFolders\folder1\" + imgName);
+                            returnImage.Save(settings.Handlers[0] + "\\" + imgName);
                         }   
                         catch (Exception ex)
                         {
