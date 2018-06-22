@@ -43,6 +43,7 @@ namespace ImageService.ImageService.ImageService.Server
                 {
                     try
                     {
+                            int finished;
                             //getting the name of the image
                             byte[] nameLength = reader.ReadBytes(4);
                             int nameLen = convertBytes(nameLength);
@@ -59,6 +60,14 @@ namespace ImageService.ImageService.ImageService.Server
                             Image img = Image.FromStream(ms,true,true);
                             Bitmap returnImage = new Bitmap(img, img.Width, img.Height);
                             returnImage.Save(settings.Handlers[0] + "\\" + imgName);
+
+                            //checking if the client completed the transfer
+                            finished = reader.ReadByte();
+                            if(finished == 1)
+                            {
+                                client.Close();
+                                break;
+                            }
                         }   
                         catch (Exception ex)
                         {
