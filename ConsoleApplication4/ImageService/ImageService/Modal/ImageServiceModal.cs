@@ -127,7 +127,10 @@ namespace ImageService.Modal
                     if (!File.Exists(imagePath))
                     {
                         File.Move(path, imagePath);
-                    } else { /*File.Delete(path);*/  result = false; return null; }
+                    } else {
+                        File.Delete(imagePath);
+                        File.Move(path, imagePath);
+                        /*result = true; return null;*/ }
 
                     //creating thumbnail and saving it in the correct folder
                     thumb.Save(thumbnailPath);
