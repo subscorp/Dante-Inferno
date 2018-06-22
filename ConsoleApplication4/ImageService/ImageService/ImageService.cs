@@ -60,11 +60,6 @@ namespace ImageService
             InitializeComponent();
         }
 
-        public void ForceRun()
-        {
-            this.OnStart(null);
-        }
-
     /// <summary>
     /// executes when Start command is sent to the service by the SCM
     /// </summary>
